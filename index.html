@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>oppty tech hub</title>
+  <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+</head>
+<body>
+
+  <!-- ========== NAVBAR ========== -->
+  <header class="navbar">
+    <a href="#" class="logo">
+      <img src="images/oppty.png" alt="Oppty Logo" class="logo-img" />
+    </a>
+    <button class="hamburger" id="menuToggle" aria-label="Open menu">
+      <span></span>
+      <span></span>
+    </button>
+  </header>
+
+  <!-- ========== SLIDE-IN MENU ========== -->
+  <div class="menu-overlay" id="menuOverlay"></div>
+  <nav class="slide-menu" id="slideMenu">
+
+    <!-- Close button (replaces hamburger lines with X) -->
+    <button class="menu-close" id="menuClose" aria-label="Close menu">
+      <span></span>
+      <span></span>
+    </button>
+
+    <div class="menu-body">
+
+      <!-- LEFT: Navigation -->
+      <div class="menu-left">
+        <p class="menu-label">NAVIGATION</p>
+        <ul class="menu-links">
+          <li><a href="#">Home</a></li>
+          <li><a href="#">Platforms</a></li>
+          <li><a href="#">About</a></li>
+          <li><a href="#">Team</a></li>
+          <li><a href="#">Insights</a></li>
+          <li><a href="#">Contact</a></li>
+        </ul>
+        <!-- Social icons bottom-left -->
+        <div class="menu-socials">
+          <a href="#"><i class="fab fa-linkedin-in"></i></a>
+          <a href="#"><i class="fa-brands fa-x-twitter"></i></a>
+          <a href="#"><i class="fab fa-instagram"></i></a>
+          <a href="#"><i class="fab fa-youtube"></i></a>
+          <a href="#"><i class="fab fa-facebook-f"></i></a>
+        </div>
+      </div>
+
+      <!-- RIGHT: Get Started + Latest Post -->
+      <div class="menu-right">
+
+        <div class="menu-section">
+          <p class="menu-label">GET STARTED</p>
+          <a href="#" class="menu-demo-btn">Request a Demo <i class="fas fa-arrow-up-right-from-square"></i></a>
+        </div>
+
+        <div class="menu-section mt-auto">
+          <p class="menu-label">LATEST POST</p>
+          <div class="menu-post">
+            <img src="images/hero1.jpg" alt="Latest Post" class="post-img" />
+            <p class="post-caption">Cracking the Genetic Code for Optimal Health</p>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+
+    <!-- Bottom-right buttons inside menu -->
+    <div class="menu-footer-btns">
+      <a href="#" class="btn-buy">Buy Template</a>
+      <a href="#" class="btn-framer-sm"><i class="fas fa-cube"></i> Made in Framer</a>
+    </div>
+
+  </nav>
+
+  <!-- ========== HERO ========== -->
+  <section class="hero">
+
+    <!-- Background: your image fills the whole section -->
+    <div class="hero-bg"></div>
+
+    <!-- subtle dark overlay bottom-left so text is readable -->
+    <div class="hero-overlay"></div>
+
+    <!-- Bottom text slider -->
+    <div class="hero-slider">
+      <div class="slider-track" id="sliderTrack">
+
+        <div class="slide">
+          <h2 class="slide-title">INNOVATIVE SOLUTIONS UNLEASHED</h2>
+          <div class="slide-tags">
+            <span>ADVANCED IT</span>
+            <span class="dot-sep">●</span>
+            <span>TAILORED STRATEGIES</span>
+            <span class="dot-sep">●</span>
+            <span>SCALABLE GROWTH</span>
+          </div>
+        </div>
+
+        <div class="slide">
+          <h2 class="slide-title">FUTURE-READY TECHNOLOGY</h2>
+          <div class="slide-tags">
+            <span>AI AUTOMATION</span>
+            <span class="dot-sep">●</span>
+            <span>EFFICIENT BPO</span>
+            <span class="dot-sep">●</span>
+            <span>PROACTIVE AIOPS</span>
+          </div>
+        </div>
+
+        <div class="slide">
+          <h2 class="slide-title">ELEVATE ONLINE PRESENCE</h2>
+          <div class="slide-tags">
+            <span>STUNNING WEBSITES</span>
+            <span class="dot-sep">●</span>
+            <span>ROBUST SECURITY</span>
+            <span class="dot-sep">●</span>
+            <span>E-COMMERCE OPTIMIZATION</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Right side social icons -->
+    <div class="social-icons">
+      <a href="#"><i class="fab fa-facebook-f"></i></a>
+      <a href="#"><i class="fa-brands fa-x-twitter"></i></a>
+      <a href="#"><i class="fab fa-instagram"></i></a>
+      <a href="#"><i class="fab fa-youtube"></i></a>
+      <a href="#"><i class="fab fa-facebook"></i></a>
+    </div>
+
+    <!-- Bottom right action buttons -->
+    <div class="hero-actions">
+      <a href="#" class="btn-demo">Request a Demo <i class="fas fa-arrow-up-right-from-square"></i></a>
+      <a href="#" class="btn-framer"><i class="fas fa-cube"></i> Made in Framer</a>
+    </div>
+
+  </section>
+
+  <script>
+    // ---- Hamburger menu ----
+    const toggle   = document.getElementById('menuToggle');
+    const closeBtn = document.getElementById('menuClose');
+    const menu     = document.getElementById('slideMenu');
+    const overlay  = document.getElementById('menuOverlay');
+
+    function openMenu() {
+      menu.classList.add('open');
+      overlay.classList.add('show');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeMenu() {
+      menu.classList.remove('open');
+      overlay.classList.remove('show');
+      document.body.style.overflow = '';
+    }
+
+    toggle.addEventListener('click', openMenu);
+    closeBtn.addEventListener('click', closeMenu);
+    overlay.addEventListener('click', closeMenu);
+
+    // ---- Hero text slider ----
+    const track  = document.getElementById('sliderTrack');
+    const slides = track.querySelectorAll('.slide');
+    let current  = 0;
+
+    function goTo(index) {
+      slides[current].classList.remove('active');
+      current = (index + slides.length) % slides.length;
+      slides[current].classList.add('active');
+    }
+
+    // init
+    slides[0].classList.add('active');
+
+    // auto-advance every 3.5s
+    setInterval(() => goTo(current + 1), 3500);
+  </script>
+
+</body>
+</html>
