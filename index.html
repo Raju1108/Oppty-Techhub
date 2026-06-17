@@ -85,8 +85,10 @@
   <!-- ========== HERO ========== -->
   <section class="hero">
 
-    <!-- Background: your image fills the whole section -->
-    <div class="hero-bg"></div>
+    <!-- Background video -->
+    <video class="hero-bg" autoplay muted loop playsinline>
+      <source src="images/hero2.mp4" type="video/mp4" />
+    </video>
 
     <!-- subtle dark overlay bottom-left so text is readable -->
     <div class="hero-overlay"></div>
@@ -171,21 +173,39 @@
     closeBtn.addEventListener('click', closeMenu);
     overlay.addEventListener('click', closeMenu);
 
-    // ---- Hero text slider ----
-    const track  = document.getElementById('sliderTrack');
-    const slides = track.querySelectorAll('.slide');
-    let current  = 0;
+    // ---- Hero text slider — slide in from left, exit to right ----
+    const slides = document.querySelectorAll('.slide');
+    let current = 0;
+    let animating = false;
 
-    function goTo(index) {
-      slides[current].classList.remove('active');
-      current = (index + slides.length) % slides.length;
-      slides[current].classList.add('active');
-    }
-
-    // init
+    // set first slide as visible
     slides[0].classList.add('active');
 
-    // auto-advance every 3.5s
+    function goTo(next) {
+      if (animating) return;
+      animating = true;
+
+      const curr = current;
+      current = (next + slides.length) % slides.length;
+
+      // position incoming slide off-screen left instantly (no transition)
+      slides[current].style.transition = 'none';
+      slides[current].classList.add('enter-from-left');
+      slides[current].offsetHeight; // force reflow
+
+      // re-enable transition then animate both
+      slides[current].style.transition = '';
+      slides[curr].classList.add('exit-to-right');
+      slides[curr].classList.remove('active');
+      slides[current].classList.remove('enter-from-left');
+      slides[current].classList.add('active');
+
+      setTimeout(() => {
+        slides[curr].classList.remove('exit-to-right');
+        animating = false;
+      }, 750);
+    }
+
     setInterval(() => goTo(current + 1), 3500);
   </script>
 

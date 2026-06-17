@@ -81,14 +81,14 @@ body {
   overflow: hidden;
 }
 
-/* Background image — fills entire hero */
+/* Background video — fills entire hero */
 .hero-bg {
   position: absolute;
   inset: 0;
-  background-image: url('images/hero1.jpg');
-  background-size: cover;
-  background-position: center center;
-  background-repeat: no-repeat;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
   z-index: 0;
 }
 
@@ -118,39 +118,45 @@ body {
   background: transparent;
   padding: 0 48px;
   width: 55%;
+  overflow: hidden;
 }
 
 .slider-track {
   position: relative;
   width: 100%;
+  height: 180px; /* fixed height — prevents layout shift */
 }
 
+/* ALL slides absolutely positioned inside the track */
 .slide {
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
+  transform: translateX(-110%);
   opacity: 0;
-  transform: translateY(18px);
-  transition: opacity 0.7s ease, transform 0.7s ease;
+  transition: transform 0.7s cubic-bezier(0.77, 0, 0.18, 1),
+              opacity 0.5s ease;
   pointer-events: none;
 }
 
-/* first slide needs static position so the container has height */
-.slide:first-child {
-  position: relative;
-}
-
+/* active — in view */
 .slide.active {
+  transform: translateX(0);
   opacity: 1;
-  transform: translateY(0);
   pointer-events: all;
-  position: relative;
 }
 
-/* only the active slide drives the height */
-.slide:not(.active):not(:first-child) {
-  position: absolute;
+/* entering from left */
+.slide.enter-from-left {
+  transform: translateX(-110%);
+  opacity: 0;
+}
+
+/* exiting to right */
+.slide.exit-to-right {
+  transform: translateX(110%);
+  opacity: 0;
 }
 
 .slide-title {
