@@ -184,7 +184,6 @@ input[type]:checked ~ span.mid {
   position: absolute;
   z-index: 2;
   top: 50%;
-  left: 0;
   transform: translateY(-50%);
   background: transparent;
   padding: 0 48px;
@@ -272,7 +271,7 @@ input[type]:checked ~ span.mid {
   z-index: 2;
   top: 50%;
   right: 5%;
-  left: 55%;
+  left: 60%;
   transform: translateY(-50%);
   overflow: hidden;
   text-align: center;
