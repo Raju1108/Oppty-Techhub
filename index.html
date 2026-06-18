@@ -2352,11 +2352,23 @@
                 card.style.setProperty('--mouse-x', `${x}px`);
                 card.style.setProperty('--mouse-y', `${y}px`);
 
+                // Subtle 3D Card Tilt
+                const tiltX = -(y - rect.height / 2) / 12;
+                const tiltY = (x - rect.width / 2) / 12;
+
                 // Subtle 2D Magnetic Content Shift
                 const centerX = rect.width / 2;
                 const centerY = rect.height / 2;
-                const shiftX = (e.clientX - rect.left - centerX) / 8; // Max displacement ~12px
+                const shiftX = (e.clientX - rect.left - centerX) / 8;
                 const shiftY = (e.clientY - rect.top - centerY) / 8;
+
+                gsap.to(card, {
+                    rotateX: tiltX,
+                    rotateY: tiltY,
+                    transformPerspective: 800,
+                    duration: 0.3,
+                    ease: "power2.out"
+                });
 
                 const inner = card.querySelector('.card-inner');
                 if (inner) {
@@ -2370,6 +2382,13 @@
             });
 
             card.addEventListener('mouseleave', () => {
+                gsap.to(card, {
+                    rotateX: 0,
+                    rotateY: 0,
+                    duration: 0.6,
+                    ease: "power2.out"
+                });
+
                 const inner = card.querySelector('.card-inner');
                 if (inner) {
                     gsap.to(inner, {
@@ -2534,19 +2553,52 @@
         });
         window.addEventListener('resize', updateCommandNetworkLines);
 
-        // Track mouse on command panels for gradient highlight
+        // Track mouse on command panels for gradient highlight, 3D tilt, and network animation updates
         const commandPanels = document.querySelectorAll('.stat-panel');
-        commandPanels.forEach(panel => {
+        commandPanels.forEach((panel, i) => {
             panel.addEventListener('mousemove', (e) => {
                 const rect = panel.getBoundingClientRect();
                 const x = e.clientX - rect.left;
                 const y = e.clientY - rect.top;
                 panel.style.setProperty('--mouse-x', `${x}px`);
                 panel.style.setProperty('--mouse-y', `${y}px`);
+
+                // 3D Tilt calculations
+                const tiltX = -(y - rect.height / 2) / 10;
+                const tiltY = (x - rect.width / 2) / 10;
+                gsap.to(panel, {
+                    rotateX: tiltX,
+                    rotateY: tiltY,
+                    transformPerspective: 800,
+                    duration: 0.3,
+                    ease: 'power2.out'
+                });
+            });
+
+            panel.addEventListener('mouseenter', () => {
+                const path = document.getElementById(`path-to-panel${i + 1}`);
+                if (path) path.classList.add('active');
+                const pulse = document.getElementById(`pulse-to-panel${i + 1}`);
+                if (pulse) pulse.classList.add('active-pulse');
+            });
+
+            panel.addEventListener('mouseleave', () => {
+                const path = document.getElementById(`path-to-panel${i + 1}`);
+                if (path) path.classList.remove('active');
+                const pulse = document.getElementById(`pulse-to-panel${i + 1}`);
+                if (pulse) pulse.classList.remove('active-pulse');
+
+                // Reset 3D Tilt
+                gsap.to(panel, {
+                    rotateX: 0,
+                    rotateY: 0,
+                    duration: 0.5,
+                    ease: 'power2.out'
+                });
             });
         });
 
-        // Track mouse on footer cards for glow
+        // Track mouse on footer cards for glow and 3D tilt
         const footerCards = document.querySelectorAll('.footer-card');
         footerCards.forEach(card => {
             card.addEventListener('mousemove', (e) => {
@@ -2555,6 +2607,27 @@
                 const y = e.clientY - rect.top;
                 card.style.setProperty('--mouse-x', `${x}px`);
                 card.style.setProperty('--mouse-y', `${y}px`);
+
+                // 3D Tilt calculations
+                const tiltX = -(y - rect.height / 2) / 20;
+                const tiltY = (x - rect.width / 2) / 20;
+                gsap.to(card, {
+                    rotateX: tiltX,
+                    rotateY: tiltY,
+                    transformPerspective: 600,
+                    duration: 0.3,
+                    ease: 'power2.out'
+                });
+            });
+
+            card.addEventListener('mouseleave', () => {
+                // Reset 3D Tilt
+                gsap.to(card, {
+                    rotateX: 0,
+                    rotateY: 0,
+                    duration: 0.5,
+                    ease: 'power2.out'
+                });
             });
         });
 
@@ -2809,13 +2882,19 @@
         // ==========================================
         // GSAP TRIGGERS: SECTION 5 (CLIENTS)
         // ==========================================
-        const clientsGrid = document.querySelector('.clients-grid');
-        if (clientsGrid) {
-            gsap.to(clientsGrid, {
+        const clientCards = document.querySelectorAll('.client-logo-card');
+        if (clientCards.length) {
+            gsap.fromTo(clientCards, {
+                opacity: 0,
+                y: 35,
+                scale: 0.95
+            }, {
                 opacity: 1,
                 y: 0,
-                duration: 1,
-                ease: 'power3.out',
+                scale: 1,
+                duration: 0.8,
+                stagger: 0.08,
+                ease: 'back.out(1.2)',
                 scrollTrigger: {
                     trigger: '#clients',
                     start: 'top 80%',
@@ -2845,6 +2924,31 @@
                     start: 'top 80%',
                     toggleActions: 'play none none none'
                 }
+            });
+
+            // 3D Tilt Interaction on Testimonial Cards Hover
+            testimonialCards.forEach(card => {
+                card.addEventListener('mousemove', (e) => {
+                    const rect = card.getBoundingClientRect();
+                    const x = e.clientX - rect.left - rect.width / 2;
+                    const y = e.clientY - rect.top - rect.height / 2;
+                    gsap.to(card, {
+                        rotateX: -y / 15,
+                        rotateY: x / 15,
+                        transformPerspective: 600,
+                        ease: 'power2.out',
+                        duration: 0.3
+                    });
+                });
+
+                card.addEventListener('mouseleave', () => {
+                    gsap.to(card, {
+                        rotateX: 0,
+                        rotateY: 0,
+                        ease: 'power2.out',
+                        duration: 0.6
+                    });
+                });
             });
         }
 

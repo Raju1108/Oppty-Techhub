@@ -3668,5 +3668,51 @@ input[type]:checked ~ span.mid {
             }
         }
 
+        /* ============================================================================
+           10. INTERACTIVE MICRO-ANIMATIONS & HIGHLIGHTS
+           ============================================================================ */
+        /* Service Cards: Bullet items smooth slide-in on card hover */
+        .card-items li {
+            position: relative;
+            left: 0;
+            transition: left 0.35s cubic-bezier(0.25, 1, 0.5, 1), color 0.3s ease !important;
+        }
+        .service-card:hover .card-items li {
+            left: 6px;
+        }
+
+        /* Command Center: Stat number scale and shadow glow on panel hover */
+        .stat-number-wrap {
+            transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1), text-shadow 0.4s ease !important;
+        }
+        .stat-panel:hover .stat-number-wrap {
+            transform: scale(1.05) translateZ(10px);
+            text-shadow: 0 0 15px rgba(250, 140, 50, 0.3);
+        }
+
+        /* Command Center: Dynamic active state for SVG connection paths on hover */
+        .network-path.active {
+            stroke: rgba(250, 140, 50, 0.55) !important;
+            stroke-width: 3px !important;
+            filter: drop-shadow(0 0 4px rgba(250, 140, 50, 0.3));
+        }
+        .pulse-path.active-pulse {
+            stroke-width: 4px !important;
+            stroke: var(--accent) !important;
+            filter: drop-shadow(0 0 8px rgba(250, 140, 50, 0.8)) !important;
+        }
+
+        /* Clients Section: Extra card lift and shadow on hover */
+        .client-logo-card {
+            transition: border-color 0.4s ease, transform 0.4s cubic-bezier(0.25, 1, 0.5, 1), box-shadow 0.4s ease !important;
+        }
+        .client-logo-card:hover {
+            border-color: rgba(250, 140, 50, 0.4) !important;
+            transform: translateY(-8px) scale(1.04) !important;
+            box-shadow: 
+                0 15px 35px rgba(250, 140, 50, 0.12),
+                0 0 15px rgba(250, 140, 50, 0.05) !important;
+        }
+
 
 
