@@ -3249,7 +3249,7 @@ input[type]:checked ~ span.mid {
             background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.35), transparent) !important;
         }
 
-        .light-theme-scoped .premium-footer {
+        .premium-footer.light-theme-scoped {
             background: linear-gradient(to bottom, #FFF6EE 0%, #FFFDFB 100%) !important;
             border-top-color: rgba(250, 140, 50, 0.15) !important;
         }
@@ -3432,6 +3432,10 @@ input[type]:checked ~ span.mid {
             letter-spacing: 0.5px;
             transition: all 0.4s ease;
             text-transform: uppercase;
+        }
+        
+        .client-logo-fallback.small-fallback {
+            font-size: 1.12rem !important;
         }
         
         .client-logo-card:hover .client-logo-fallback {
