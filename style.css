@@ -3386,8 +3386,6 @@ input[type]:checked ~ span.mid {
             justify-content: center;
             align-items: center;
             gap: 24px;
-            opacity: 0;
-            transform: translateY(30px);
         }
         
         .client-logo-card {
@@ -3404,6 +3402,7 @@ input[type]:checked ~ span.mid {
             transition: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
             position: relative;
             overflow: hidden;
+            opacity: 0;
         }
         
         .client-logo-card:hover {
@@ -3425,6 +3424,7 @@ input[type]:checked ~ span.mid {
         }
         
         .client-logo-fallback {
+            display: none;
             font-family: 'Space Grotesk', sans-serif;
             font-weight: 700;
             font-size: 1.35rem;
