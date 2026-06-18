@@ -483,6 +483,313 @@
         </div>
     </section>
 
+    <!-- ============================================
+         SECTION 3: ANTI-GRAVITY SERVICES
+         ============================================ -->
+    <section class="services-section" id="services">
+        <!-- Background elements -->
+        <div class="services-bg-grid"></div>
+        <canvas class="services-particle-canvas" id="servicesParticleCanvas"></canvas>
+        
+        <!-- SVG connecting lines between cards -->
+        <svg class="services-connections" id="servicesConnections">
+            <path id="path-sc1-sc3" d="" class="connection-line" />
+            <path id="path-sc2-sc3" d="" class="connection-line" />
+            <path id="path-sc4-sc1" d="" class="connection-line" />
+            <path id="path-sc4-sc5" d="" class="connection-line" />
+            <path id="path-sc5-sc2" d="" class="connection-line" />
+        </svg>
+
+        <div class="services-container">
+            <div class="services-header">
+                <div class="services-label">ANTI-GRAVITY SERVICES</div>
+                <h2 class="services-heading" id="servicesHeading">
+                    <!-- Word by word reveal via JS -->
+                </h2>
+                <p class="services-subheading" id="servicesSubheading">
+                    <!-- Lines reveal via JS -->
+                </p>
+            </div>
+
+            <div class="services-grid" id="servicesGrid">
+                
+                <!-- Card 1: IT Solutions -->
+                <div class="service-card card-it" data-speed="0.08" id="sc1">
+                    <div class="card-glow"></div>
+                    <div class="card-inner">
+                        <div class="card-icon">
+                            <i class="fas fa-laptop-code"></i>
+                        </div>
+                        <h3 class="card-title">IT Solutions</h3>
+                        <p class="card-desc">Robust enterprise architecture, secure cloud storage, and modern integrations tailored for high-scale environments.</p>
+                        <ul class="card-items">
+                            <li><span class="bullet"></span> Custom Software</li>
+                            <li><span class="bullet"></span> Cloud Infrastructure</li>
+                            <li><span class="bullet"></span> AI Automation</li>
+                            <li><span class="bullet"></span> Enterprise Systems</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Card 2: BPO Solutions -->
+                <div class="service-card card-bpo" data-speed="0.14" id="sc2">
+                    <div class="card-glow"></div>
+                    <div class="card-inner">
+                        <div class="card-icon">
+                            <i class="fas fa-headset"></i>
+                        </div>
+                        <h3 class="card-title">BPO Solutions</h3>
+                        <p class="card-desc">Optimized outsourcing operations to streamline workflow processes and enhance customer satisfaction.</p>
+                        <ul class="card-items">
+                            <li><span class="bullet"></span> Customer Support</li>
+                            <li><span class="bullet"></span> Back Office Operations</li>
+                            <li><span class="bullet"></span> Process Optimization</li>
+                            <li><span class="bullet"></span> Business Scaling</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Card 3: E-Commerce -->
+                <div class="service-card card-ecommerce" data-speed="0.06" id="sc3">
+                    <div class="card-glow"></div>
+                    <div class="card-inner">
+                        <div class="card-icon">
+                            <i class="fas fa-shopping-bag"></i>
+                        </div>
+                        <h3 class="card-title">E-Commerce</h3>
+                        <p class="card-desc">Accelerate online sales with optimized digital storefronts, product merchandising, and performance marketing.</p>
+                        <ul class="card-items">
+                            <li><span class="bullet"></span> Marketplace Management</li>
+                            <li><span class="bullet"></span> Performance Marketing</li>
+                            <li><span class="bullet"></span> Product Optimization</li>
+                            <li><span class="bullet"></span> Revenue Growth</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Card 4: Web Development -->
+                <div class="service-card card-web" data-speed="0.11" id="sc4">
+                    <div class="card-glow"></div>
+                    <div class="card-inner">
+                        <div class="card-icon">
+                            <i class="fas fa-code"></i>
+                        </div>
+                        <h3 class="card-title">Web Development</h3>
+                        <p class="card-desc">High-performance, visual, responsive web applications built with modern frameworks and smooth interactions.</p>
+                        <ul class="card-items">
+                            <li><span class="bullet"></span> Modern Websites</li>
+                            <li><span class="bullet"></span> Landing Pages</li>
+                            <li><span class="bullet"></span> Web Applications</li>
+                            <li><span class="bullet"></span> Digital Experiences</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Card 5: AI Solutions -->
+                <div class="service-card card-ai" data-speed="0.17" id="sc5">
+                    <div class="card-glow"></div>
+                    <div class="card-inner">
+                        <div class="card-icon">
+                            <i class="fas fa-brain"></i>
+                        </div>
+                        <h3 class="card-title">AI Solutions</h3>
+                        <p class="card-desc">Cognitive computing, custom agents, and workflow automations to future-proof business productivity.</p>
+                        <ul class="card-items">
+                            <li><span class="bullet"></span> AI Agents</li>
+                            <li><span class="bullet"></span> Chatbots</li>
+                            <li><span class="bullet"></span> Workflow Automation</li>
+                            <li><span class="bullet"></span> Predictive Analytics</li>
+                        </ul>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="services-cta-wrap">
+                <a href="#" class="btn-services-cta" id="servicesCta">
+                    <span>Explore Our Services</span>
+                    <span class="cta-arrow">
+                        <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+                    </span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================
+         SECTION 4: FUTURE COMMAND CENTER
+         ============================================ -->
+    <section class="command-section" id="command">
+        <!-- Cosmic particles -->
+        <canvas class="command-particle-canvas" id="commandParticleCanvas"></canvas>
+
+        <div class="command-container">
+            <div class="command-header">
+                <div class="command-label">COMMAND CENTER</div>
+                <h2 class="command-title" id="commandTitle">THE FUTURE RUNS ON INTELLIGENT SYSTEMS</h2>
+                <p class="command-desc" id="commandDesc">From AI automation to enterprise operations, Oppty TechHub builds connected ecosystems that transform ideas into measurable growth.</p>
+            </div>
+
+            <div class="command-visual-container">
+                <!-- SVG network lines connecting sphere and panels -->
+                <svg class="command-network-svg" id="commandNetworkSvg">
+                    <path id="path-to-panel1" d="" class="network-path" />
+                    <path id="path-to-panel2" d="" class="network-path" />
+                    <path id="path-to-panel3" d="" class="network-path" />
+                    <path id="path-to-panel4" d="" class="network-path" />
+                </svg>
+
+                <!-- 3D concentric sphere in center -->
+                <div class="command-sphere-wrapper" id="commandSphereWrapper">
+                    <div class="sphere-glow-core"></div>
+                    <div class="sphere-core"></div>
+                    <!-- Orbiting energy rings -->
+                    <div class="sphere-ring ring-orbit-1"></div>
+                    <div class="sphere-ring ring-orbit-2"></div>
+                    <div class="sphere-ring ring-orbit-3"></div>
+                </div>
+
+                <!-- Dashboard Statistics Widgets surrounding the Sphere -->
+                <!-- Panel 1: Top Left -->
+                <div class="stat-panel panel-top-left" id="panel1">
+                    <div class="panel-glow"></div>
+                    <div class="panel-inner">
+                        <div class="panel-indicator"></div>
+                        <div class="stat-number-wrap">
+                            <span class="stat-number" data-target="10">0</span><span class="stat-plus">+</span>
+                        </div>
+                        <div class="stat-label">Industries Served</div>
+                        <p class="panel-desc">Powering growth across retail, logistics, healthcare, finance, and global trade.</p>
+                    </div>
+                </div>
+
+                <!-- Panel 2: Top Right -->
+                <div class="stat-panel panel-top-right" id="panel2">
+                    <div class="panel-glow"></div>
+                    <div class="panel-inner">
+                        <div class="panel-indicator"></div>
+                        <div class="stat-number-wrap">
+                            <span class="stat-number" data-target="50">0</span><span class="stat-plus">+</span>
+                        </div>
+                        <div class="stat-label">Technology Solutions</div>
+                        <p class="panel-desc">Custom enterprise software, cloud deployments, and web systems engineered to scale.</p>
+                    </div>
+                </div>
+
+                <!-- Panel 3: Bottom Left -->
+                <div class="stat-panel panel-bottom-left" id="panel3">
+                    <div class="panel-glow"></div>
+                    <div class="panel-inner">
+                        <div class="panel-indicator"></div>
+                        <div class="stat-number-wrap">
+                            <span class="stat-number" data-target="100">0</span><span class="stat-plus">+</span>
+                        </div>
+                        <div class="stat-label">Business Workflows Automated</div>
+                        <p class="panel-desc">Eliminating manual overhead with intelligent automation pipelines and RPA agents.</p>
+                    </div>
+                </div>
+
+                <!-- Panel 4: Bottom Right -->
+                <div class="stat-panel panel-bottom-right" id="panel4">
+                    <div class="panel-glow"></div>
+                    <div class="panel-inner">
+                        <div class="panel-indicator"></div>
+                        <div class="stat-number-wrap">
+                            <span class="stat-number" data-target="24">0</span><span class="stat-plus">/7</span>
+                        </div>
+                        <div class="stat-label">Operational Excellence</div>
+                        <p class="panel-desc">Round-the-clock support, monitoring, and infrastructure management.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Bottom Quote -->
+            <div class="command-quote-wrap" id="commandQuoteWrap">
+                <span class="quote-word">Build Faster.</span>
+                <span class="quote-word">Scale Smarter.</span>
+                <span class="quote-word">Lead The Future.</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================
+         FOOTER
+         ============================================ -->
+    <footer class="premium-footer" id="footer">
+        <!-- Giant blurred ambient orb -->
+        <div class="footer-bg-glow"></div>
+        <div class="footer-top-border"></div>
+
+        <div class="footer-container">
+            <div class="footer-grid">
+                
+                <!-- Left Column: Logo & Description -->
+                <div class="footer-col footer-col-left">
+                    <a href="#" class="footer-logo">
+                        <img src="images/oppty.png" alt="Oppty Logo" />
+                    </a>
+                    <p class="footer-about">
+                        Power up your success with innovative IT, BPO, E-commerce, Web Development, and AI solutions tailored to your vision.
+                    </p>
+                    <div class="footer-socials">
+                        <a href="https://www.linkedin.com/company/opptytech/" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#" aria-label="Twitter"><i class="fa-brands fa-x-twitter"></i></a>
+                        <a href="https://www.instagram.com/opptytech?igsh=YTExdTBsc3Y4ejU2" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="https://youtube.com/@mroppty?si=NbpyNIM-vkHyeLYM" target="_blank" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+                        <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                    </div>
+                </div>
+
+                <!-- Center Column: Address Cards -->
+                <div class="footer-col footer-col-center">
+                    <!-- Hyderabad Address Card -->
+                    <div class="footer-card" id="hydCard">
+                        <div class="card-light-glow"></div>
+                        <h4 class="card-office-title"><i class="fas fa-map-marker-alt"></i> Hyderabad Office</h4>
+                        <p class="card-address">
+                            108/43, Vijaya Lakshmi Enclave, 1st Floor, PJR Enclave Rd, Gangaram, ICRISAT Colony, Hyderabad, Telangana 500050
+                        </p>
+                    </div>
+
+                    <!-- Udaipur Address Card -->
+                    <div class="footer-card" id="udrCard">
+                        <div class="card-light-glow"></div>
+                        <h4 class="card-office-title"><i class="fas fa-map-marker-alt"></i> Udaipur Office</h4>
+                        <p class="card-address">
+                            Plot No 26, 100 Feet Road, Shobhagpura, Udaipur, Rajasthan 313011
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Right Column: Quick Links & Contact -->
+                <div class="footer-col footer-col-right">
+                    <div class="footer-contact">
+                        <h4>Contact Us</h4>
+                        <a href="mailto:info@oppty.in" class="footer-contact-link"><i class="far fa-envelope"></i> info@oppty.in</a>
+                        <a href="tel:+919491209900" class="footer-contact-link"><i class="fas fa-phone-alt"></i> +91 9491209900</a>
+                    </div>
+                    
+                    <div class="footer-links-wrap">
+                        <h4>Quick Links</h4>
+                        <ul class="footer-links-list">
+                            <li><a href="#" class="footer-hover-link">Home</a></li>
+                            <li><a href="#ecosystem" class="footer-hover-link">About Us</a></li>
+                            <li><a href="#services" class="footer-hover-link">Services</a></li>
+                            <li><a href="#" class="footer-hover-link">Careers</a></li>
+                            <li><a href="#footer" class="footer-hover-link">Contact</a></li>
+                        </ul>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="footer-bottom-bar">
+                <p class="footer-copyright">&copy; 2026 Oppty TechHub Pvt Ltd. All rights reserved.</p>
+                <p class="footer-tagline">Transforming Business Through Technology.</p>
+            </div>
+        </div>
+    </footer>
+
   <script>
     /* ================================================
        CURTAIN PAGE LOAD ANIMATION
@@ -1570,6 +1877,710 @@
         });
 
         console.log('🚀 Ecosystem section initialized');
+
+    })();
+  </script>
+
+  <!-- ================================================
+       SCRIPTS FOR SECTION 3, SECTION 4 & FOOTER
+  ================================================ -->
+  <script>
+    (function() {
+        'use strict';
+
+        // ==========================================
+        // CONFIGURATION & DATA FOR SERVICES
+        // ==========================================
+        const SERVICES_HEADING_TEXT = "BREAKING THE LIMITS OF DIGITAL GROWTH";
+        const SERVICES_SUBHEADING_TEXT = "We don't simply deliver services. We engineer ecosystems that scale, automate, and accelerate businesses.";
+        const SERVICES_ACCENT_WORDS = ["LIMITS", "DIGITAL", "GROWTH"];
+
+        // Utility: Split text into words
+        function prepareServicesHeading() {
+            const container = document.getElementById('servicesHeading');
+            if (!container) return;
+            container.innerHTML = '';
+            const words = SERVICES_HEADING_TEXT.split(' ');
+            words.forEach(word => {
+                const span = document.createElement('span');
+                span.className = 'word';
+                if (SERVICES_ACCENT_WORDS.includes(word.replace(/[^a-zA-Z]/g, ''))) {
+                    span.classList.add('orange-word');
+                }
+                span.textContent = word;
+                container.appendChild(span);
+            });
+        }
+
+        // Utility: Split subheading into lines
+        function prepareServicesSubheading() {
+            const container = document.getElementById('servicesSubheading');
+            if (!container) return;
+            container.innerHTML = '';
+            
+            // Split into two logical lines
+            const lines = [
+                "We don't simply deliver services.",
+                "We engineer ecosystems that scale, automate, and accelerate businesses."
+            ];
+            
+            lines.forEach(line => {
+                const div = document.createElement('div');
+                div.style.overflow = 'hidden';
+                const span = document.createElement('span');
+                span.className = 'subheading-line';
+                span.style.display = 'block';
+                span.textContent = line;
+                div.appendChild(span);
+                container.appendChild(div);
+            });
+        }
+
+        prepareServicesHeading();
+        prepareServicesSubheading();
+
+        // ==========================================
+        // CANVAS 1: SERVICES UPWARD PARTICLES
+        // ==========================================
+        const sCanvas = document.getElementById('servicesParticleCanvas');
+        const sCtx = sCanvas ? sCanvas.getContext('2d') : null;
+        let sParticles = [];
+        const S_PARTICLE_COUNT = 45;
+
+        function resizeServicesCanvas() {
+            if (!sCanvas) return;
+            sCanvas.width = sCanvas.parentElement.clientWidth;
+            sCanvas.height = sCanvas.parentElement.clientHeight;
+        }
+        if (sCanvas) {
+            resizeServicesCanvas();
+            window.addEventListener('resize', resizeServicesCanvas);
+        }
+
+        class ServicesParticle {
+            constructor() {
+                this.reset();
+                if (sCanvas) this.y = Math.random() * sCanvas.height; // distribute initially
+            }
+            reset() {
+                this.x = sCanvas ? Math.random() * sCanvas.width : 0;
+                this.y = sCanvas ? sCanvas.height + 20 : 0;
+                this.size = Math.random() * 1.8 + 0.6;
+                this.speedY = -(Math.random() * 0.7 + 0.3); // moving upwards against gravity
+                this.speedX = (Math.random() - 0.5) * 0.25;
+                this.opacity = Math.random() * 0.4 + 0.1;
+                this.isOrange = Math.random() > 0.6;
+            }
+            update() {
+                this.y += this.speedY;
+                this.x += this.speedX;
+                if (sCanvas && this.y < -10) {
+                    this.reset();
+                }
+            }
+            draw() {
+                if (!sCtx) return;
+                sCtx.beginPath();
+                sCtx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                if (this.isOrange) {
+                    sCtx.fillStyle = `rgba(250, 140, 50, ${this.opacity})`;
+                } else {
+                    sCtx.fillStyle = `rgba(255, 255, 255, ${this.opacity * 0.4})`;
+                }
+                sCtx.fill();
+            }
+        }
+
+        if (sCanvas && sCtx) {
+            for (let i = 0; i < S_PARTICLE_COUNT; i++) {
+                sParticles.push(new ServicesParticle());
+            }
+
+            const animateServicesParticles = () => {
+                sCtx.clearRect(0, 0, sCanvas.width, sCanvas.height);
+                sParticles.forEach(p => {
+                    p.update();
+                    p.draw();
+                });
+                animationFrameId = requestAnimationFrame(animateServicesParticles);
+            };
+            let animationFrameId = requestAnimationFrame(animateServicesParticles);
+        }
+
+        // ==========================================
+        // DYNAMIC SVG CONNECTIONS: SERVICES GRID
+        // ==========================================
+        const servicesConnections = document.getElementById('servicesConnections');
+        
+        function updateServicesConnections() {
+            if (!servicesConnections) return;
+            if (window.innerWidth <= 768) {
+                // Clear paths for mobile/tablet
+                const p1 = document.getElementById('path-sc1-sc3');
+                const p2 = document.getElementById('path-sc2-sc3');
+                const p3 = document.getElementById('path-sc4-sc1');
+                const p4 = document.getElementById('path-sc4-sc5');
+                const p5 = document.getElementById('path-sc5-sc2');
+                if (p1) p1.setAttribute('d', '');
+                if (p2) p2.setAttribute('d', '');
+                if (p3) p3.setAttribute('d', '');
+                if (p4) p4.setAttribute('d', '');
+                if (p5) p5.setAttribute('d', '');
+                return;
+            }
+
+            const sc1 = document.getElementById('sc1');
+            const sc2 = document.getElementById('sc2');
+            const sc3 = document.getElementById('sc3');
+            const sc4 = document.getElementById('sc4');
+            const sc5 = document.getElementById('sc5');
+            const svgRect = servicesConnections.getBoundingClientRect();
+
+            if (!sc1 || !sc2 || !sc3 || !sc4 || !sc5) return;
+
+            function getCenter(el) {
+                const r = el.getBoundingClientRect();
+                return {
+                    x: r.left + r.width / 2 - svgRect.left,
+                    y: r.top + r.height / 2 - svgRect.top
+                };
+            }
+
+            const c1 = getCenter(sc1);
+            const c2 = getCenter(sc2);
+            const c3 = getCenter(sc3);
+            const c4 = getCenter(sc4);
+            const c5 = getCenter(sc5);
+
+            // Compute curved paths Q (Quadratic Bezier)
+            // sc1 -> sc3 (IT to E-Commerce)
+            const p1 = document.getElementById('path-sc1-sc3');
+            if (p1) p1.setAttribute('d', `M ${c1.x} ${c1.y} Q ${(c1.x + c3.x)/2 - 40} ${(c1.y + c3.y)/2} ${c3.x} ${c3.y}`);
+            // sc2 -> sc3 (BPO to E-Commerce)
+            const p2 = document.getElementById('path-sc2-sc3');
+            if (p2) p2.setAttribute('d', `M ${c2.x} ${c2.y} Q ${(c2.x + c3.x)/2 + 40} ${(c2.y + c3.y)/2} ${c3.x} ${c3.y}`);
+            // sc4 -> sc1 (Web Dev to IT)
+            const p3 = document.getElementById('path-sc4-sc1');
+            if (p3) p3.setAttribute('d', `M ${c4.x} ${c4.y} Q ${(c4.x + c1.x)/2 - 20} ${(c4.y + c1.y)/2 - 20} ${c1.x} ${c1.y}`);
+            // sc4 -> sc5 (Web Dev to AI)
+            const p4 = document.getElementById('path-sc4-sc5');
+            if (p4) p4.setAttribute('d', `M ${c4.x} ${c4.y} Q ${(c4.x + c5.x)/2} ${(c4.y + c5.y)/2 + 30} ${c5.x} ${c5.y}`);
+            // sc5 -> sc2 (AI to BPO)
+            const p5 = document.getElementById('path-sc5-sc2');
+            if (p5) p5.setAttribute('d', `M ${c5.x} ${c5.y} Q ${(c5.x + c2.x)/2 + 20} ${(c5.y + c2.y)/2 - 20} ${c2.x} ${c2.y}`);
+        }
+
+        // Run connections calculation on load and resize
+        window.addEventListener('load', () => {
+            updateServicesConnections();
+            // Stagger slight delayed update to guarantee page layout has finished settling
+            setTimeout(updateServicesConnections, 500);
+        });
+        window.addEventListener('resize', updateServicesConnections);
+
+        // ==========================================
+        // MAGNETIC HOVER EFFECT (2D DISPLACEMENT)
+        // ==========================================
+        const serviceCards = document.querySelectorAll('.service-card');
+
+        serviceCards.forEach(card => {
+            card.addEventListener('mousemove', (e) => {
+                const rect = card.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+
+                card.style.setProperty('--mouse-x', `${x}px`);
+                card.style.setProperty('--mouse-y', `${y}px`);
+
+                // Subtle 2D Magnetic Content Shift
+                const centerX = rect.width / 2;
+                const centerY = rect.height / 2;
+                const shiftX = (e.clientX - rect.left - centerX) / 8; // Max displacement ~12px
+                const shiftY = (e.clientY - rect.top - centerY) / 8;
+
+                const inner = card.querySelector('.card-inner');
+                if (inner) {
+                    gsap.to(inner, {
+                        x: shiftX,
+                        y: shiftY,
+                        duration: 0.3,
+                        ease: "power2.out"
+                    });
+                }
+            });
+
+            card.addEventListener('mouseleave', () => {
+                const inner = card.querySelector('.card-inner');
+                if (inner) {
+                    gsap.to(inner, {
+                        x: 0,
+                        y: 0,
+                        duration: 0.6,
+                        ease: "power2.out"
+                    });
+                }
+            });
+        });
+
+        // ==========================================
+        // CANVAS 2: COMMAND CENTER STARS
+        // ==========================================
+        const cCanvas = document.getElementById('commandParticleCanvas');
+        const cCtx = cCanvas ? cCanvas.getContext('2d') : null;
+        let cParticles = [];
+        const C_PARTICLE_COUNT = 65;
+
+        function resizeCommandCanvas() {
+            if (!cCanvas) return;
+            cCanvas.width = cCanvas.parentElement.clientWidth;
+            cCanvas.height = cCanvas.parentElement.clientHeight;
+        }
+        if (cCanvas) {
+            resizeCommandCanvas();
+            window.addEventListener('resize', resizeCommandCanvas);
+        }
+
+        class CommandStar {
+            constructor() {
+                this.reset();
+                if (cCanvas) {
+                    this.x = Math.random() * cCanvas.width;
+                    this.y = Math.random() * cCanvas.height;
+                }
+            }
+            reset() {
+                this.x = cCanvas ? Math.random() * cCanvas.width : 0;
+                this.y = cCanvas ? Math.random() * cCanvas.height : 0;
+                this.size = Math.random() * 1.5 + 0.3;
+                this.alpha = Math.random() * 0.5 + 0.1;
+                this.twinkleSpeed = Math.random() * 0.015 + 0.005;
+                this.direction = Math.random() > 0.5 ? 1 : -1;
+            }
+            update() {
+                this.alpha += this.twinkleSpeed * this.direction;
+                if (this.alpha > 0.85) {
+                    this.direction = -1;
+                } else if (this.alpha < 0.1) {
+                    this.direction = 1;
+                    this.reset();
+                }
+            }
+            draw() {
+                if (!cCtx) return;
+                cCtx.beginPath();
+                cCtx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                cCtx.fillStyle = `rgba(255, 255, 255, ${this.alpha})`;
+                cCtx.fill();
+
+                // Add orange particles drifting
+                if (this.size > 1.3) {
+                    cCtx.beginPath();
+                    cCtx.arc(this.x, this.y, this.size * 2, 0, Math.PI * 2);
+                    cCtx.fillStyle = `rgba(250, 140, 50, ${this.alpha * 0.25})`;
+                    cCtx.fill();
+                }
+            }
+        }
+
+        if (cCanvas && cCtx) {
+            for (let i = 0; i < C_PARTICLE_COUNT; i++) {
+                cParticles.push(new CommandStar());
+            }
+
+            const animateCommandStars = () => {
+                cCtx.clearRect(0, 0, cCanvas.width, cCanvas.height);
+                cParticles.forEach(p => {
+                    p.update();
+                    p.draw();
+                });
+                requestAnimationFrame(animateCommandStars);
+            };
+            animateCommandStars();
+        }
+
+        // ==========================================
+        // DYNAMIC SVG LINES: FUTURE COMMAND CENTER
+        // ==========================================
+        const commandNetworkSvg = document.getElementById('commandNetworkSvg');
+        
+        function updateCommandNetworkLines() {
+            if (!commandNetworkSvg) return;
+            if (window.innerWidth <= 768) {
+                // Clear path lines on mobile/tablet
+                for (let i = 1; i <= 4; i++) {
+                    const path = document.getElementById(`path-to-panel${i}`);
+                    if (path) path.setAttribute('d', '');
+                    const pulse = document.getElementById(`pulse-to-panel${i}`);
+                    if (pulse) pulse.remove();
+                }
+                return;
+            }
+
+            const wrapper = document.getElementById('commandSphereWrapper');
+            const panel1 = document.getElementById('panel1');
+            const panel2 = document.getElementById('panel2');
+            const panel3 = document.getElementById('panel3');
+            const panel4 = document.getElementById('panel4');
+            const svgRect = commandNetworkSvg.getBoundingClientRect();
+
+            if (!wrapper || !panel1 || !panel2 || !panel3 || !panel4) return;
+
+            const wRect = wrapper.getBoundingClientRect();
+            const center = {
+                x: wRect.left + wRect.width / 2 - svgRect.left,
+                y: wRect.top + wRect.height / 2 - svgRect.top
+            };
+
+            const panels = [panel1, panel2, panel3, panel4];
+
+            panels.forEach((panel, i) => {
+                const pRect = panel.getBoundingClientRect();
+                const pCenter = {
+                    x: pRect.left + pRect.width / 2 - svgRect.left,
+                    y: pRect.top + pRect.height / 2 - svgRect.top
+                };
+
+                const pathId = `path-to-panel${i + 1}`;
+                const path = document.getElementById(pathId);
+                
+                if (path) {
+                    // Draw S-curves connecting center sphere to each widget panel
+                    let cp1x = center.x;
+                    let cp1y = (center.y + pCenter.y) / 2;
+                    let cp2x = pCenter.x;
+                    let cp2y = (center.y + pCenter.y) / 2;
+                    
+                    const dString = `M ${center.x} ${center.y} C ${cp1x} ${cp1y}, ${cp2x} ${cp2y}, ${pCenter.x} ${pCenter.y}`;
+                    path.setAttribute('d', dString);
+
+                    // Add / Update energy pulse path overlay if not present
+                    const pulseId = `pulse-to-panel${i + 1}`;
+                    let pulse = document.getElementById(pulseId);
+                    if (!pulse) {
+                        pulse = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+                        pulse.setAttribute('id', pulseId);
+                        pulse.setAttribute('class', 'pulse-path');
+                        commandNetworkSvg.appendChild(pulse);
+                    }
+                    pulse.setAttribute('d', dString);
+                }
+            });
+        }
+
+        window.addEventListener('load', () => {
+            updateCommandNetworkLines();
+            setTimeout(updateCommandNetworkLines, 500);
+        });
+        window.addEventListener('resize', updateCommandNetworkLines);
+
+        // Track mouse on command panels for gradient highlight
+        const commandPanels = document.querySelectorAll('.stat-panel');
+        commandPanels.forEach(panel => {
+            panel.addEventListener('mousemove', (e) => {
+                const rect = panel.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                panel.style.setProperty('--mouse-x', `${x}px`);
+                panel.style.setProperty('--mouse-y', `${y}px`);
+            });
+        });
+
+        // Track mouse on footer cards for glow
+        const footerCards = document.querySelectorAll('.footer-card');
+        footerCards.forEach(card => {
+            card.addEventListener('mousemove', (e) => {
+                const rect = card.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                card.style.setProperty('--mouse-x', `${x}px`);
+                card.style.setProperty('--mouse-y', `${y}px`);
+            });
+        });
+
+
+        // ==========================================
+        // GSAP TRIGGERS: SECTION 3 (ANTI-GRAVITY SERVICES)
+        // ==========================================
+        gsap.registerPlugin(ScrollTrigger);
+
+        // Word reveal animations (Static triggers)
+        const servicesTextTl = gsap.timeline({
+            scrollTrigger: {
+                trigger: '.services-section',
+                start: 'top 80%',
+                toggleActions: 'play none none none'
+            }
+        });
+
+        const headingWords = document.querySelectorAll('#servicesHeading .word');
+        if (headingWords.length) {
+            servicesTextTl.to(headingWords, {
+                opacity: 1,
+                y: 0,
+                rotateX: 0,
+                filter: 'blur(0px)',
+                duration: 0.8,
+                stagger: 0.05,
+                ease: 'power3.out'
+            });
+        }
+
+        const subheadingLines = document.querySelectorAll('#servicesSubheading .subheading-line');
+        if (subheadingLines.length) {
+            servicesTextTl.to(subheadingLines, {
+                opacity: 1,
+                y: 0,
+                duration: 0.7,
+                stagger: 0.15,
+                ease: 'power3.out'
+            }, '-=0.5');
+        }
+
+        // CTA reveal
+        const ctaWrap = document.querySelector('.services-cta-wrap');
+        if (ctaWrap) {
+            servicesTextTl.to(ctaWrap, {
+                opacity: 1,
+                y: 0,
+                duration: 0.6,
+                ease: 'power3.out'
+            }, '-=0.8');
+        }
+
+        // --- Cinematic Scroll-driven Physics (Anti-Gravity Rise) ---
+        if (serviceCards.length) {
+            serviceCards.forEach((card, i) => {
+                const speed = parseFloat(card.getAttribute('data-speed')) || 0.1;
+                // Staggered Y offsets to emerge from bottom and float upward
+                const startY = 320 + (i * 70);
+                const endY = -250 - (i * 60);
+
+                gsap.fromTo(card, 
+                    { y: startY, opacity: 0, scale: 0.94 },
+                    {
+                        y: endY,
+                        opacity: 1,
+                        scale: 1.02,
+                        scrollTrigger: {
+                            trigger: '.services-section',
+                            start: 'top bottom',
+                            end: 'bottom top',
+                            scrub: 1.1 + (i * 0.15) // staggered speed
+                        }
+                    }
+                );
+            });
+
+            // Master trigger to update connections dynamically as cards rise
+            gsap.to({}, {
+                scrollTrigger: {
+                    trigger: '.services-section',
+                    start: 'top bottom',
+                    end: 'bottom top',
+                    scrub: 1,
+                    onUpdate: () => {
+                        updateServicesConnections();
+                    }
+                }
+            });
+        }
+
+        // Connection lines draw transition
+        const connectionLines = document.querySelectorAll('.connection-line');
+        if (connectionLines.length) {
+            gsap.fromTo(connectionLines, {
+                strokeDasharray: '8 8',
+                strokeDashoffset: 300,
+                opacity: 0
+            }, {
+                strokeDashoffset: 0,
+                opacity: 1,
+                duration: 1.5,
+                scrollTrigger: {
+                    trigger: '.services-section',
+                    start: 'top 70%',
+                    toggleActions: 'play none none none'
+                }
+            });
+        }
+
+        // Active connection lines on hover
+        serviceCards.forEach(card => {
+            card.addEventListener('mouseenter', () => {
+                const cardId = card.id;
+                document.querySelectorAll('.connection-line').forEach(line => {
+                    if (line.id.includes(cardId)) {
+                        line.classList.add('active');
+                        gsap.to(line, { stroke: 'rgba(250, 140, 50, 0.4)', strokeWidth: 2.5, duration: 0.3 });
+                    }
+                });
+            });
+
+            card.addEventListener('mouseleave', () => {
+                const cardId = card.id;
+                document.querySelectorAll('.connection-line').forEach(line => {
+                    if (line.id.includes(cardId)) {
+                        line.classList.remove('active');
+                        gsap.to(line, { stroke: 'rgba(250, 140, 50, 0.12)', strokeWidth: 1.5, duration: 0.4 });
+                    }
+                });
+            });
+        });
+
+
+        // ==========================================
+        // GSAP TRIGGERS: SECTION 4 (COMMAND CENTER)
+        // ==========================================
+        
+        // Sphere scaling as user scrolls through command center, updating lines in onUpdate
+        const sphereWrap = document.getElementById('commandSphereWrapper');
+        if (sphereWrap) {
+            gsap.to(sphereWrap, {
+                scale: 1.15,
+                opacity: 1,
+                scrollTrigger: {
+                    trigger: '#command',
+                    start: 'top 70%',
+                    end: 'bottom bottom',
+                    scrub: 1,
+                    onUpdate: () => {
+                        updateCommandNetworkLines();
+                    }
+                }
+            });
+        }
+
+        // Command Center text reveal
+        const commandTl = gsap.timeline({
+            scrollTrigger: {
+                trigger: '#command',
+                start: 'top 70%',
+                toggleActions: 'play none none none'
+            },
+            onUpdate: () => {
+                updateCommandNetworkLines();
+            }
+        });
+
+        const commandTitle = document.getElementById('commandTitle');
+        if (commandTitle) {
+            commandTl.to(commandTitle, {
+                opacity: 1,
+                y: 0,
+                duration: 0.8,
+                ease: 'power3.out'
+            });
+        }
+
+        const commandDesc = document.getElementById('commandDesc');
+        if (commandDesc) {
+            commandTl.to(commandDesc, {
+                opacity: 1,
+                y: 0,
+                duration: 0.8,
+                ease: 'power3.out'
+            }, '-=0.5');
+        }
+
+        // Reveal dashboard widgets
+        const panelsList = document.querySelectorAll('.stat-panel');
+        if (panelsList.length) {
+            commandTl.to(panelsList, {
+                opacity: 1,
+                x: 0,
+                scale: 1,
+                duration: 1,
+                stagger: 0.12,
+                ease: 'power4.out',
+                onComplete: () => {
+                    // Trigger statistics count up
+                    triggerCounterAnimations();
+                    // Trigger energy pulses on lines
+                    triggerEnergyPulses();
+                }
+            }, '-=0.5');
+        }
+
+        // Bottom quote reveal
+        const quoteWords = document.querySelectorAll('#commandQuoteWrap .quote-word');
+        if (quoteWords.length) {
+            commandTl.to(quoteWords, {
+                opacity: 1,
+                y: 0,
+                duration: 0.7,
+                stagger: 0.2,
+                ease: 'back.out(1.5)'
+            }, '-=0.3');
+        }
+
+        // Statistics counting upward (only targeting command center stats with data-target)
+        function triggerCounterAnimations() {
+            document.querySelectorAll('.stat-number[data-target]').forEach(numEl => {
+                const target = parseInt(numEl.getAttribute('data-target'), 10);
+                const counterObj = { value: 0 };
+                
+                gsap.to(counterObj, {
+                    value: target,
+                    duration: 2.2,
+                    ease: 'power2.out',
+                    onUpdate: () => {
+                        numEl.textContent = Math.floor(counterObj.value);
+                    }
+                });
+            });
+        }
+
+        // Energy pulses traveling along network lines
+        function triggerEnergyPulses() {
+            const pulsePaths = document.querySelectorAll('.pulse-path');
+            if (pulsePaths.length) {
+                gsap.fromTo(pulsePaths, {
+                    strokeDashoffset: 400
+                }, {
+                    strokeDashoffset: 0,
+                    duration: 2.5,
+                    ease: 'none',
+                    repeat: -1,
+                    stagger: 0.2
+                });
+            }
+        }
+
+
+        // ==========================================
+        // GSAP TRIGGERS: FOOTER
+        // ==========================================
+        const footerTl = gsap.timeline({
+            scrollTrigger: {
+                trigger: '#footer',
+                start: 'top 85%',
+                toggleActions: 'play none none none'
+            }
+        });
+
+        // Content fades upward
+        const footerGrid = document.querySelector('.footer-grid');
+        if (footerGrid) {
+            footerTl.to(footerGrid, {
+                opacity: 1,
+                y: 0,
+                duration: 1,
+                ease: 'power3.out'
+            });
+        }
+
+        // Top border flowing animation
+        const footerBorder = document.querySelector('.footer-top-border');
+        if (footerBorder) {
+            gsap.to(footerBorder, {
+                backgroundPosition: '200% 0%',
+                duration: 8,
+                ease: 'none',
+                repeat: -1
+            });
+        }
+
+        console.log('🚀 Optimized Services, Command Center, and Footer initialized');
 
     })();
   </script>
