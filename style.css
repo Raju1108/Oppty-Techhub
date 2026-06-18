@@ -7,16 +7,17 @@
   box-sizing: border-box;
 }
 
-html, body {
-  height: 100%;
-  width: 100%;
+html {
+  height: auto;
+  min-height: 100%;
 }
 
 body {
   font-family: 'Inter', sans-serif;
-  background: #5a7a7c;
+  background: #0a1628;
   color: #fff;
-  overflow: hidden;
+  min-height: 100%;
+  overflow-x: hidden;
 }
 
 /* ==========================================
@@ -83,7 +84,7 @@ body {
   position: fixed;
   top: 16px;
   left: 50%;
-  transform: translateX(-50%);
+  transform: translateX(-50%) translateY(0);
   width: calc(100% - 48px);
   max-width: 1200px;
   z-index: 100;
@@ -99,7 +100,13 @@ body {
   padding: 0 28px;
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.35),
               inset 0 1px 0 rgba(255, 255, 255, 0.12);
-  transition: background 0.3s, box-shadow 0.3s, border-color 0.3s;
+  transition: background 0.3s, box-shadow 0.3s, border-color 0.3s, transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.4s ease;
+}
+
+.navbar.hidden {
+  transform: translateX(-50%) translateY(-100px);
+  opacity: 0;
+  pointer-events: none;
 }
 
 .navbar:hover {
@@ -251,7 +258,7 @@ input[type]:checked ~ span.mid {
   height: 180px;
 }
 
-.slide {
+.hero-slide {
   position: absolute;
   top: 0;
   left: 0;
@@ -263,18 +270,18 @@ input[type]:checked ~ span.mid {
   pointer-events: none;
 }
 
-.slide.active {
+.hero-slide.active {
   transform: translateX(0);
   opacity: 1;
   pointer-events: all;
 }
 
-.slide.enter-from-left {
+.hero-slide.enter-from-left {
   transform: translateX(-110%);
   opacity: 0;
 }
 
-.slide.exit-to-right {
+.hero-slide.exit-to-right {
   transform: translateX(110%);
   opacity: 0;
 }
@@ -962,3 +969,1019 @@ input[type]:checked ~ span.mid {
     justify-content: center;
   }
 }
+
+
+
+
+
+        /* ============================================
+           RESET & BASE
+           ============================================ */
+        *, *::before, *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        .ecosystem-section {
+            --primary-bg: #ffffff;
+            --secondary-bg: #f7f9fc;
+            --teal-deep: #f1f5f9;
+            --accent: #FA8C32;
+            --accent-glow: rgba(250, 140, 50, 0.25);
+            --accent-soft: rgba(250, 140, 50, 0.05);
+            --glass-bg: rgba(255, 255, 255, 0.7);
+            --glass-border: rgba(0, 0, 0, 0.08);
+            --glass-highlight: rgba(255, 255, 255, 0.95);
+            --text-primary: #0a1628;
+            --text-secondary: rgba(10, 22, 40, 0.7);
+            --text-muted: rgba(10, 22, 40, 0.45);
+        }
+
+        html {
+            scroll-behavior: auto;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        body {
+            background: var(--primary-bg);
+            color: var(--text-primary);
+            font-family: 'Inter', sans-serif;
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        /* ============================================
+           HERO PLACEHOLDER
+           ============================================ */
+        .hero-placeholder {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(180deg, #0a1628 0%, #0b1d2e 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-placeholder::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 200px;
+            background: linear-gradient(to bottom, transparent, var(--primary-bg));
+            pointer-events: none;
+        }
+
+        .hero-placeholder h1 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: clamp(2rem, 5vw, 4rem);
+            font-weight: 700;
+            text-align: center;
+            opacity: 0.3;
+            letter-spacing: -0.02em;
+        }
+
+        /* ============================================
+           ECOSYSTEM SECTION - MAIN CONTAINER
+           ============================================ */
+        .ecosystem-section {
+            position: relative;
+            height: 500vh;
+            background: var(--primary-bg);
+        }
+
+        /* Ambient Background */
+        .ecosystem-ambient {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+            opacity: 0;
+            transition: opacity 0.5s;
+        }
+
+        .ecosystem-ambient.active {
+            opacity: 1;
+        }
+
+        .goo-container {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            -webkit-filter: url('#gooey');
+            filter: url('#gooey');
+            overflow: hidden;
+            pointer-events: none;
+            z-index: 0;
+            opacity: 0.15; /* Subtle opacity for premium, soft light-theme blend */
+        }
+
+        .goo-blob {
+            position: absolute;
+            border-radius: 50%;
+            will-change: transform;
+        }
+
+        .blob-1 {
+            width: 450px;
+            height: 450px;
+            background: #fa8c32;
+            top: 10%;
+            left: 10%;
+        }
+
+        .blob-2 {
+            width: 500px;
+            height: 500px;
+            background: #0a78b4;
+            bottom: 10%;
+            right: 15%;
+        }
+
+        .blob-3 {
+            width: 350px;
+            height: 350px;
+            background: #fa8c32;
+            top: 40%;
+            right: 25%;
+        }
+
+        .blob-4 {
+            width: 400px;
+            height: 400px;
+            background: #0a78b4;
+            bottom: 20%;
+            left: 30%;
+        }
+
+        /* Sticky Container */
+        .ecosystem-sticky {
+            position: sticky;
+            top: 0;
+            height: 100vh;
+            width: 100%;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* ============================================
+           BACKGROUND GRID
+           ============================================ */
+        .bg-grid {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .bg-grid-canvas {
+            width: 100%;
+            height: 100%;
+            opacity: 0.15;
+        }
+
+        /* ============================================
+           3D GLASS PANELS CONTAINER
+           ============================================ */
+        .glass-scene {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            perspective: 1200px;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .glass-panel {
+            position: absolute;
+            border: 1px solid var(--glass-border);
+            background: var(--glass-bg);
+            backdrop-filter: blur(2px);
+            -webkit-backdrop-filter: blur(2px);
+            border-radius: 16px;
+            will-change: transform, opacity;
+            transition: none;
+        }
+
+        .glass-panel::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
+        }
+
+        .glass-panel-1 {
+            width: 300px;
+            height: 400px;
+            top: 10%;
+            left: -5%;
+        }
+
+        .glass-panel-2 {
+            width: 250px;
+            height: 350px;
+            top: 15%;
+            right: -3%;
+        }
+
+        .glass-panel-3 {
+            width: 200px;
+            height: 280px;
+            bottom: 10%;
+            left: 10%;
+        }
+
+        .glass-panel-4 {
+            width: 350px;
+            height: 250px;
+            bottom: 5%;
+            right: 5%;
+        }
+
+        .glass-panel-5 {
+            width: 180px;
+            height: 220px;
+            top: 40%;
+            left: 30%;
+        }
+
+        .glass-panel-6 {
+            width: 280px;
+            height: 180px;
+            top: 5%;
+            left: 40%;
+        }
+
+        /* Panel glow variants */
+        .glass-panel.glow-orange {
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.04),
+                        0 0 50px rgba(250, 140, 50, 0.02),
+                        inset 0 0 30px rgba(250, 140, 50, 0.04);
+        }
+
+        .glass-panel.glow-teal {
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.04),
+                        0 0 50px rgba(10, 120, 180, 0.02),
+                        inset 0 0 30px rgba(10, 120, 180, 0.04);
+        }
+
+        /* ============================================
+           PARTICLE SYSTEM
+           ============================================ */
+        .particle-canvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        /* ============================================
+           NETWORK LINES
+           ============================================ */
+        .network-svg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .network-line {
+            stroke: rgba(250, 140, 50, 0.18);
+            stroke-width: 1;
+            fill: none;
+        }
+
+        .network-node {
+            fill: rgba(250, 140, 50, 0.45);
+        }
+
+        /* ============================================
+           SECTION INTRO (Title Area)
+           ============================================ */
+        .ecosystem-intro {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            z-index: 10;
+            padding: 2rem;
+            text-align: center;
+        }
+
+        .section-label {
+            font-family: 'Inter', sans-serif;
+            font-size: 0.75rem;
+            font-weight: 600;
+            letter-spacing: 0.25em;
+            text-transform: uppercase;
+            color: var(--accent);
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .section-label::before,
+        .section-label::after {
+            content: '';
+            width: 30px;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--accent), transparent);
+        }
+
+        .section-heading {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: clamp(2rem, 4.5vw, 3.8rem);
+            font-weight: 700;
+            line-height: 1.1;
+            letter-spacing: -0.03em;
+            max-width: 800px;
+            margin-bottom: 1.5rem;
+        }
+
+        .section-heading .word {
+            display: inline-block;
+            margin-right: 0.3em;
+            opacity: 0;
+            transform: translateY(40px);
+            filter: blur(4px);
+        }
+
+        .section-heading .accent-word {
+            color: var(--accent);
+        }
+
+        .section-intro-text {
+            font-family: 'Inter', sans-serif;
+            font-size: clamp(0.95rem, 1.5vw, 1.15rem);
+            color: var(--text-secondary);
+            max-width: 600px;
+            line-height: 1.7;
+        }
+
+        .section-intro-text .line {
+            display: block;
+            opacity: 0;
+            transform: translateY(20px);
+        }
+
+        /* ============================================
+           SLIDE CONTENT
+           ============================================ */
+        .ecosystem-section .slide {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 10;
+            opacity: 0;
+            pointer-events: none;
+            padding: 2rem;
+        }
+
+        .ecosystem-section .slide.active {
+            pointer-events: auto;
+        }
+
+        .slide-inner {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            max-width: 1200px;
+            width: 100%;
+            align-items: center;
+        }
+
+        /* Left Column - Content */
+        .slide-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .slide-number {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: var(--accent);
+            letter-spacing: 0.15em;
+            margin-bottom: 1rem;
+            opacity: 0;
+            transform: translateX(-20px);
+        }
+
+        .slide-heading {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: clamp(2.2rem, 4vw, 3.5rem);
+            font-weight: 700;
+            line-height: 1.05;
+            letter-spacing: -0.03em;
+            margin-bottom: 0.75rem;
+        }
+
+        .slide-heading .word {
+            display: inline-block;
+            margin-right: 0.25em;
+            opacity: 0;
+            transform: translateY(50px) rotateX(40deg);
+            filter: blur(6px);
+        }
+
+        .slide-subheading {
+            font-family: 'Clash Display', sans-serif;
+            font-size: clamp(1rem, 1.8vw, 1.3rem);
+            font-weight: 500;
+            color: var(--accent);
+            margin-bottom: 1.5rem;
+            opacity: 0;
+            transform: translateY(20px);
+            line-height: 1.3;
+        }
+
+        .slide-description {
+            font-family: 'Inter', sans-serif;
+            font-size: clamp(0.9rem, 1.3vw, 1.05rem);
+            color: var(--text-secondary);
+            line-height: 1.75;
+            margin-bottom: 2rem;
+            max-width: 500px;
+        }
+
+        .slide-description .desc-line {
+            display: block;
+            opacity: 0;
+            transform: translateY(15px);
+        }
+
+        /* Keywords */
+        .slide-keywords {
+            display: flex;
+            gap: 12px;
+            margin-bottom: 2.5rem;
+            flex-wrap: wrap;
+        }
+
+        .keyword-tag {
+            font-family: 'Inter', sans-serif;
+            font-size: 0.8rem;
+            font-weight: 500;
+            color: var(--text-primary);
+            padding: 8px 20px;
+            border-radius: 100px;
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            opacity: 0;
+            transform: translateY(20px) scale(0.9);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .keyword-tag::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(250, 140, 50, 0.05), transparent);
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .keyword-tag:hover::before {
+            opacity: 1;
+        }
+
+        /* CTA Button */
+        .slide-cta {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            text-decoration: none;
+            padding: 14px 32px;
+            border-radius: 12px;
+            background: rgba(250, 140, 50, 0.08);
+            border: 1px solid rgba(250, 140, 50, 0.2);
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .slide-cta::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(250, 140, 50, 0.15), rgba(250, 140, 50, 0.05));
+            opacity: 0;
+            transition: opacity 0.4s;
+        }
+
+        .slide-cta:hover {
+            border-color: rgba(250, 140, 50, 0.4);
+            box-shadow: 0 0 30px rgba(250, 140, 50, 0.1),
+                        0 0 60px rgba(250, 140, 50, 0.05);
+            transform: translateY(-2px) !important;
+        }
+
+        .slide-cta:hover::before {
+            opacity: 1;
+        }
+
+        .slide-cta:hover .cta-arrow {
+            transform: translateX(4px);
+        }
+
+        .cta-text {
+            position: relative;
+            z-index: 1;
+        }
+
+        .cta-arrow {
+            position: relative;
+            z-index: 1;
+            width: 20px;
+            height: 20px;
+            transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .cta-arrow svg {
+            width: 100%;
+            height: 100%;
+            stroke: var(--accent);
+            fill: none;
+            stroke-width: 2;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+        }
+
+        /* Right Column - Visual */
+        .slide-visual {
+            position: relative;
+            height: 450px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .visual-container {
+            position: relative;
+            width: 100%;
+            height: 100%;
+        }
+
+        /* Glass Visual Elements */
+        .visual-glass {
+            position: absolute;
+            border: 1px solid var(--glass-border);
+            background: var(--glass-bg);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            border-radius: 16px;
+            will-change: transform;
+        }
+
+        .visual-glass::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.12), transparent);
+        }
+
+        /* Slide 1 Visuals */
+        .visual-cube-main {
+            width: 220px;
+            height: 260px;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) rotateY(-15deg) rotateX(5deg);
+            border-color: rgba(250, 140, 50, 0.1);
+            box-shadow: 0 20px 80px rgba(250, 140, 50, 0.05),
+                        inset 0 0 40px rgba(250, 140, 50, 0.02);
+        }
+
+        .visual-cube-secondary {
+            width: 160px;
+            height: 200px;
+            top: 20%;
+            right: 10%;
+            transform: rotateY(10deg) rotateX(-5deg);
+            opacity: 0.6;
+        }
+
+        .visual-cube-tertiary {
+            width: 140px;
+            height: 180px;
+            bottom: 15%;
+            left: 5%;
+            transform: rotateY(-8deg) rotateX(3deg);
+            opacity: 0.4;
+        }
+
+        /* Glow effects */
+        .visual-glow {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(60px);
+            pointer-events: none;
+        }
+
+        .glow-main {
+            width: 200px;
+            height: 200px;
+            background: rgba(250, 140, 50, 0.08);
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        /* Data flow lines */
+        .data-flow-svg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+        }
+
+        .data-flow-line {
+            stroke: rgba(250, 140, 50, 0.1);
+            stroke-width: 1;
+            fill: none;
+            stroke-dasharray: 8 8;
+        }
+
+        .data-flow-dot {
+            fill: var(--accent);
+            opacity: 0.6;
+        }
+
+        /* Knowledge nodes for slide 4 */
+        .knowledge-node {
+            position: absolute;
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: var(--accent);
+            opacity: 0.3;
+        }
+
+        .knowledge-node::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            background: rgba(250, 140, 50, 0.05);
+            transform: translate(-50%, -50%);
+        }
+
+        /* ============================================
+           PROGRESS INDICATOR
+           ============================================ */
+        .scroll-progress {
+            position: absolute;
+            right: 3rem;
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 20;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .progress-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: rgba(10, 22, 40, 0.18);
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            position: relative;
+        }
+
+        .progress-dot.active {
+            background: var(--accent);
+            box-shadow: 0 0 15px rgba(250, 140, 50, 0.4);
+        }
+
+        .progress-dot::before {
+            content: attr(data-label);
+            position: absolute;
+            right: 24px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-family: 'Inter', sans-serif;
+            font-size: 0.7rem;
+            font-weight: 500;
+            color: var(--text-muted);
+            white-space: nowrap;
+            opacity: 0;
+            pointer-events: none;
+            transition: all 0.3s;
+        }
+
+        .progress-dot:hover::before,
+        .progress-dot.active::before {
+            opacity: 1;
+            color: var(--text-secondary);
+        }
+
+        .progress-line {
+            width: 1px;
+            height: 20px;
+            background: rgba(10, 22, 40, 0.08);
+        }
+
+        /* ============================================
+           SLIDE INDICATOR COUNTER
+           ============================================ */
+        .slide-counter {
+            position: absolute;
+            bottom: 3rem;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 20;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            font-family: 'Space Grotesk', sans-serif;
+        }
+
+        .counter-current {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--accent);
+        }
+
+        .counter-divider {
+            width: 60px;
+            height: 1px;
+            background: linear-gradient(90deg, var(--accent), rgba(10, 22, 40, 0.12));
+        }
+
+        .counter-total {
+            font-size: 0.9rem;
+            font-weight: 500;
+            color: var(--text-muted);
+        }
+
+        /* ============================================
+           MOUSE PARALLAX LAYER
+           ============================================ */
+        .parallax-layer {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            will-change: transform;
+        }
+
+        /* ============================================
+           FLOATING DECORATIVE ELEMENTS
+           ============================================ */
+        .deco-ring {
+            position: absolute;
+            border: 1px solid rgba(250, 140, 50, 0.06);
+            border-radius: 50%;
+            pointer-events: none;
+        }
+
+        .deco-ring-1 {
+            width: 400px;
+            height: 400px;
+            top: -100px;
+            right: -100px;
+        }
+
+        .deco-ring-2 {
+            width: 300px;
+            height: 300px;
+            bottom: -50px;
+            left: -50px;
+        }
+
+        .deco-cross {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            pointer-events: none;
+        }
+
+        .deco-cross::before,
+        .deco-cross::after {
+            content: '';
+            position: absolute;
+            background: rgba(250, 140, 50, 0.15);
+        }
+
+        .deco-cross::before {
+            width: 1px;
+            height: 100%;
+            left: 50%;
+        }
+
+        .deco-cross::after {
+            width: 100%;
+            height: 1px;
+            top: 50%;
+        }
+
+        /* ============================================
+           BOTTOM GRADIENT TRANSITION
+           ============================================ */
+        .section-transition-bottom {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 200px;
+            background: linear-gradient(to bottom, transparent, var(--primary-bg));
+            pointer-events: none;
+            z-index: 30;
+        }
+
+        /* ============================================
+           FOOTER PLACEHOLDER
+           ============================================ */
+        .footer-placeholder {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--primary-bg);
+        }
+
+        .footer-placeholder p {
+            color: var(--text-muted);
+            font-size: 1rem;
+        }
+
+        /* ============================================
+           RESPONSIVE DESIGN
+           ============================================ */
+        @media (max-width: 1024px) {
+            .slide-inner {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+                text-align: center;
+            }
+
+            .slide-visual {
+                height: 250px;
+                order: -1;
+            }
+
+            .slide-content {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .slide-description {
+                max-width: 100%;
+            }
+
+            .slide-keywords {
+                justify-content: center;
+            }
+
+            .scroll-progress {
+                right: 1.5rem;
+            }
+
+            .progress-dot::before {
+                display: none;
+            }
+
+            .glass-panel-1 { width: 180px; height: 240px; }
+            .glass-panel-2 { width: 150px; height: 200px; }
+            .glass-panel-3 { width: 120px; height: 160px; }
+            .glass-panel-4 { width: 200px; height: 150px; }
+            .glass-panel-5 { display: none; }
+            .glass-panel-6 { display: none; }
+        }
+
+        @media (max-width: 768px) {
+            .ecosystem-section {
+                height: 500vh;
+            }
+
+            .section-heading {
+                font-size: clamp(1.6rem, 6vw, 2.5rem);
+            }
+
+            .slide-heading {
+                font-size: clamp(1.8rem, 7vw, 2.8rem);
+            }
+
+            .slide-visual {
+                height: 200px;
+            }
+
+            .scroll-progress {
+                right: 1rem;
+            }
+
+            .slide-counter {
+                bottom: 2rem;
+            }
+
+            .visual-cube-main {
+                width: 150px;
+                height: 180px;
+            }
+
+            .visual-cube-secondary {
+                width: 100px;
+                height: 130px;
+            }
+
+            .visual-cube-tertiary {
+                width: 80px;
+                height: 110px;
+            }
+
+            .ecosystem-section .slide {
+                padding: 1rem;
+            }
+
+            .blob-1 { width: 300px; height: 300px; }
+            .blob-2 { width: 250px; height: 250px; }
+        }
+
+        @media (max-width: 480px) {
+            .section-label::before,
+            .section-label::after {
+                width: 15px;
+            }
+
+            .slide-cta {
+                padding: 12px 24px;
+                font-size: 0.85rem;
+            }
+
+            .keyword-tag {
+                font-size: 0.75rem;
+                padding: 6px 14px;
+            }
+
+            .slide-visual {
+                height: 160px;
+            }
+
+            .glass-panel-3, .glass-panel-4 {
+                display: none;
+            }
+        }

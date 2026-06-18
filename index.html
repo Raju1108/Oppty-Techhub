@@ -6,7 +6,13 @@
   <title>oppty tech hub</title>
   <link rel="stylesheet" href="style.css" />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;900&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link href="https://api.fontshare.com/v2/css?f[]=clash-display@200,300,400,500,600,700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+
+  <!-- GSAP & ScrollTrigger Libraries -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
 </head>
 <body>
 
@@ -98,7 +104,7 @@
     <div class="hero-slider">
       <div class="slider-track" id="sliderTrack">
 
-        <div class="slide">
+        <div class="hero-slide">
           <h2 class="slide-title">
             <span class="white">INNOVATIVE</span> <span class="orange">SOLUTIONS</span> <span class="white">UNLEASHED</span>
           </h2>
@@ -111,7 +117,7 @@
           </div>
         </div>
 
-        <div class="slide">
+        <div class="hero-slide">
           <h2 class="slide-title">
             <span class="orange">FUTURE-READY</span> <span class="white">TECHNOLOGY</span>
           </h2>
@@ -124,7 +130,7 @@
           </div>
         </div>
 
-        <div class="slide">
+        <div class="hero-slide">
           <h2 class="slide-title">
             <span class="white">ELEVATE</span> <span class="orange">ONLINE</span> <span class="white">PRESENCE</span>
           </h2>
@@ -195,6 +201,287 @@
     </div>
 
   </section>
+
+      <!-- ============================================
+         ECOSYSTEM SECTION
+         ============================================ -->
+    <section class="ecosystem-section" id="ecosystem">
+
+        <!-- Ambient Background Orbs with Gooey Effect -->
+        <div class="ecosystem-ambient" id="ecosystemAmbient">
+            <div class="goo-container">
+                <div class="goo-blob blob-1" id="blob1"></div>
+                <div class="goo-blob blob-2" id="blob2"></div>
+                <div class="goo-blob blob-3" id="blob3"></div>
+                <div class="goo-blob blob-4" id="blob4"></div>
+            </div>
+            
+            <!-- Gooey Filter SVG -->
+            <svg style="position: absolute; width: 0; height: 0;" width="0" height="0">
+                <defs>
+                    <filter id="gooey" x="-50%" y="-50%" width="200%" height="200%" color-interpolation-filters="sRGB">
+                        <feGaussianBlur in="SourceGraphic" stdDeviation="45" result="blur" />
+                        <feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 45 -18" result="goo" />
+                    </filter>
+                </defs>
+            </svg>
+        </div>
+
+        <!-- Sticky Container -->
+        <div class="ecosystem-sticky">
+
+            <!-- Background Grid Canvas -->
+            <canvas class="bg-grid-canvas" id="gridCanvas"></canvas>
+
+            <!-- Particle Canvas -->
+            <canvas class="particle-canvas" id="particleCanvas"></canvas>
+
+            <!-- Network Lines SVG -->
+            <svg class="network-svg" id="networkSvg">
+                <defs>
+                    <linearGradient id="lineGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                        <stop offset="0%" style="stop-color:rgba(250,140,50,0.15)"/>
+                        <stop offset="100%" style="stop-color:rgba(250,140,50,0)"/>
+                    </linearGradient>
+                </defs>
+            </svg>
+
+            <!-- 3D Glass Panels -->
+            <div class="glass-scene" id="glassScene">
+                <div class="parallax-layer" id="parallaxLayer1" data-speed="0.02">
+                    <div class="glass-panel glass-panel-1 glow-orange" id="gp1"></div>
+                    <div class="glass-panel glass-panel-2 glow-teal" id="gp2"></div>
+                </div>
+                <div class="parallax-layer" id="parallaxLayer2" data-speed="0.04">
+                    <div class="glass-panel glass-panel-3 glow-teal" id="gp3"></div>
+                    <div class="glass-panel glass-panel-4 glow-orange" id="gp4"></div>
+                </div>
+                <div class="parallax-layer" id="parallaxLayer3" data-speed="0.01">
+                    <div class="glass-panel glass-panel-5 glow-teal" id="gp5"></div>
+                    <div class="glass-panel glass-panel-6 glow-orange" id="gp6"></div>
+                </div>
+
+                <!-- Decorative Elements -->
+                <div class="deco-ring deco-ring-1"></div>
+                <div class="deco-ring deco-ring-2"></div>
+                <div class="deco-cross" style="top:20%; left:15%;"></div>
+                <div class="deco-cross" style="top:70%; right:20%;"></div>
+                <div class="deco-cross" style="bottom:25%; left:40%;"></div>
+            </div>
+
+            <!-- ======================================
+                 INTRO SLIDE
+                 ====================================== -->
+            <div class="ecosystem-intro" id="introSlide">
+                <div class="section-label" id="sectionLabel">
+                    OUR ECOSYSTEM
+                </div>
+                <h2 class="section-heading" id="sectionHeading">
+                    <!-- Words injected via JS -->
+                </h2>
+                <p class="section-intro-text" id="sectionIntro">
+                    <!-- Lines injected via JS -->
+                </p>
+            </div>
+
+            <!-- ======================================
+                 SLIDE 01 - IT Services
+                 ====================================== -->
+            <div class="slide" id="slide1" data-slide="1">
+                <div class="slide-inner">
+                    <div class="slide-content">
+                        <div class="slide-number">01 / 04</div>
+                        <h3 class="slide-heading">
+                            <!-- Words injected via JS -->
+                        </h3>
+                        <p class="slide-subheading">Building Intelligent Technology for Tomorrow's Enterprises</p>
+                        <p class="slide-description">
+                            <!-- Lines injected via JS -->
+                        </p>
+                        <div class="slide-keywords">
+                            <span class="keyword-tag">Software</span>
+                            <span class="keyword-tag">Cloud</span>
+                            <span class="keyword-tag">AI</span>
+                        </div>
+                        <a href="#" class="slide-cta">
+                            <span class="cta-text">Explore IT Services</span>
+                            <span class="cta-arrow">
+                                <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+                            </span>
+                        </a>
+                    </div>
+                    <div class="slide-visual">
+                        <div class="visual-container" id="visual1">
+                            <div class="visual-glow glow-main"></div>
+                            <div class="visual-glass visual-cube-main"></div>
+                            <div class="visual-glass visual-cube-secondary"></div>
+                            <div class="visual-glass visual-cube-tertiary"></div>
+                            <svg class="data-flow-svg" viewBox="0 0 500 450">
+                                <line class="data-flow-line" x1="50" y1="100" x2="250" y2="225" />
+                                <line class="data-flow-line" x1="250" y1="225" x2="450" y2="150" />
+                                <line class="data-flow-line" x1="250" y1="225" x2="150" y2="380" />
+                                <circle class="data-flow-dot" cx="250" cy="225" r="4"/>
+                                <circle class="data-flow-dot" cx="50" cy="100" r="3"/>
+                                <circle class="data-flow-dot" cx="450" cy="150" r="3"/>
+                                <circle class="data-flow-dot" cx="150" cy="380" r="3"/>
+                            </svg>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ======================================
+                 SLIDE 02 - ITES Services
+                 ====================================== -->
+            <div class="slide" id="slide2" data-slide="2">
+                <div class="slide-inner">
+                    <div class="slide-content">
+                        <div class="slide-number">02 / 04</div>
+                        <h3 class="slide-heading"></h3>
+                        <p class="slide-subheading">Efficiency Driven by Expertise</p>
+                        <p class="slide-description"></p>
+                        <div class="slide-keywords">
+                            <span class="keyword-tag">Support</span>
+                            <span class="keyword-tag">Operations</span>
+                            <span class="keyword-tag">Automation</span>
+                        </div>
+                        <a href="#" class="slide-cta">
+                            <span class="cta-text">Explore ITES Services</span>
+                            <span class="cta-arrow">
+                                <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+                            </span>
+                        </a>
+                    </div>
+                    <div class="slide-visual">
+                        <div class="visual-container" id="visual2">
+                            <div class="visual-glow glow-main"></div>
+                            <div class="visual-glass" style="width:200px;height:140px;top:20%;left:10%;transform:rotateY(-10deg) rotateX(5deg);border-color:rgba(255,255,255,0.05);"></div>
+                            <div class="visual-glass" style="width:180px;height:120px;top:40%;left:40%;transform:rotateY(8deg) rotateX(-3deg);border-color:rgba(250,140,50,0.08);"></div>
+                            <div class="visual-glass" style="width:160px;height:130px;bottom:15%;right:15%;transform:rotateY(-5deg) rotateX(2deg);opacity:0.5;"></div>
+                            <svg class="data-flow-svg" viewBox="0 0 500 450">
+                                <path class="data-flow-line" d="M 60 150 Q 200 100 250 225 Q 300 350 440 300" />
+                                <path class="data-flow-line" d="M 100 350 Q 200 250 300 200 Q 400 150 450 100" />
+                                <circle class="data-flow-dot" cx="250" cy="225" r="4"/>
+                                <circle class="data-flow-dot" cx="100" cy="350" r="3"/>
+                                <circle class="data-flow-dot" cx="450" cy="100" r="3"/>
+                            </svg>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ======================================
+                 SLIDE 03 - BPO Services
+                 ====================================== -->
+            <div class="slide" id="slide3" data-slide="3">
+                <div class="slide-inner">
+                    <div class="slide-content">
+                        <div class="slide-number">03 / 04</div>
+                        <h3 class="slide-heading"></h3>
+                        <p class="slide-subheading">Your Growth Partner in Business Operations</p>
+                        <p class="slide-description"></p>
+                        <div class="slide-keywords">
+                            <span class="keyword-tag">Productivity</span>
+                            <span class="keyword-tag">Scalability</span>
+                            <span class="keyword-tag">Customer Care</span>
+                        </div>
+                        <a href="#" class="slide-cta">
+                            <span class="cta-text">Explore BPO Services</span>
+                            <span class="cta-arrow">
+                                <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+                            </span>
+                        </a>
+                    </div>
+                    <div class="slide-visual">
+                        <div class="visual-container" id="visual3">
+                            <div class="visual-glow glow-main"></div>
+                            <div class="visual-glass" style="width:260px;height:180px;top:25%;left:20%;transform:perspective(800px) translateZ(-50px) rotateY(-12deg);border-color:rgba(250,140,50,0.08);box-shadow:0 20px 60px rgba(250,140,50,0.04);"></div>
+                            <div class="visual-glass" style="width:220px;height:160px;top:40%;left:35%;transform:perspective(800px) translateZ(0px) rotateY(-8deg);border-color:rgba(250,140,50,0.1);box-shadow:0 20px 60px rgba(250,140,50,0.06);"></div>
+                            <div class="visual-glass" style="width:180px;height:140px;top:55%;left:50%;transform:perspective(800px) translateZ(50px) rotateY(-4deg);border-color:rgba(250,140,50,0.12);box-shadow:0 20px 60px rgba(250,140,50,0.08);"></div>
+                            <svg class="data-flow-svg" viewBox="0 0 500 450">
+                                <line class="data-flow-line" x1="80" y1="120" x2="200" y2="200"/>
+                                <line class="data-flow-line" x1="200" y1="200" x2="320" y2="280"/>
+                                <line class="data-flow-line" x1="320" y1="280" x2="420" y2="350"/>
+                                <circle class="data-flow-dot" cx="200" cy="200" r="3"/>
+                                <circle class="data-flow-dot" cx="320" cy="280" r="4"/>
+                            </svg>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ======================================
+                 SLIDE 04 - Oppty Learn
+                 ====================================== -->
+            <div class="slide" id="slide4" data-slide="4">
+                <div class="slide-inner">
+                    <div class="slide-content">
+                        <div class="slide-number">04 / 04</div>
+                        <h3 class="slide-heading"></h3>
+                        <p class="slide-subheading">Learn Today. Lead Tomorrow.</p>
+                        <p class="slide-description"></p>
+                        <div class="slide-keywords">
+                            <span class="keyword-tag">Learning</span>
+                            <span class="keyword-tag">Upskilling</span>
+                            <span class="keyword-tag">Careers</span>
+                        </div>
+                        <a href="#" class="slide-cta">
+                            <span class="cta-text">Explore Oppty Learn</span>
+                            <span class="cta-arrow">
+                                <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+                            </span>
+                        </a>
+                    </div>
+                    <div class="slide-visual">
+                        <div class="visual-container" id="visual4">
+                            <div class="visual-glow glow-main"></div>
+                            <div class="visual-glass" style="width:140px;height:180px;top:15%;left:20%;transform:rotateY(-10deg) rotateX(5deg);border-color:rgba(250,140,50,0.08);"></div>
+                            <div class="visual-glass" style="width:150px;height:100px;top:30%;right:20%;transform:rotateY(12deg);border-color:rgba(250,140,50,0.06);"></div>
+                            <div class="visual-glass" style="width:120px;height:160px;bottom:10%;left:40%;transform:rotateY(-5deg) rotateX(-3deg);border-color:rgba(250,140,50,0.1);"></div>
+                            <!-- Knowledge nodes -->
+                            <div class="knowledge-node" style="top:25%;left:35%;"></div>
+                            <div class="knowledge-node" style="top:45%;left:55%;"></div>
+                            <div class="knowledge-node" style="top:65%;left:30%;"></div>
+                            <div class="knowledge-node" style="top:35%;right:25%;"></div>
+                            <div class="knowledge-node" style="bottom:20%;right:35%;"></div>
+                            <svg class="data-flow-svg" viewBox="0 0 500 450">
+                                <path class="data-flow-line" d="M 175 112 Q 250 180 275 200"/>
+                                <path class="data-flow-line" d="M 275 200 Q 300 250 150 290"/>
+                                <path class="data-flow-line" d="M 275 200 Q 350 170 375 157"/>
+                                <path class="data-flow-line" d="M 150 290 Q 200 350 325 360"/>
+                                <circle class="data-flow-dot" cx="275" cy="200" r="5"/>
+                                <circle class="data-flow-dot" cx="175" cy="112" r="3"/>
+                                <circle class="data-flow-dot" cx="375" cy="157" r="3"/>
+                                <circle class="data-flow-dot" cx="150" cy="290" r="3"/>
+                                <circle class="data-flow-dot" cx="325" cy="360" r="3"/>
+                            </svg>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Progress Indicator -->
+            <div class="scroll-progress" id="scrollProgress">
+                <div class="progress-dot active" data-index="0" data-label="Ecosystem"></div>
+                <div class="progress-line"></div>
+                <div class="progress-dot" data-index="1" data-label="IT Services"></div>
+                <div class="progress-line"></div>
+                <div class="progress-dot" data-index="2" data-label="ITES Services"></div>
+                <div class="progress-line"></div>
+                <div class="progress-dot" data-index="3" data-label="BPO Services"></div>
+                <div class="progress-line"></div>
+                <div class="progress-dot" data-index="4" data-label="Oppty Learn"></div>
+            </div>
+
+            <!-- Slide Counter -->
+            <div class="slide-counter" id="slideCounter">
+                <span class="counter-current" id="counterCurrent">00</span>
+                <div class="counter-divider"></div>
+                <span class="counter-total">04</span>
+            </div>
+
+        </div>
+    </section>
 
   <script>
     /* ================================================
@@ -304,7 +591,7 @@
     });
 
     // ── Slider elements ──
-    const textSlides = document.querySelectorAll('.slide');
+    const textSlides = document.querySelectorAll('.hero-slide');
     const statSlides = document.querySelectorAll('.stat-slide');
     textSlides[0].classList.add('active');
     statSlides[0].classList.add('active');
@@ -452,6 +739,839 @@
 
     // ── Auto-rotate ──
     let autoTimer = setInterval(() => goTo(current + 1), INTERVAL_MS);
+
+
+    (function() {
+        'use strict';
+
+        // ==========================================
+        // CONFIGURATION & DATA
+        // ==========================================
+        const HEADING_TEXT = "Transforming Businesses Through Technology, Talent & Learning";
+        const INTRO_TEXT = "We create scalable solutions that help organizations innovate, operate efficiently, and build future-ready teams.";
+        const ACCENT_WORDS = ["Technology,", "Talent", "Learning"];
+
+        const SLIDES_DATA = [
+            {
+                heading: "IT Services",
+                description: "We help ambitious businesses transform ideas into powerful digital solutions through cutting-edge software development, cloud technologies, AI integration, and enterprise-grade platforms that drive growth, efficiency, and innovation."
+            },
+            {
+                heading: "ITES Services",
+                description: "Through technology-enabled workflows and process optimization, we help businesses reduce operational complexity, improve service quality, and achieve measurable business outcomes."
+            },
+            {
+                heading: "BPO Services",
+                description: "Our BPO solutions empower organizations to reduce costs, improve productivity, and deliver exceptional customer experiences through efficient and scalable business processes."
+            },
+            {
+                heading: "Oppty Learn",
+                description: "Oppty Learn is a next-generation learning platform designed to equip students and professionals with industry-relevant skills, practical knowledge, and career-ready expertise."
+            }
+        ];
+
+        // ==========================================
+        // UTILITY FUNCTIONS
+        // ==========================================
+        function splitTextIntoWords(text, container, accentWords = []) {
+            container.innerHTML = '';
+            const words = text.split(' ');
+            words.forEach((word, i) => {
+                const span = document.createElement('span');
+                span.className = 'word';
+                if (accentWords.includes(word) || accentWords.includes(word.replace(/[^a-zA-Z&]/g, ''))) {
+                    span.classList.add('accent-word');
+                }
+                span.textContent = word;
+                container.appendChild(span);
+                // Add space between words (handled by margin-right in CSS)
+            });
+        }
+
+        function splitTextIntoLines(text, container, maxChars = 70) {
+            container.innerHTML = '';
+            const words = text.split(' ');
+            let currentLine = '';
+            const lines = [];
+
+            words.forEach(word => {
+                if ((currentLine + ' ' + word).trim().length > maxChars && currentLine) {
+                    lines.push(currentLine.trim());
+                    currentLine = word;
+                } else {
+                    currentLine = currentLine ? currentLine + ' ' + word : word;
+                }
+            });
+            if (currentLine) lines.push(currentLine.trim());
+
+            lines.forEach(line => {
+                const span = document.createElement('span');
+                span.className = 'line';
+                span.textContent = line;
+                container.appendChild(span);
+            });
+
+            // If only one line, just use it
+            if (lines.length === 0) {
+                const span = document.createElement('span');
+                span.className = 'line';
+                span.textContent = text;
+                container.appendChild(span);
+            }
+        }
+
+        function splitDescIntoLines(text, container) {
+            container.innerHTML = '';
+            // Split at roughly natural breakpoints
+            const sentences = text.match(/[^.!?]+[.!?]+/g) || [text];
+            sentences.forEach(s => {
+                const span = document.createElement('span');
+                span.className = 'desc-line';
+                span.textContent = s.trim();
+                container.appendChild(span);
+            });
+        }
+
+        // ==========================================
+        // INITIALIZE TEXT SPLITTING
+        // ==========================================
+        const sectionHeading = document.getElementById('sectionHeading');
+        const sectionIntro = document.getElementById('sectionIntro');
+
+        splitTextIntoWords(HEADING_TEXT, sectionHeading, ACCENT_WORDS);
+        splitTextIntoLines(INTRO_TEXT, sectionIntro);
+
+        // Slide headings and descriptions
+        const slides = document.querySelectorAll('.ecosystem-section .slide');
+        slides.forEach((slide, i) => {
+            const heading = slide.querySelector('.slide-heading');
+            const desc = slide.querySelector('.slide-description');
+            if (heading) splitTextIntoWords(SLIDES_DATA[i].heading, heading);
+            if (desc) splitDescIntoLines(SLIDES_DATA[i].description, desc);
+        });
+
+        // ==========================================
+        // CANVAS: BACKGROUND GRID
+        // ==========================================
+        const gridCanvas = document.getElementById('gridCanvas');
+        const gridCtx = gridCanvas.getContext('2d');
+
+        function resizeGridCanvas() {
+            gridCanvas.width = window.innerWidth;
+            gridCanvas.height = window.innerHeight;
+        }
+        resizeGridCanvas();
+        window.addEventListener('resize', resizeGridCanvas);
+
+        function drawGrid() {
+            const w = gridCanvas.width;
+            const h = gridCanvas.height;
+            gridCtx.clearRect(0, 0, w, h);
+            gridCtx.strokeStyle = 'rgba(250, 140, 50, 0.08)';
+            gridCtx.lineWidth = 0.5;
+
+            const spacing = 80;
+            for (let x = 0; x < w; x += spacing) {
+                gridCtx.beginPath();
+                gridCtx.moveTo(x, 0);
+                gridCtx.lineTo(x, h);
+                gridCtx.stroke();
+            }
+            for (let y = 0; y < h; y += spacing) {
+                gridCtx.beginPath();
+                gridCtx.moveTo(0, y);
+                gridCtx.lineTo(w, y);
+                gridCtx.stroke();
+            }
+        }
+        drawGrid();
+        window.addEventListener('resize', drawGrid);
+
+        // ==========================================
+        // CANVAS: PARTICLES
+        // ==========================================
+        const particleCanvas = document.getElementById('particleCanvas');
+        const pCtx = particleCanvas.getContext('2d');
+        let particles = [];
+        const PARTICLE_COUNT = 60;
+
+        function resizeParticleCanvas() {
+            particleCanvas.width = window.innerWidth;
+            particleCanvas.height = window.innerHeight;
+        }
+        resizeParticleCanvas();
+        window.addEventListener('resize', resizeParticleCanvas);
+
+        class Particle {
+            constructor() {
+                this.reset();
+            }
+            reset() {
+                this.x = Math.random() * particleCanvas.width;
+                this.y = Math.random() * particleCanvas.height;
+                this.size = Math.random() * 2 + 0.5;
+                this.speedX = (Math.random() - 0.5) * 0.3;
+                this.speedY = (Math.random() - 0.5) * 0.3;
+                this.opacity = Math.random() * 0.3 + 0.05;
+                this.isOrange = Math.random() > 0.7;
+            }
+            update() {
+                this.x += this.speedX;
+                this.y += this.speedY;
+
+                if (this.x < 0 || this.x > particleCanvas.width) this.speedX *= -1;
+                if (this.y < 0 || this.y > particleCanvas.height) this.speedY *= -1;
+            }
+            draw() {
+                pCtx.beginPath();
+                pCtx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                if (this.isOrange) {
+                    pCtx.fillStyle = `rgba(250, 140, 50, ${this.opacity * 1.5})`;
+                } else {
+                    pCtx.fillStyle = `rgba(10, 22, 40, ${this.opacity * 0.35})`;
+                }
+                pCtx.fill();
+            }
+        }
+
+        for (let i = 0; i < PARTICLE_COUNT; i++) {
+            particles.push(new Particle());
+        }
+
+        function animateParticles() {
+            pCtx.clearRect(0, 0, particleCanvas.width, particleCanvas.height);
+            particles.forEach(p => {
+                p.update();
+                p.draw();
+            });
+
+            // Draw connections
+            for (let i = 0; i < particles.length; i++) {
+                for (let j = i + 1; j < particles.length; j++) {
+                    const dx = particles[i].x - particles[j].x;
+                    const dy = particles[i].y - particles[j].y;
+                    const dist = Math.sqrt(dx * dx + dy * dy);
+                    if (dist < 150) {
+                        pCtx.beginPath();
+                        pCtx.moveTo(particles[i].x, particles[i].y);
+                        pCtx.lineTo(particles[j].x, particles[j].y);
+                        pCtx.strokeStyle = `rgba(250, 140, 50, ${0.08 * (1 - dist / 150)})`;
+                        pCtx.lineWidth = 0.5;
+                        pCtx.stroke();
+                    }
+                }
+            }
+
+            requestAnimationFrame(animateParticles);
+        }
+        animateParticles();
+
+        // ==========================================
+        // NETWORK LINES SVG
+        // ==========================================
+        const networkSvg = document.getElementById('networkSvg');
+
+        function createNetworkLines() {
+            networkSvg.innerHTML = '';
+            const w = window.innerWidth;
+            const h = window.innerHeight;
+            networkSvg.setAttribute('viewBox', `0 0 ${w} ${h}`);
+
+            const nodeCount = 12;
+            const nodes = [];
+
+            for (let i = 0; i < nodeCount; i++) {
+                nodes.push({
+                    x: Math.random() * w,
+                    y: Math.random() * h
+                });
+            }
+
+            // Draw lines between nearby nodes
+            for (let i = 0; i < nodes.length; i++) {
+                for (let j = i + 1; j < nodes.length; j++) {
+                    const dx = nodes[i].x - nodes[j].x;
+                    const dy = nodes[i].y - nodes[j].y;
+                    const dist = Math.sqrt(dx * dx + dy * dy);
+                    if (dist < 400) {
+                        const line = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+                        line.setAttribute('x1', nodes[i].x);
+                        line.setAttribute('y1', nodes[i].y);
+                        line.setAttribute('x2', nodes[j].x);
+                        line.setAttribute('y2', nodes[j].y);
+                        line.setAttribute('class', 'network-line');
+                        line.style.opacity = (1 - dist / 400) * 0.5;
+                        networkSvg.appendChild(line);
+                    }
+                }
+            }
+
+            // Draw nodes
+            nodes.forEach(node => {
+                const circle = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+                circle.setAttribute('cx', node.x);
+                circle.setAttribute('cy', node.y);
+                circle.setAttribute('r', 2 + Math.random() * 2);
+                circle.setAttribute('class', 'network-node');
+                networkSvg.appendChild(circle);
+            });
+        }
+        createNetworkLines();
+        window.addEventListener('resize', createNetworkLines);
+
+        // ==========================================
+        // MOUSE PARALLAX
+        // ==========================================
+        let mouseX = 0;
+        let mouseY = 0;
+        let targetMouseX = 0;
+        let targetMouseY = 0;
+
+        document.addEventListener('mousemove', (e) => {
+            targetMouseX = (e.clientX / window.innerWidth - 0.5) * 2;
+            targetMouseY = (e.clientY / window.innerHeight - 0.5) * 2;
+        });
+
+        function updateMouseParallax() {
+            mouseX += (targetMouseX - mouseX) * 0.05;
+            mouseY += (targetMouseY - mouseY) * 0.05;
+
+            const layers = document.querySelectorAll('.parallax-layer');
+            layers.forEach(layer => {
+                const speed = parseFloat(layer.dataset.speed) || 0.02;
+                const x = mouseX * speed * 100;
+                const y = mouseY * speed * 100;
+                layer.style.transform = `translate(${x}px, ${y}px)`;
+            });
+
+            requestAnimationFrame(updateMouseParallax);
+        }
+        updateMouseParallax();
+
+        // ==========================================
+        // GSAP SCROLL ANIMATIONS
+        // ==========================================
+        gsap.registerPlugin(ScrollTrigger);
+
+        // Toggle navbar visibility based on scroll position
+        const navbar = document.querySelector('.navbar');
+        ScrollTrigger.create({
+            trigger: '.ecosystem-section',
+            start: 'top 15%',
+            onEnter: () => navbar.classList.add('hidden'),
+            onLeaveBack: () => navbar.classList.remove('hidden'),
+        });
+
+        const section = document.querySelector('.ecosystem-section');
+        const ambient = document.getElementById('ecosystemAmbient');
+        const introSlide = document.getElementById('introSlide');
+        const progressDots = document.querySelectorAll('.progress-dot');
+        const counterCurrent = document.getElementById('counterCurrent');
+        const allSlides = [introSlide, ...document.querySelectorAll('.ecosystem-section .slide')];
+
+        // Total 5 states: intro + 4 slides
+        // Section is 500vh, each state occupies 100vh scroll distance
+        const totalStates = 5;
+
+        // Master timeline pinned for the section
+        let currentState = 0;
+
+        // Activate ambient on section enter
+        ScrollTrigger.create({
+            trigger: section,
+            start: 'top 80%',
+            end: 'bottom 20%',
+            onEnter: () => ambient.classList.add('active'),
+            onLeave: () => ambient.classList.remove('active'),
+            onEnterBack: () => ambient.classList.add('active'),
+            onLeaveBack: () => ambient.classList.remove('active'),
+        });
+
+        // Glass panels base animation (continuous rotation)
+        const glassPanels = document.querySelectorAll('.glass-panel');
+
+        gsap.to('#gp1', {
+            rotation: 3,
+            y: -15,
+            duration: 8,
+            ease: 'sine.inOut',
+            yoyo: true,
+            repeat: -1,
+        });
+        gsap.to('#gp2', {
+            rotation: -2,
+            y: 10,
+            duration: 10,
+            ease: 'sine.inOut',
+            yoyo: true,
+            repeat: -1,
+        });
+        gsap.to('#gp3', {
+            rotation: 2,
+            y: -8,
+            duration: 7,
+            ease: 'sine.inOut',
+            yoyo: true,
+            repeat: -1,
+        });
+        gsap.to('#gp4', {
+            rotation: -1.5,
+            y: 12,
+            duration: 9,
+            ease: 'sine.inOut',
+            yoyo: true,
+            repeat: -1,
+        });
+        gsap.to('#gp5', {
+            rotation: 1,
+            y: -6,
+            duration: 11,
+            ease: 'sine.inOut',
+            yoyo: true,
+            repeat: -1,
+        });
+        gsap.to('#gp6', {
+            rotation: -2.5,
+            y: 8,
+            duration: 6,
+            ease: 'sine.inOut',
+            yoyo: true,
+            repeat: -1,
+        });
+
+        // Gooey blobs continuous drift animation
+        gsap.to('#blob1', {
+            x: 'random(-80, 80)',
+            y: 'random(-80, 80)',
+            scale: 'random(0.9, 1.15)',
+            duration: 12,
+            ease: 'sine.inOut',
+            repeat: -1,
+            yoyo: true,
+            repeatRefresh: true
+        });
+        gsap.to('#blob2', {
+            x: 'random(-100, 100)',
+            y: 'random(-100, 100)',
+            scale: 'random(0.85, 1.1)',
+            duration: 16,
+            ease: 'sine.inOut',
+            repeat: -1,
+            yoyo: true,
+            repeatRefresh: true
+        });
+        gsap.to('#blob3', {
+            x: 'random(-70, 70)',
+            y: 'random(-70, 70)',
+            scale: 'random(0.9, 1.2)',
+            duration: 10,
+            ease: 'sine.inOut',
+            repeat: -1,
+            yoyo: true,
+            repeatRefresh: true
+        });
+        gsap.to('#blob4', {
+            x: 'random(-90, 90)',
+            y: 'random(-90, 90)',
+            scale: 'random(0.85, 1.15)',
+            duration: 14,
+            ease: 'sine.inOut',
+            repeat: -1,
+            yoyo: true,
+            repeatRefresh: true
+        });
+
+        // Decorative rings rotation
+        gsap.to('.deco-ring-1', {
+            rotation: 360, duration: 60, ease: 'none', repeat: -1
+        });
+        gsap.to('.deco-ring-2', {
+            rotation: -360, duration: 80, ease: 'none', repeat: -1
+        });
+
+        // ==========================================
+        // SLIDE TRANSITION FUNCTIONS
+        // ==========================================
+        function showIntro() {
+            const label = document.getElementById('sectionLabel');
+            const words = sectionHeading.querySelectorAll('.word');
+            const lines = sectionIntro.querySelectorAll('.line');
+
+            const tl = gsap.timeline();
+
+            tl.set(introSlide, { opacity: 1, pointerEvents: 'auto' });
+
+            tl.fromTo(label,
+                { opacity: 0, y: 20 },
+                { opacity: 1, y: 0, duration: 0.6, ease: 'power3.out' },
+                0
+            );
+
+            tl.fromTo(words,
+                { opacity: 0, y: 40, filter: 'blur(4px)' },
+                {
+                    opacity: 1, y: 0, filter: 'blur(0px)',
+                    duration: 0.7, stagger: 0.04, ease: 'power3.out'
+                },
+                0.2
+            );
+
+            tl.fromTo(lines,
+                { opacity: 0, y: 20 },
+                {
+                    opacity: 1, y: 0,
+                    duration: 0.6, stagger: 0.1, ease: 'power3.out'
+                },
+                0.6
+            );
+
+            return tl;
+        }
+
+        function hideIntro() {
+            const label = document.getElementById('sectionLabel');
+            const words = sectionHeading.querySelectorAll('.word');
+            const lines = sectionIntro.querySelectorAll('.line');
+
+            const tl = gsap.timeline();
+
+            tl.to(lines, {
+                opacity: 0, y: -15, duration: 0.3, stagger: 0.03, ease: 'power2.in'
+            }, 0);
+            tl.to(words, {
+                opacity: 0, y: -30, filter: 'blur(4px)', duration: 0.3, stagger: 0.02, ease: 'power2.in'
+            }, 0.1);
+            tl.to(label, {
+                opacity: 0, y: -15, duration: 0.3, ease: 'power2.in'
+            }, 0.15);
+            tl.set(introSlide, { opacity: 0, pointerEvents: 'none' });
+
+            return tl;
+        }
+
+        function showSlide(slideEl) {
+            const number = slideEl.querySelector('.slide-number');
+            const words = slideEl.querySelectorAll('.slide-heading .word');
+            const sub = slideEl.querySelector('.slide-subheading');
+            const descLines = slideEl.querySelectorAll('.slide-description .desc-line');
+            const keywords = slideEl.querySelectorAll('.keyword-tag');
+            const cta = slideEl.querySelector('.slide-cta');
+            const visuals = slideEl.querySelectorAll('.visual-glass');
+            const glowEl = slideEl.querySelector('.visual-glow');
+            const nodes = slideEl.querySelectorAll('.knowledge-node');
+            const flowDots = slideEl.querySelectorAll('.data-flow-dot');
+            const flowLines = slideEl.querySelectorAll('.data-flow-line');
+
+            const tl = gsap.timeline();
+
+            tl.set(slideEl, { opacity: 1, pointerEvents: 'auto' });
+            slideEl.classList.add('active');
+
+            // Number
+            tl.fromTo(number,
+                { opacity: 0, x: -20 },
+                { opacity: 1, x: 0, duration: 0.5, ease: 'power3.out' },
+                0
+            );
+
+            // Heading words
+            tl.fromTo(words,
+                { opacity: 0, y: 50, rotateX: 40, filter: 'blur(6px)' },
+                {
+                    opacity: 1, y: 0, rotateX: 0, filter: 'blur(0px)',
+                    duration: 0.7, stagger: 0.06, ease: 'power3.out'
+                },
+                0.1
+            );
+
+            // Subheading
+            tl.fromTo(sub,
+                { opacity: 0, y: 20 },
+                { opacity: 1, y: 0, duration: 0.6, ease: 'power3.out' },
+                0.3
+            );
+
+            // Description lines
+            tl.fromTo(descLines,
+                { opacity: 0, y: 15 },
+                {
+                    opacity: 1, y: 0,
+                    duration: 0.5, stagger: 0.08, ease: 'power3.out'
+                },
+                0.4
+            );
+
+            // Keywords
+            tl.fromTo(keywords,
+                { opacity: 0, y: 20, scale: 0.9 },
+                {
+                    opacity: 1, y: 0, scale: 1,
+                    duration: 0.5, stagger: 0.06, ease: 'back.out(1.2)'
+                },
+                0.6
+            );
+
+            // CTA
+            tl.fromTo(cta,
+                { opacity: 0, y: 20 },
+                { opacity: 1, y: 0, duration: 0.5, ease: 'power3.out' },
+                0.7
+            );
+
+            // Visual glass elements
+            tl.fromTo(visuals,
+                { opacity: 0, scale: 0.6, z: -200 },
+                {
+                    opacity: 1, scale: 1, z: 0,
+                    duration: 1, stagger: 0.1, ease: 'power3.out'
+                },
+                0.1
+            );
+
+            // Glow
+            if (glowEl) {
+                tl.fromTo(glowEl,
+                    { opacity: 0, scale: 0.5 },
+                    { opacity: 1, scale: 1, duration: 1.2, ease: 'power2.out' },
+                    0.2
+                );
+            }
+
+            // Knowledge nodes
+            if (nodes.length) {
+                tl.fromTo(nodes,
+                    { opacity: 0, scale: 0 },
+                    { opacity: 1, scale: 1, duration: 0.5, stagger: 0.08, ease: 'back.out(2)' },
+                    0.5
+                );
+            }
+
+            // Data flow
+            if (flowDots.length) {
+                tl.fromTo(flowDots,
+                    { opacity: 0, scale: 0 },
+                    { opacity: 0.6, scale: 1, duration: 0.4, stagger: 0.05, ease: 'power2.out' },
+                    0.6
+                );
+            }
+            if (flowLines.length) {
+                tl.fromTo(flowLines,
+                    { strokeDashoffset: 500 },
+                    { strokeDashoffset: 0, duration: 1, stagger: 0.1, ease: 'power2.out' },
+                    0.4
+                );
+            }
+
+            return tl;
+        }
+
+        function hideSlide(slideEl) {
+            const number = slideEl.querySelector('.slide-number');
+            const words = slideEl.querySelectorAll('.slide-heading .word');
+            const sub = slideEl.querySelector('.slide-subheading');
+            const descLines = slideEl.querySelectorAll('.slide-description .desc-line');
+            const keywords = slideEl.querySelectorAll('.keyword-tag');
+            const cta = slideEl.querySelector('.slide-cta');
+            const visuals = slideEl.querySelectorAll('.visual-glass');
+            const glowEl = slideEl.querySelector('.visual-glow');
+
+            const tl = gsap.timeline();
+
+            tl.to(cta, { opacity: 0, y: -10, duration: 0.2, ease: 'power2.in' }, 0);
+            tl.to(keywords, { opacity: 0, y: -10, scale: 0.95, duration: 0.2, stagger: 0.02, ease: 'power2.in' }, 0);
+            tl.to(descLines, { opacity: 0, y: -10, duration: 0.2, stagger: 0.02, ease: 'power2.in' }, 0.05);
+            tl.to(sub, { opacity: 0, y: -10, duration: 0.2, ease: 'power2.in' }, 0.1);
+            tl.to(words, { opacity: 0, y: -25, filter: 'blur(4px)', duration: 0.25, stagger: 0.02, ease: 'power2.in' }, 0.1);
+            tl.to(number, { opacity: 0, x: -10, duration: 0.2, ease: 'power2.in' }, 0.15);
+            tl.to(visuals, { opacity: 0, scale: 0.8, duration: 0.3, stagger: 0.03, ease: 'power2.in' }, 0);
+            if (glowEl) {
+                tl.to(glowEl, { opacity: 0, scale: 0.5, duration: 0.3, ease: 'power2.in' }, 0);
+            }
+            tl.set(slideEl, { opacity: 0, pointerEvents: 'none' });
+            slideEl.classList.remove('active');
+
+            return tl;
+        }
+
+        // ==========================================
+        // UPDATE PROGRESS DOTS
+        // ==========================================
+        function updateProgress(state) {
+            progressDots.forEach((dot, i) => {
+                dot.classList.toggle('active', i === state);
+            });
+
+            if (state === 0) {
+                counterCurrent.textContent = '00';
+            } else {
+                counterCurrent.textContent = String(state).padStart(2, '0');
+            }
+        }
+
+        // ==========================================
+        // GLASS PANELS SCROLL ANIMATION
+        // ==========================================
+        function updateGlassPanels(progress) {
+            // Progress 0-1 over entire scroll
+            const scale = 0.6 + progress * 0.4;
+            const zMove = -200 + progress * 200;
+            const rotateProgress = progress * 20;
+
+            glassPanels.forEach((panel, i) => {
+                const offset = i * 0.1;
+                const pScale = 0.6 + Math.min(1, (progress + offset)) * 0.4;
+                const pZ = -200 + Math.min(1, (progress + offset * 0.5)) * 200;
+                const rotation = Math.sin(progress * Math.PI + i) * 5;
+
+                gsap.set(panel, {
+                    scale: Math.min(pScale, 1),
+                    rotateY: rotation + (i % 2 === 0 ? -10 : 10),
+                    rotateX: rotation * 0.3,
+                    z: pZ,
+                    opacity: 0.3 + progress * 0.3,
+                });
+            });
+        }
+
+        // ==========================================
+        // MAIN SCROLL TRIGGER
+        // ==========================================
+        let previousState = -1;
+        let isAnimating = false;
+
+        // Show intro initially when section comes into view
+        ScrollTrigger.create({
+            trigger: section,
+            start: 'top center',
+            onEnter: () => {
+                if (previousState === -1) {
+                    showIntro();
+                    previousState = 0;
+                    currentState = 0;
+                    updateProgress(0);
+                }
+            },
+            once: false
+        });
+
+        ScrollTrigger.create({
+            trigger: section,
+            start: 'top top',
+            end: 'bottom bottom',
+            scrub: 0,
+            onUpdate: (self) => {
+                const progress = self.progress;
+                const stateFloat = progress * totalStates;
+                const state = Math.min(Math.floor(stateFloat), totalStates - 1);
+
+                // Update glass panels
+                updateGlassPanels(progress);
+
+                if (state !== currentState && !isAnimating) {
+                    isAnimating = true;
+                    const prevState = currentState;
+                    currentState = state;
+
+                    updateProgress(state);
+
+                    const masterTl = gsap.timeline({
+                        onComplete: () => { isAnimating = false; }
+                    });
+
+                    // Hide previous
+                    if (prevState === 0) {
+                        masterTl.add(hideIntro(), 0);
+                    } else {
+                        const prevSlide = document.getElementById(`slide${prevState}`);
+                        if (prevSlide) masterTl.add(hideSlide(prevSlide), 0);
+                    }
+
+                    // Show current
+                    if (state === 0) {
+                        masterTl.add(showIntro(), 0.3);
+                    } else {
+                        const newSlide = document.getElementById(`slide${state}`);
+                        if (newSlide) masterTl.add(showSlide(newSlide), 0.3);
+                    }
+                }
+            }
+        });
+
+        // ==========================================
+        // DATA FLOW DOT ANIMATION (Continuous)
+        // ==========================================
+        document.querySelectorAll('.data-flow-dot').forEach(dot => {
+            gsap.to(dot, {
+                opacity: 0.2,
+                duration: 1 + Math.random() * 2,
+                yoyo: true,
+                repeat: -1,
+                ease: 'sine.inOut',
+                delay: Math.random()
+            });
+        });
+
+        // Knowledge nodes pulse
+        document.querySelectorAll('.knowledge-node').forEach(node => {
+            gsap.to(node, {
+                scale: 1.5,
+                opacity: 0.5,
+                duration: 2 + Math.random() * 2,
+                yoyo: true,
+                repeat: -1,
+                ease: 'sine.inOut',
+                delay: Math.random() * 2
+            });
+        });
+
+        // Data flow lines dash animation
+        document.querySelectorAll('.data-flow-line').forEach(line => {
+            const length = line.getTotalLength ? line.getTotalLength() : 500;
+            line.style.strokeDasharray = '8 8';
+            gsap.to(line, {
+                strokeDashoffset: -50,
+                duration: 3 + Math.random() * 2,
+                ease: 'none',
+                repeat: -1
+            });
+        });
+
+        // ==========================================
+        // WINDOW RESIZE HANDLER
+        // ==========================================
+        let resizeTimer;
+        window.addEventListener('resize', () => {
+            clearTimeout(resizeTimer);
+            resizeTimer = setTimeout(() => {
+                ScrollTrigger.refresh();
+            }, 250);
+        });
+
+        // ==========================================
+        // INITIAL STATE SETUP
+        // ==========================================
+        // Hide all slides initially
+        gsap.set('.slide', { opacity: 0, pointerEvents: 'none' });
+        gsap.set(introSlide, { opacity: 0, pointerEvents: 'none' });
+
+        // Set initial heading words state
+        gsap.set('#sectionHeading .word', { opacity: 0, y: 40, filter: 'blur(4px)' });
+        gsap.set('#sectionIntro .line', { opacity: 0, y: 20 });
+        gsap.set('#sectionLabel', { opacity: 0, y: 20 });
+
+        // Set initial slide elements state
+        document.querySelectorAll('.ecosystem-section .slide').forEach(slide => {
+            gsap.set(slide.querySelector('.slide-number'), { opacity: 0, x: -20 });
+            gsap.set(slide.querySelectorAll('.slide-heading .word'), { opacity: 0, y: 50, rotateX: 40, filter: 'blur(6px)' });
+            gsap.set(slide.querySelector('.slide-subheading'), { opacity: 0, y: 20 });
+            gsap.set(slide.querySelectorAll('.slide-description .desc-line'), { opacity: 0, y: 15 });
+            gsap.set(slide.querySelectorAll('.keyword-tag'), { opacity: 0, y: 20, scale: 0.9 });
+            gsap.set(slide.querySelector('.slide-cta'), { opacity: 0, y: 20 });
+        });
+
+        console.log('🚀 Ecosystem section initialized');
+
+    })();
   </script>
 
 </body>
