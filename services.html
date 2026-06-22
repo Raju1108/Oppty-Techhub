@@ -10,6 +10,7 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <link rel="stylesheet" href="css/navigation.css" />
   <style>
     /* =====================================================
        DESIGN SYSTEM — Exact match to landing page
@@ -46,81 +47,7 @@
     @keyframes pulseLogo { from{filter:drop-shadow(0 0 8px rgba(250,140,50,0.5))} to{filter:drop-shadow(0 0 28px rgba(250,140,50,1))} }
     .curtain.open .curtain-left  { transform:translateX(-100%); }
     .curtain.open .curtain-right { transform:translateX(100%); }
-    .curtain-logo.hide { opacity:0; }
-
-    /* =====================================================
-       NAVBAR
-       ===================================================== */
-    .navbar {
-      position:fixed; top:16px; left:50%; transform:translateX(-50%) translateY(0);
-      width:calc(100% - 48px); max-width:1200px; z-index:100; height:62px;
-      background:rgba(255,255,255,0.08); backdrop-filter:blur(24px); -webkit-backdrop-filter:blur(24px);
-      border:1px solid rgba(255,255,255,0.18); border-radius:18px;
-      display:flex; align-items:center; justify-content:space-between; padding:0 28px;
-      box-shadow:0 8px 32px rgba(0,0,0,0.35), inset 0 1px 0 rgba(255,255,255,0.12);
-      transition:background 0.3s, transform 0.4s cubic-bezier(0.16,1,0.3,1), opacity 0.4s;
-    }
-    .navbar.scrolled { background:rgba(10,22,40,0.92); border-color:rgba(250,140,50,0.2); }
-    .logo { display:flex; align-items:center; text-decoration:none; }
-    .logo-img { height:38px; width:auto; filter:drop-shadow(0 0 6px rgba(250,140,50,0.5)); transition:filter 0.3s,transform 0.3s; }
-    .logo-img:hover { filter:drop-shadow(0 0 14px rgba(250,140,50,0.9)); transform:scale(1.05); }
-    .menuButton {
-      display:flex; justify-content:center; align-items:center; flex-direction:column; gap:13%;
-      width:3.5em; height:3.5em; border-radius:0.5em;
-      background:rgba(250,140,50,0.1); border:1px solid rgba(250,140,50,0.35);
-      transition:all 0.3s; cursor:pointer;
-      box-shadow:4px 4px 10px rgba(0,0,0,0.35),-2px -2px 8px rgba(255,255,255,0.04);
-    }
-    .menuButton:hover { background:rgba(250,140,50,0.2); border-color:#fa8c32; box-shadow:0 0 16px rgba(250,140,50,0.35),4px 4px 10px rgba(0,0,0,0.35); }
-    input[type="checkbox"] { -webkit-appearance:none; display:none; visibility:hidden; }
-    .menuButton span { width:26px; height:3px; background:#fa8c32; border-radius:100px; transition:0.3s; display:block; }
-    input[type]:checked ~ span.top { transform:translateY(290%) rotate(45deg); width:32px; }
-    input[type]:checked ~ span.bot { transform:translateY(-270%) rotate(-45deg); width:32px; box-shadow:0 0 10px #fa8c32; }
-    input[type]:checked ~ span.mid { transform:translateX(-20px); opacity:0; }
-
-    /* =====================================================
-       SLIDE-IN MENU
-       ===================================================== */
-    .menu-overlay { position:fixed; inset:0; z-index:200; background:rgba(0,0,0,0.6); backdrop-filter:blur(4px); opacity:0; pointer-events:none; transition:opacity 0.4s; }
-    .menu-overlay.show { opacity:1; pointer-events:all; }
-    .slide-menu {
-      position:fixed; top:0; right:0; width:52%; height:100%; z-index:300; background:#0d0d0d;
-      transform:translateX(100%); transition:transform 0.5s cubic-bezier(0.77,0,0.18,1);
-      display:flex; flex-direction:column; overflow-y:auto;
-      border-left:3px solid #fa8c32; box-shadow:-12px 0 60px rgba(0,0,0,0.7);
-    }
-    .slide-menu.open { transform:translateX(0); }
-    .slide-menu::before { content:''; position:absolute; top:0;left:0;right:0;height:3px; background:linear-gradient(90deg,#fa8c32,#ff6b00,#fa8c32); background-size:200% 100%; animation:shimmer 2.5s linear infinite; }
-    @keyframes shimmer { 0%{background-position:200% 0} 100%{background-position:-200% 0} }
-    .menu-close { position:absolute;top:18px;right:28px; background:rgba(250,140,50,0.1);border:1px solid rgba(250,140,50,0.3);border-radius:50%;cursor:pointer;width:40px;height:40px;display:flex;flex-direction:column;justify-content:center;align-items:center;z-index:10;transition:background 0.2s; }
-    .menu-close:hover { background:rgba(250,140,50,0.2); box-shadow:0 0 16px rgba(250,140,50,0.35); }
-    .menu-close span { display:block;width:18px;height:2px;background:#fa8c32;border-radius:2px;position:absolute; }
-    .menu-close span:first-child { transform:rotate(45deg); }
-    .menu-close span:last-child  { transform:rotate(-45deg); }
-    .menu-body { display:flex;flex:1;padding:80px 50px 40px 44px;gap:36px; }
-    .menu-left { flex:1;display:flex;flex-direction:column; }
-    .menu-label { font-size:0.65rem;font-weight:700;letter-spacing:2.5px;color:#fa8c32;text-transform:uppercase;margin-bottom:20px;display:flex;align-items:center;gap:8px; }
-    .menu-label::after { content:'';flex:1;height:1px;background:rgba(250,140,50,0.25);max-width:40px; }
-    .menu-links { list-style:none;display:flex;flex-direction:column;gap:0;flex:1; }
-    .menu-links li { border-bottom:1px solid rgba(255,255,255,0.05); }
-    .menu-links li a { text-decoration:none;font-size:clamp(1.6rem,3vw,2.4rem);font-weight:700;color:rgba(255,255,255,0.85);line-height:1.3;letter-spacing:-0.5px;transition:color 0.25s,padding-left 0.25s;display:flex;align-items:center;gap:10px;padding:10px 0; }
-    .menu-links li a.active-page { color:#fa8c32; }
-    .menu-links li a:hover { color:#fa8c32;padding-left:6px; }
-    .menu-socials { display:flex;gap:14px;align-items:center;margin-top:32px; }
-    .menu-socials a { width:36px;height:36px;border-radius:50%;border:1px solid rgba(255,255,255,0.12);background:rgba(255,255,255,0.04);color:rgba(255,255,255,0.55);font-size:0.85rem;text-decoration:none;display:inline-flex;align-items:center;justify-content:center;transition:color 0.3s,background 0.3s,transform 0.6s cubic-bezier(0.4,0,0.2,1); }
-    .menu-socials a:hover { color:#fa8c32;background:rgba(250,140,50,0.1);border-color:rgba(250,140,50,0.45);transform:rotate(360deg); }
-    .menu-right { flex:0 0 300px;display:flex;flex-direction:column;gap:36px;padding-top:4px; }
-    .menu-section { display:flex;flex-direction:column; }
-    .mt-auto { margin-top:auto; }
-    .menu-demo-btn { display:inline-flex;align-items:center;gap:10px;background:linear-gradient(135deg,#fa8c32,#ff6000);border:none;color:#fff;text-decoration:none;font-size:0.82rem;font-weight:700;padding:13px 24px;border-radius:50px;width:fit-content;transition:transform 0.2s,box-shadow 0.2s;box-shadow:0 4px 20px rgba(250,140,50,0.35); }
-    .menu-demo-btn:hover { transform:translateY(-2px);box-shadow:0 8px 30px rgba(250,140,50,0.55); }
-    .menu-post { border-radius:12px;overflow:hidden;border:1px solid rgba(250,140,50,0.2); }
-    .post-img { width:100%;height:200px;object-fit:cover;display:block;transition:transform 0.4s; }
-    .menu-post:hover .post-img { transform:scale(1.04); }
-    .post-caption { padding:12px 14px;font-size:0.78rem;font-weight:500;color:rgba(255,255,255,0.7);background:rgba(255,255,255,0.04);line-height:1.45; }
-    .menu-footer-btns { display:flex;justify-content:flex-end;align-items:center;gap:10px;padding:18px 44px 28px;border-top:1px solid rgba(255,255,255,0.06); }
-    .btn-buy { display:inline-flex;align-items:center;background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.15);color:#fff;text-decoration:none;font-size:0.78rem;font-weight:600;padding:10px 20px;border-radius:8px;transition:background 0.2s; }
-    .btn-framer-sm { display:inline-flex;align-items:center;gap:7px;background:linear-gradient(135deg,#fa8c32,#ff6000);color:#fff;text-decoration:none;font-size:0.78rem;font-weight:700;padding:10px 20px;border-radius:8px;box-shadow:0 4px 16px rgba(250,140,50,0.3); }
+    .curtain-logo.hide { opacity:0; }); }
 
     /* =====================================================
        SECTION 1 — HERO  (Dark, 80vh)
@@ -431,51 +358,9 @@
     .btn-cta-ghost:hover { border-color:var(--accent);background:rgba(250,140,50,0.07); }
 
     /* =====================================================
-       FOOTER (Exact same as landing page)
-       ===================================================== */
-    .premium-footer { position:relative;background:linear-gradient(to bottom,#050B14 0%,#010204 100%);padding:110px 0 45px;overflow:hidden;z-index:10;border-top:1px solid rgba(255,255,255,0.05); }
-    .footer-top-border { position:absolute;top:0;left:0;width:100%;height:1.5px;background:linear-gradient(90deg,transparent 0%,rgba(250,140,50,0.4) 50%,transparent 100%);background-size:200% 100%;pointer-events:none; }
-    .footer-bg-glow { position:absolute;bottom:-150px;left:50%;transform:translateX(-50%);width:700px;height:450px;border-radius:50%;background:radial-gradient(circle,rgba(250,140,50,0.06) 0%,transparent 70%);filter:blur(90px);pointer-events:none;z-index:1; }
-    .footer-container { width:90%;max-width:1200px;margin:0 auto;position:relative;z-index:3; }
-    .footer-grid { display:grid;grid-template-columns:1.1fr 1.5fr 1.1fr;gap:60px;margin-bottom:60px;opacity:0;transform:translateY(35px); }
-    .footer-col { display:flex;flex-direction:column; }
-    .footer-logo { display:inline-block;margin-bottom:24px;width:fit-content; }
-    .footer-logo img { height:48px;transition:filter 0.4s; }
-    .footer-logo:hover img { filter:drop-shadow(0 0 15px rgba(250,140,50,0.35)); }
-    .footer-about { color:rgba(255,255,255,0.85);font-size:0.95rem;line-height:1.65;margin-bottom:28px;max-width:320px; }
-    .footer-socials { display:flex;gap:14px; }
-    .footer-socials a { width:42px;height:42px;border-radius:50%;background:rgba(255,255,255,0.02);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;color:rgba(255,255,255,0.8);transition:all 0.35s;text-decoration:none;font-size:0.95rem; }
-    .footer-socials a:hover { background:var(--accent-light);border-color:var(--accent);color:#fff;transform:translateY(-4px);box-shadow:0 8px 20px rgba(250,140,50,0.25); }
-    .footer-card { background:rgba(255,255,255,0.035);border:1px solid rgba(255,255,255,0.09);backdrop-filter:blur(15px);-webkit-backdrop-filter:blur(15px);border-radius:18px;padding:26px;margin-bottom:22px;position:relative;overflow:hidden;cursor:pointer;transition:border-color 0.4s,box-shadow 0.4s,transform 0.4s; }
-    .footer-card:last-child { margin-bottom:0; }
-    .card-light-glow { position:absolute;top:0;left:0;width:100%;height:100%;background:radial-gradient(circle 100px at var(--mouse-x,50%) var(--mouse-y,50%),rgba(250,140,50,0.08),transparent 70%);opacity:0;pointer-events:none;transition:opacity 0.4s;border-radius:18px;z-index:1; }
-    .footer-card:hover { border-color:rgba(250,140,50,0.22);box-shadow:0 15px 30px rgba(0,0,0,0.3);transform:translateY(-3px); }
-    .footer-card:hover .card-light-glow { opacity:1; }
-    .card-office-title { font-family:'Space Grotesk',sans-serif;font-size:1.1rem;font-weight:600;color:#fff;margin-bottom:12px;display:flex;align-items:center;gap:10px;position:relative;z-index:2; }
-    .card-office-title i { color:var(--accent);font-size:0.95rem; }
-    .card-address { font-size:0.9rem;color:rgba(255,255,255,0.8);line-height:1.6;position:relative;z-index:2; }
-    .footer-col h4 { font-family:'Space Grotesk',sans-serif;font-size:1.1rem;font-weight:600;color:#fff;margin-bottom:22px;letter-spacing:0.5px; }
-    .footer-contact { margin-bottom:40px; }
-    .footer-contact-link { display:flex;align-items:center;gap:12px;color:rgba(255,255,255,0.85);text-decoration:none;margin-bottom:15px;font-size:0.95rem;transition:all 0.3s;width:fit-content; }
-    .footer-contact-link:last-child { margin-bottom:0; }
-    .footer-contact-link i { color:var(--accent);font-size:0.9rem; }
-    .footer-contact-link:hover { color:#fff;transform:translateX(4px); }
-    .footer-links-list { list-style:none;padding:0;margin:0;display:flex;flex-wrap:wrap;gap:12px 24px;max-width:280px; }
-    .footer-links-list li { width:calc(50% - 12px); }
-    .footer-hover-link { color:rgba(255,255,255,0.85);text-decoration:none;font-size:0.95rem;transition:all 0.3s;display:inline-block; }
-    .footer-hover-link:hover { color:var(--accent);transform:translateX(3px); }
-    .footer-bottom-bar { border-top:1px solid rgba(255,255,255,0.03);padding-top:35px;display:flex;justify-content:space-between;align-items:center;font-size:0.85rem;color:rgba(255,255,255,0.45); }
-    .footer-copyright { margin:0; }
-    .footer-tagline { margin:0;font-style:italic;background:linear-gradient(90deg,rgba(255,255,255,0.45),rgba(250,140,50,0.65));-webkit-background-clip:text;-webkit-text-fill-color:transparent; }
-
-    /* =====================================================
        RESPONSIVE
        ===================================================== */
     @media(max-width:768px){
-      .navbar { width:calc(100% - 32px); }
-      .slide-menu { width:100%; }
-      .menu-body { flex-direction:column;padding:80px 28px 30px; }
-      .menu-right { flex:none;width:100%; }
       .svc-hero { height:90vh; }
       .hero-big-text { font-size:clamp(2.6rem,9vw,4.5rem); }
       .hero-btns { flex-direction:column;align-items:center; }
@@ -489,16 +374,12 @@
       .timeline-step { flex-direction:row;align-items:center;gap:20px;width:100%; }
       .tl-circle { flex-shrink:0;margin-bottom:0; }
       .tech-cloud-wrap { height:360px; }
-      .footer-grid { grid-template-columns:1fr;gap:40px; }
-      .footer-bottom-bar { flex-direction:column;gap:15px;text-align:center; }
       .cta-big { font-size:clamp(2.5rem,8vw,4rem); }
       .cta-btns { flex-direction:column;align-items:center; }
       .svc-slide-nav { display:none; }
     }
     @media(max-width:1024px){
       .svc-slide-left { padding:80px 40px 80px 6%; }
-      .footer-grid { grid-template-columns:1fr 1fr;gap:40px; }
-      .footer-col:last-child { grid-column:span 2; }
     }
   </style>
 </head>
@@ -511,56 +392,76 @@
   <!-- SCROLL PROGRESS BAR -->
   <div id="scrollBar"></div>
 
-  <!-- NAVBAR -->
-  <header class="navbar" id="navbar">
-    <a href="index.html" class="logo"><img src="images/oppty.png" alt="Oppty Logo" class="logo-img" /></a>
-    <label for="menuCheck" class="menuButton" id="menuToggle" aria-label="Open menu">
-      <input id="menuCheck" type="checkbox" />
-      <span class="top"></span><span class="mid"></span><span class="bot"></span>
-    </label>
-  </header>
+  <!-- =====================================================
+       NEW NAVBAR — PREMIUM GLASSMORPHISM HORIZONTAL (Dark Default)
+       ===================================================== -->
+  <nav class="nav-premium" id="navPremium">
+    <a href="index.html" class="nav-logo">
+      <img src="images/oppty.png" alt="Oppty Logo" class="nav-logo-img" />
+    </a>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="services.html">Solutions</a></li>
+      <li><a href="platforms.html">Platforms</a></li>
+      <li><a href="about.html">Who We Are</a></li>
+      <li><a href="team.html">Leadership</a></li>
+      <li><a href="careers.html">Careers</a></li>
+      <li><a href="contact.html">Connect</a></li>
+    </ul>
+    <a href="contact.html" class="nav-cta" id="navCta">
+      Book Consultation
+    </a>
+    <button class="nav-hamburger" id="navHamburger" aria-label="Open menu">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+  </nav>
 
-  <!-- MENU -->
+  <!-- ========== SLIDE-IN MENU ========== -->
   <div class="menu-overlay" id="menuOverlay"></div>
   <nav class="slide-menu" id="slideMenu">
-    <button class="menu-close" id="menuClose"><span></span><span></span></button>
+    <button class="menu-close" id="menuClose" aria-label="Close menu">
+      <span></span>
+      <span></span>
+    </button>
     <div class="menu-body">
       <div class="menu-left">
         <p class="menu-label">NAVIGATION</p>
         <ul class="menu-links">
           <li><a href="index.html">Home</a></li>
-          <li><a href="services.html" class="active-page">Services</a></li>
+          <li><a href="services.html">Solutions</a></li>
           <li><a href="platforms.html">Platforms</a></li>
-          <li><a href="about.html">About Us</a></li>
-          <li><a href="team.html">Our Team</a></li>
+          <li><a href="about.html">Who We Are</a></li>
+          <li><a href="team.html">Leadership</a></li>
           <li><a href="careers.html">Careers</a></li>
-          <li><a href="contact.html">Contact</a></li>
+          <li><a href="contact.html">Connect</a></li>
         </ul>
         <div class="menu-socials">
           <a href="https://www.linkedin.com/company/opptytech/" target="_blank"><i class="fab fa-linkedin-in"></i></a>
           <a href="#"><i class="fa-brands fa-x-twitter"></i></a>
-          <a href="https://www.instagram.com/opptytech" target="_blank"><i class="fab fa-instagram"></i></a>
-          <a href="https://youtube.com/@mroppty" target="_blank"><i class="fab fa-youtube"></i></a>
+          <a href="https://www.instagram.com/opptytech?igsh=YTExdTBsc3Y4ejU2" target="_blank"><i class="fab fa-instagram"></i></a>
+          <a href="https://youtube.com/@mroppty?si=NbpyNIM-vkHyeLYM" target="_blank"><i class="fab fa-youtube"></i></a>
           <a href="#"><i class="fab fa-facebook-f"></i></a>
         </div>
       </div>
       <div class="menu-right">
         <div class="menu-section">
           <p class="menu-label">GET STARTED</p>
-          <a href="contact.html" class="menu-demo-btn">Contact Team <i class="fas fa-arrow-up-right-from-square"></i></a>
+          <a href="contact.html" class="menu-demo-btn">Book Consultation <i class="fas fa-arrow-up-right-from-square"></i></a>
         </div>
         <div class="menu-section mt-auto">
-          <p class="menu-label">LATEST POST</p>
+          <p class="menu-label">PLATFORMS</p>
           <div class="menu-post">
-            <img src="images/hero1.jpg" alt="Latest Post" class="post-img" />
-            <p class="post-caption">Power up your success with innovative IT, BPO, E-commerce, Web Development, and AI solutions</p>
+            <img src="images/hero1.jpg" alt="Oppty Platforms" class="post-img" />
+            <p class="post-caption">Enterprise solutions through HRMS, CRM, Communication, and Learning ecosystems built for modern organizations.</p>
           </div>
         </div>
       </div>
     </div>
     <div class="menu-footer-btns">
-      <a href="about.html" class="btn-buy">About Us</a>
-      <a href="careers.html" class="btn-framer-sm"><i class="fas fa-cube"></i> Careers</a>
+      <a href="about.html" class="btn-buy">Who We Are</a>
+      <a href="platforms.html" class="btn-framer-sm"><i class="fas fa-cube"></i> Platforms</a>
     </div>
   </nav>
 
@@ -875,104 +776,94 @@
     </div>
   </section>
 
-  <!-- =========================================
-       FOOTER — identical to landing page
-       ========================================= -->
+  <!-- =====================================================
+       PREMIUM FOOTER
+       ===================================================== -->
   <footer class="premium-footer" id="footer">
-    <div class="footer-top-border" id="footerBorder"></div>
-    <div class="footer-bg-glow"></div>
-    <div class="footer-container">
-      <div class="footer-grid" id="footerGrid">
-        <div class="footer-col">
-          <a href="index.html" class="footer-logo"><img src="images/oppty.png" alt="Oppty Logo" /></a>
-          <p class="footer-about">Power up your success with innovative IT, BPO, E-commerce, Web Development, and AI solutions tailored to your vision.</p>
-          <div class="footer-socials">
-            <a href="https://www.linkedin.com/company/opptytech/" target="_blank"><i class="fab fa-linkedin-in"></i></a>
-            <a href="#"><i class="fa-brands fa-x-twitter"></i></a>
-            <a href="https://www.instagram.com/opptytech" target="_blank"><i class="fab fa-instagram"></i></a>
-            <a href="https://youtube.com/@mroppty" target="_blank"><i class="fab fa-youtube"></i></a>
-            <a href="#"><i class="fab fa-facebook-f"></i></a>
+      <div class="footer-bg-glow"></div>
+      <div class="footer-top-border"></div>
+
+      <div class="footer-container">
+          <div class="footer-grid">
+              
+              <!-- Left Column: Logo & Description -->
+              <div class="footer-col footer-col-left">
+                  <a href="#" class="footer-logo">
+                      <img src="images/oppty.png" alt="Oppty Logo" />
+                  </a>
+                  <p class="footer-about">
+                      Power up your success with innovative IT, BPO, E-commerce, Web Development, and AI solutions tailored to your vision.
+                  </p>
+                  <div class="footer-socials">
+                      <a href="https://www.linkedin.com/company/opptytech/" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                      <a href="#" aria-label="Twitter"><i class="fa-brands fa-x-twitter"></i></a>
+                      <a href="https://www.instagram.com/opptytech?igsh=YTExdTBsc3Y4ejU2" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                      <a href="https://youtube.com/@mroppty?si=NbpyNIM-vkHyeLYM" target="_blank" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+                      <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                  </div>
+              </div>
+
+              <!-- Center Column: Address Cards -->
+              <div class="footer-col footer-col-center">
+                  <!-- Hyderabad Address Card -->
+                  <div class="footer-card" id="hydCard">
+                      <div class="card-light-glow"></div>
+                      <h4 class="card-office-title"><i class="fas fa-map-marker-alt"></i> Hyderabad Office</h4>
+                      <p class="card-address">
+                          108/43, Vijaya Lakshmi Enclave, 1st Floor, PJR Enclave Rd, Gangaram, ICRISAT Colony, Hyderabad, Telangana 500050
+                      </p>
+                  </div>
+
+                  <!-- Udaipur Address Card -->
+                  <div class="footer-card" id="udrCard">
+                      <div class="card-light-glow"></div>
+                      <h4 class="card-office-title"><i class="fas fa-map-marker-alt"></i> Udaipur Office</h4>
+                      <p class="card-address">
+                          Plot No 26, 100 Feet Road, Shobhagpura, Udaipur, Rajasthan 313011
+                      </p>
+                  </div>
+              </div>
+
+              <!-- Right Column: Quick Links & Contact -->
+              <div class="footer-col footer-col-right">
+                  <div class="footer-contact">
+                      <h4>Contact Us</h4>
+                      <a href="mailto:info@oppty.in" class="footer-contact-link"><i class="far fa-envelope"></i> info@oppty.in</a>
+                      <a href="tel:+919491209900" class="footer-contact-link"><i class="fas fa-phone-alt"></i> +91 9491209900</a>
+                  </div>
+                  
+                  <div class="footer-links-wrap">
+                      <h4>Quick Links</h4>
+                      <ul class="footer-links-list">
+                          <li><a href="index.html" class="footer-hover-link">Home</a></li>
+                          <li><a href="about.html" class="footer-hover-link">Who We Are</a></li>
+                          <li><a href="services.html" class="footer-hover-link">Solutions</a></li>
+                          <li><a href="platforms.html" class="footer-hover-link">Platforms</a></li>
+                          <li><a href="team.html" class="footer-hover-link">Leadership</a></li>
+                          <li><a href="careers.html" class="footer-hover-link">Careers</a></li>
+                          <li><a href="contact.html" class="footer-hover-link">Connect</a></li>
+                      </ul>
+                  </div>
+              </div>
+
           </div>
-        </div>
-        <div class="footer-col">
-          <div class="footer-card" id="hydCard">
-            <div class="card-light-glow"></div>
-            <h4 class="card-office-title"><i class="fas fa-map-marker-alt"></i> Hyderabad Office</h4>
-            <p class="card-address">108/43, Vijaya Lakshmi Enclave, 1st Floor, PJR Enclave Rd, Gangaram, ICRISAT Colony, Hyderabad, Telangana 500050</p>
+
+          <div class="footer-bottom-bar">
+              <p class="footer-copyright">&copy; 2026 Oppty TechHub Pvt Ltd. All rights reserved.</p>
+              <p class="footer-tagline">Transforming Business Through Technology.</p>
           </div>
-          <div class="footer-card" id="udrCard">
-            <div class="card-light-glow"></div>
-            <h4 class="card-office-title"><i class="fas fa-map-marker-alt"></i> Udaipur Office</h4>
-            <p class="card-address">Plot No 26, 100 Feet Road, Shobhagpura, Udaipur, Rajasthan 313011</p>
-          </div>
-        </div>
-        <div class="footer-col">
-          <div class="footer-contact">
-            <h4>Contact Us</h4>
-            <a href="mailto:info@oppty.in" class="footer-contact-link"><i class="far fa-envelope"></i> info@oppty.in</a>
-            <a href="tel:+919491209900" class="footer-contact-link"><i class="fas fa-phone-alt"></i> +91 9491209900</a>
-          </div>
-          <div>
-            <h4>Quick Links</h4>
-            <ul class="footer-links-list">
-              <li><a href="index.html" class="footer-hover-link">Home</a></li>
-              <li><a href="about.html" class="footer-hover-link">About Us</a></li>
-              <li><a href="services.html" class="footer-hover-link">Services</a></li>
-              <li><a href="careers.html" class="footer-hover-link">Careers</a></li>
-              <li><a href="contact.html" class="footer-hover-link">Contact</a></li>
-            </ul>
-          </div>
-        </div>
       </div>
-      <div class="footer-bottom-bar">
-        <p class="footer-copyright">&copy; 2026 Oppty TechHub Pvt Ltd. All rights reserved.</p>
-        <p class="footer-tagline">Transforming Business Through Technology.</p>
-      </div>
-    </div>
   </footer>
 
   <script>
   /* ====================================================
-     CURTAIN + MENU
+     SCROLL PROGRESS BAR
      ==================================================== */
-  window.addEventListener('load', () => {
-    const c = document.getElementById('curtain'), l = document.getElementById('curtainLogo');
-    setTimeout(() => { l.classList.add('hide'); c.classList.add('open'); setTimeout(()=>{c.remove();l.remove();},1000); }, 1400);
-  });
-
-  const menuToggle = document.getElementById('menuToggle');
-  const menuClose  = document.getElementById('menuClose');
-  const slideMenu  = document.getElementById('slideMenu');
-  const menuOverlay= document.getElementById('menuOverlay');
-  const menuCheck  = document.getElementById('menuCheck');
-  const openMenu  = () => { slideMenu.classList.add('open'); menuOverlay.classList.add('show'); document.body.style.overflow='hidden'; };
-  const closeMenu = () => { slideMenu.classList.remove('open'); menuOverlay.classList.remove('show'); document.body.style.overflow=''; menuCheck.checked=false; };
-  menuToggle.addEventListener('change', e => { if(e.target.tagName==='INPUT') menuCheck.checked?openMenu():closeMenu(); });
-  menuClose.addEventListener('click', closeMenu);
-  menuOverlay.addEventListener('click', closeMenu);
-
-  /* ====================================================
-     SCROLL PROGRESS BAR + NAVBAR SCROLL (with Auto-Hide)
-     ==================================================== */
-  const navbar = document.getElementById('navbar');
-  const heroSection = document.getElementById('hero');
-
   window.addEventListener('scroll', () => {
-    const scrolled = window.scrollY / (document.body.scrollHeight - window.innerHeight);
-    document.getElementById('scrollBar').style.width = (scrolled*100) + '%';
-    
-    const currentScrollY = window.scrollY;
-    navbar.classList.toggle('scrolled', currentScrollY > 80);
-
-    const heroHeight = heroSection ? heroSection.offsetHeight : 500;
-    if (currentScrollY > heroHeight - 100) {
-      navbar.style.transform = 'translateX(-50%) translateY(-100px)';
-      navbar.style.opacity = '0';
-      navbar.style.pointerEvents = 'none';
-    } else {
-      navbar.style.transform = 'translateX(-50%) translateY(0)';
-      navbar.style.opacity = '1';
-      navbar.style.pointerEvents = 'all';
+    const scrollBar = document.getElementById('scrollBar');
+    if (scrollBar) {
+      const scrolled = window.scrollY / (document.body.scrollHeight - window.innerHeight);
+      scrollBar.style.width = (scrolled*100) + '%';
     }
   });
 
@@ -1256,23 +1147,6 @@
     gsap.to('#ctaBtns',{opacity:1,y:0,duration:0.6,ease:'power3.out',delay:0.5});
   }});
 
-  // Footer
-  ScrollTrigger.create({ trigger:'#footer', start:'top 85%', once:true, onEnter:()=>{
-    gsap.to('#footerGrid',{opacity:1,y:0,duration:1,ease:'power3.out'});
-    gsap.to('#footerBorder',{backgroundPosition:'200% 0',duration:8,ease:'none',repeat:-1});
-  }});
-
-  // Footer card glow
-  document.querySelectorAll('.footer-card').forEach(card=>{
-    card.addEventListener('mousemove',e=>{
-      const r=card.getBoundingClientRect();
-      card.style.setProperty('--mouse-x',`${e.clientX-r.left}px`);
-      card.style.setProperty('--mouse-y',`${e.clientY-r.top}px`);
-      card.querySelector('.card-light-glow').style.opacity='1';
-    });
-    card.addEventListener('mouseleave',()=>{ card.querySelector('.card-light-glow').style.opacity='0'; });
-  });
-
   // Magnetic buttons
   document.querySelectorAll('.btn-hero-primary,.btn-cta-primary').forEach(btn=>{
     btn.addEventListener('mousemove',e=>{
@@ -1284,6 +1158,10 @@
     btn.addEventListener('mouseleave',()=>gsap.to(btn,{x:0,y:0,duration:0.5,ease:'power2.out'}));
   });
   </script>
+
+  <!-- Shared Navigation & Footer Scripts -->
+  <script src="js/navigation.js"></script>
+
 </body>
 </html>
 

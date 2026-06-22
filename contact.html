@@ -1,0 +1,942 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Connect — Oppty TechHub</title>
+
+  <!-- Google Fonts & Icon Libraries -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;900&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link href="https://api.fontshare.com/v2/css?f[]=clash-display@200,300,400,500,600,700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+
+  <!-- GSAP & ScrollTrigger -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+
+  <!-- Unified Navigation CSS -->
+  <link rel="stylesheet" href="css/navigation.css" />
+
+  <style>
+    /* =====================================================
+       DESIGN SYSTEM & BASE STYLE
+       ===================================================== */
+    :root {
+      --primary-bg: #0A1628;
+      --secondary-bg: #07111D;
+      --accent: #FA8C32;
+      --accent-light: rgba(250, 140, 50, 0.15);
+      --glass: rgba(255, 255, 255, 0.05);
+      --border: rgba(255, 255, 255, 0.08);
+      --text-primary: #FFFFFF;
+      --text-secondary: rgba(255, 255, 255, 0.75);
+    }
+
+    *, *::before, *::after {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--primary-bg);
+      color: var(--text-primary);
+      overflow-x: hidden;
+    }
+
+    /* =====================================================
+       CURTAIN PAGE LOADER
+       ===================================================== */
+    .curtain {
+      position: fixed; inset: 0; z-index: 9999;
+      display: flex; pointer-events: none;
+    }
+    .curtain-left, .curtain-right {
+      width: 50%; height: 100%;
+      background: #ffffff;
+      transition: transform 0.9s cubic-bezier(0.77, 0, 0.18, 1);
+    }
+    .curtain-left  { border-right: 2px solid #fa8c32; }
+    .curtain-right { border-left:  2px solid #fa8c32; }
+    .curtain-logo {
+      position: fixed; inset: 0; z-index: 10000;
+      display: flex; align-items: center; justify-content: center;
+      pointer-events: none; opacity: 1;
+      transition: opacity 0.4s ease;
+    }
+    .curtain-logo img {
+      height: 70px; width: auto;
+      filter: drop-shadow(0 0 16px rgba(250,140,50,0.8));
+      animation: pulse-logo 1s ease-in-out infinite alternate;
+    }
+    @keyframes pulse-logo {
+      from { filter: drop-shadow(0 0 8px rgba(250,140,50,0.5)); }
+      to   { filter: drop-shadow(0 0 28px rgba(250,140,50,1)); }
+    }
+    .curtain.open .curtain-left  { transform: translateX(-100%); }
+    .curtain.open .curtain-right { transform: translateX(100%); }
+    .curtain-logo.hide           { opacity: 0; }
+
+    /* =====================================================
+       HERO SECTION
+       ===================================================== */
+    .contact-hero {
+      position: relative;
+      width: 100%;
+      height: 55vh;
+      min-height: 400px;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: radial-gradient(circle at center, #0e1e35 0%, var(--primary-bg) 100%);
+    }
+
+    #heroCanvas {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    .hero-glow-blob {
+      position: absolute;
+      width: 500px;
+      height: 500px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(250, 140, 50, 0.08) 0%, transparent 70%);
+      filter: blur(80px);
+      z-index: 0;
+      pointer-events: none;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      text-align: center;
+      padding: 0 24px;
+      max-width: 850px;
+    }
+
+    .hero-eyebrow {
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 20px;
+      opacity: 0;
+      transform: translateY(20px);
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .hero-eyebrow::before, .hero-eyebrow::after {
+      content: '';
+      width: 24px;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--accent), transparent);
+    }
+
+    .hero-heading {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: clamp(2.5rem, 6vw, 4.5rem);
+      font-weight: 700;
+      line-height: 1.1;
+      letter-spacing: -0.03em;
+      margin-bottom: 20px;
+    }
+
+    .hero-heading .word-wrap {
+      display: inline-block;
+      overflow: hidden;
+      vertical-align: bottom;
+    }
+
+    .hero-heading .word-inner {
+      display: inline-block;
+      transform: translateY(110%);
+    }
+
+    .hero-heading .orange {
+      color: var(--accent);
+    }
+
+    .hero-subheading {
+      font-size: clamp(1rem, 2vw, 1.25rem);
+      color: var(--text-secondary);
+      max-width: 600px;
+      margin: 0 auto;
+      opacity: 0;
+      transform: translateY(16px);
+      line-height: 1.6;
+    }
+
+    /* =====================================================
+       MAIN CONTACT CONTENT SECTION
+       ===================================================== */
+    .contact-section {
+      padding: 80px 0 100px;
+      background: var(--primary-bg);
+      position: relative;
+    }
+
+    .section-container {
+      width: 90%;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1.2fr;
+      gap: 60px;
+      align-items: start;
+    }
+
+    /* Left Column: Info */
+    .contact-info-col {
+      display: flex;
+      flex-direction: column;
+      gap: 40px;
+    }
+
+    .info-block h3 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 1.6rem;
+      font-weight: 700;
+      margin-bottom: 20px;
+      letter-spacing: -0.01em;
+    }
+
+    .info-list {
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    }
+
+    .info-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 18px;
+    }
+
+    .info-icon {
+      width: 48px;
+      height: 48px;
+      border-radius: 12px;
+      background: rgba(250, 140, 50, 0.08);
+      border: 1px solid rgba(250, 140, 50, 0.22);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--accent);
+      font-size: 1.1rem;
+      flex-shrink: 0;
+    }
+
+    .info-details {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .info-label {
+      font-size: 0.75rem;
+      font-weight: 700;
+      color: var(--accent);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .info-value {
+      font-size: 1.05rem;
+      color: #fff;
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+
+    a.info-value:hover {
+      color: var(--accent);
+    }
+
+    .office-section-title {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 1.6rem;
+      font-weight: 700;
+      margin-bottom: 20px;
+    }
+
+    .office-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .contact-office-card {
+      background: var(--glass);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 24px;
+      backdrop-filter: blur(15px);
+      -webkit-backdrop-filter: blur(15px);
+      cursor: pointer;
+      position: relative;
+      overflow: hidden;
+      transition: border-color 0.3s, box-shadow 0.3s, transform 0.3s;
+    }
+
+    .contact-office-card:hover {
+      border-color: rgba(250, 140, 50, 0.22);
+      box-shadow: 0 12px 28px rgba(0, 0, 0, 0.2);
+      transform: translateY(-3px);
+    }
+
+    .office-card-glow {
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle 100px at var(--mx, 50%) var(--my, 50%), rgba(250, 140, 50, 0.08), transparent 70%);
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s ease;
+    }
+
+    .contact-office-card:hover .office-card-glow {
+      opacity: 1;
+    }
+
+    .office-name {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 1.15rem;
+      font-weight: 700;
+      margin-bottom: 10px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .office-name i {
+      color: var(--accent);
+      font-size: 0.95rem;
+    }
+
+    .office-address {
+      font-size: 0.9rem;
+      color: var(--text-secondary);
+      line-height: 1.55;
+    }
+
+    /* Right Column: Form */
+    .contact-form-col {
+      background: var(--glass);
+      border: 1px solid var(--border);
+      border-radius: 32px;
+      padding: 48px;
+      backdrop-filter: blur(24px);
+      -webkit-backdrop-filter: blur(24px);
+      box-shadow: 0 20px 48px rgba(0, 0, 0, 0.25);
+      position: relative;
+    }
+
+    .contact-form-col::before {
+      content: '';
+      position: absolute;
+      top: -1px;
+      left: 15%;
+      right: 15%;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, var(--accent), transparent);
+    }
+
+    .form-group {
+      margin-bottom: 24px;
+    }
+
+    .form-label {
+      display: block;
+      font-size: 0.8rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 8px;
+      letter-spacing: 0.5px;
+    }
+
+    .form-input, .form-select, .form-textarea {
+      width: 100%;
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 12px;
+      padding: 14px 18px;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.95rem;
+      color: #fff;
+      outline: none;
+      transition: border-color 0.3s, background 0.3s, box-shadow 0.3s;
+    }
+
+    .form-input:focus, .form-select:focus, .form-textarea:focus {
+      border-color: var(--accent);
+      background: rgba(255, 255, 255, 0.05);
+      box-shadow: 0 0 16px rgba(250, 140, 50, 0.12);
+    }
+
+    .form-select option {
+      background: #090e18;
+      color: #fff;
+    }
+
+    .form-textarea {
+      height: 140px;
+      resize: none;
+    }
+
+    .btn-submit {
+      width: 100%;
+      padding: 16px;
+      border-radius: 14px;
+      background: linear-gradient(135deg, #fa8c32, #e06010);
+      border: 1px solid rgba(250, 140, 50, 0.5);
+      color: #fff;
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 0.95rem;
+      font-weight: 700;
+      cursor: pointer;
+      box-shadow: 0 6px 20px rgba(250, 140, 50, 0.3);
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+    }
+
+    .btn-submit:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 12px 28px rgba(250, 140, 50, 0.5);
+      background: linear-gradient(135deg, rgba(255, 160, 70, 0.95), rgba(255, 112, 20, 1));
+    }
+
+    .btn-submit:active {
+      transform: translateY(0);
+    }
+
+    /* Success Message Overlay */
+    .success-overlay {
+      position: absolute;
+      inset: 0;
+      background: #090e18;
+      border-radius: 32px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 40px;
+      z-index: 10;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.5s ease;
+    }
+
+    .success-overlay.show {
+      opacity: 1;
+      pointer-events: all;
+    }
+
+    .success-icon {
+      width: 72px;
+      height: 72px;
+      border-radius: 50%;
+      background: rgba(250, 140, 50, 0.1);
+      border: 2px solid var(--accent);
+      color: var(--accent);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2.2rem;
+      margin-bottom: 24px;
+      animation: check-scale 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) both;
+    }
+
+    @keyframes check-scale {
+      from { transform: scale(0); }
+      to { transform: scale(1); }
+    }
+
+    .success-title {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 1.8rem;
+      font-weight: 700;
+      margin-bottom: 12px;
+    }
+
+    .success-desc {
+      font-size: 0.95rem;
+      color: var(--text-secondary);
+      line-height: 1.6;
+      max-width: 320px;
+    }
+
+    /* =====================================================
+       RESPONSIVE DESIGN BREAKPOINTS
+       ===================================================== */
+    @media (max-width: 1024px) {
+      .contact-grid {
+        grid-template-columns: 1fr;
+        gap: 50px;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .contact-hero {
+        height: 60vh;
+      }
+      .contact-form-col {
+        padding: 32px 24px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- CURTAIN PAGE LOADER -->
+  <div class="curtain" id="curtain">
+    <div class="curtain-left"></div>
+    <div class="curtain-right"></div>
+  </div>
+  <div class="curtain-logo" id="curtainLogo">
+    <img src="images/oppty.png" alt="Oppty Logo" />
+  </div>
+
+  <!-- PREMIUM GLASSMORPHISM NAVBAR (Dark Theme Default) -->
+  <nav class="nav-premium" id="navPremium">
+    <a href="index.html" class="nav-logo">
+      <img src="images/oppty.png" alt="Oppty Logo" class="nav-logo-img" />
+    </a>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="services.html">Solutions</a></li>
+      <li><a href="platforms.html">Platforms</a></li>
+      <li><a href="about.html">Who We Are</a></li>
+      <li><a href="team.html">Leadership</a></li>
+      <li><a href="careers.html">Careers</a></li>
+      <li><a href="contact.html">Connect</a></li>
+    </ul>
+    <a href="contact.html" class="nav-cta" id="navCta">
+      Book Consultation
+    </a>
+    <button class="nav-hamburger" id="navHamburger" aria-label="Open menu">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+  </nav>
+
+  <!-- SLIDE-IN MOBILE MENU -->
+  <div class="menu-overlay" id="menuOverlay"></div>
+  <nav class="slide-menu" id="slideMenu">
+    <button class="menu-close" id="menuClose" aria-label="Close menu">
+      <span></span>
+      <span></span>
+    </button>
+    <div class="menu-body">
+      <div class="menu-left">
+        <p class="menu-label">NAVIGATION</p>
+        <ul class="menu-links">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="services.html">Solutions</a></li>
+          <li><a href="platforms.html">Platforms</a></li>
+          <li><a href="about.html">Who We Are</a></li>
+          <li><a href="team.html">Leadership</a></li>
+          <li><a href="careers.html">Careers</a></li>
+          <li><a href="contact.html">Connect</a></li>
+        </ul>
+        <div class="menu-socials">
+          <a href="https://www.linkedin.com/company/opptytech/" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+          <a href="#"><i class="fa-brands fa-x-twitter"></i></a>
+          <a href="https://www.instagram.com/opptytech?igsh=YTExdTBsc3Y4ejU2" target="_blank"><i class="fab fa-instagram"></i></a>
+          <a href="https://youtube.com/@mroppty?si=NbpyNIM-vkHyeLYM" target="_blank"><i class="fab fa-youtube"></i></a>
+          <a href="#"><i class="fab fa-facebook-f"></i></a>
+        </div>
+      </div>
+      <div class="menu-right">
+        <div class="menu-section">
+          <p class="menu-label">GET STARTED</p>
+          <a href="contact.html" class="menu-demo-btn">Book Consultation <i class="fas fa-arrow-up-right-from-square"></i></a>
+        </div>
+        <div class="menu-section mt-auto">
+          <p class="menu-label">PLATFORMS</p>
+          <div class="menu-post">
+            <img src="images/hero1.jpg" alt="Oppty Platforms" class="post-img" />
+            <p class="post-caption">Enterprise solutions through HRMS, CRM, Communication, and Learning ecosystems built for modern organizations.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="menu-footer-btns">
+      <a href="about.html" class="btn-buy">Who We Are</a>
+      <a href="platforms.html" class="btn-framer-sm"><i class="fas fa-cube"></i> Platforms</a>
+    </div>
+  </nav>
+
+  <!-- HERO SECTION -->
+  <section class="contact-hero" id="hero">
+    <div class="hero-glow-blob" style="top: 10%; left: 25%;"></div>
+    <canvas id="heroCanvas"></canvas>
+
+    <div class="hero-content">
+      <div class="hero-eyebrow" id="heroEyebrow">CONNECT WITH US</div>
+      <h1 class="hero-heading" id="heroHeading">
+        <div class="word-wrap"><span class="word-inner">Let's</span></div>
+        <div class="word-wrap"><span class="word-inner orange">Start</span></div>
+        <div class="word-wrap"><span class="word-inner">A</span></div>
+        <div class="word-wrap"><span class="word-inner orange">Conversation</span></div>
+      </h1>
+      <p class="hero-subheading" id="heroSubheading">
+        Have a project in mind, looking to join our team, or interested in booking a business consultation? Drop us a line below.
+      </p>
+    </div>
+  </section>
+
+  <!-- CONTACT MAIN SECTION -->
+  <section class="contact-section" id="contactSection">
+    <div class="section-container">
+      <div class="contact-grid">
+        
+        <!-- Left: Info & Offices -->
+        <div class="contact-info-col">
+          <div class="info-block">
+            <h3>Contact Details</h3>
+            <div class="info-list">
+              <!-- Item 1 -->
+              <div class="info-item">
+                <div class="info-icon"><i class="far fa-envelope"></i></div>
+                <div class="info-details">
+                  <span class="info-label">General Inquiry</span>
+                  <a href="mailto:info@oppty.in" class="info-value">info@oppty.in</a>
+                </div>
+              </div>
+              <!-- Item 2 -->
+              <div class="info-item">
+                <div class="info-icon"><i class="fas fa-phone-alt"></i></div>
+                <div class="info-details">
+                  <span class="info-label">Phone Support</span>
+                  <a href="tel:+919491209900" class="info-value">+91 9491209900</a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="info-block">
+            <h3 class="office-section-title">Our Offices</h3>
+            <div class="office-grid">
+              <!-- Office 1 -->
+              <div class="contact-office-card">
+                <div class="office-card-glow"></div>
+                <h4 class="office-name"><i class="fas fa-map-marker-alt"></i> Hyderabad Office</h4>
+                <p class="office-address">
+                  108/43, Vijaya Lakshmi Enclave, 1st Floor, PJR Enclave Rd, Gangaram, ICRISAT Colony, Hyderabad, Telangana 500050
+                </p>
+              </div>
+
+              <!-- Office 2 -->
+              <div class="contact-office-card">
+                <div class="office-card-glow"></div>
+                <h4 class="office-name"><i class="fas fa-map-marker-alt"></i> Udaipur Office</h4>
+                <p class="office-address">
+                  Plot No 26, 100 Feet Road, Shobhagpura, Udaipur, Rajasthan 313011
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right: Form -->
+        <div class="contact-form-col" id="formContainer">
+          <!-- Success Message -->
+          <div class="success-overlay" id="successOverlay">
+            <div class="success-icon"><i class="fas fa-check"></i></div>
+            <h3 class="success-title">Message Sent!</h3>
+            <p class="success-desc">Thank you for reaching out. A team member from Oppty TechHub will contact you shortly.</p>
+          </div>
+
+          <form id="contactForm" onsubmit="handleFormSubmit(event)">
+            <!-- Name -->
+            <div class="form-group">
+              <label for="nameInput" class="form-label">Full Name</label>
+              <input type="text" id="nameInput" class="form-input" placeholder="Your name" required />
+            </div>
+
+            <!-- Email -->
+            <div class="form-group">
+              <label for="emailInput" class="form-label">Email Address</label>
+              <input type="email" id="emailInput" class="form-input" placeholder="you@domain.com" required />
+            </div>
+
+            <!-- Subject -->
+            <div class="form-group">
+              <label for="subjectSelect" class="form-label">How can we help?</label>
+              <select id="subjectSelect" class="form-select" required>
+                <option value="Consultation">Book Consultation</option>
+                <option value="Job Application">Job Application</option>
+                <option value="General Inquiry" selected>General Inquiry</option>
+                <option value="Partnership">Partnership Proposal</option>
+              </select>
+            </div>
+
+            <!-- Message -->
+            <div class="form-group">
+              <label for="messageTextarea" class="form-label">Message</label>
+              <textarea id="messageTextarea" class="form-textarea" placeholder="How can we help your business?" required></textarea>
+            </div>
+
+            <!-- Submit Button -->
+            <button type="submit" class="btn-submit" id="submitBtn">
+              Send Message <i class="fas fa-paper-plane"></i>
+            </button>
+          </form>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- PREMIUM FOOTER -->
+  <footer class="premium-footer" id="footer">
+      <div class="footer-bg-glow"></div>
+      <div class="footer-top-border"></div>
+
+      <div class="footer-container">
+          <div class="footer-grid">
+              
+              <!-- Left Column: Logo & Description -->
+              <div class="footer-col footer-col-left">
+                  <a href="index.html" class="footer-logo">
+                      <img src="images/oppty.png" alt="Oppty Logo" />
+                  </a>
+                  <p class="footer-about">
+                      Power up your success with innovative IT, BPO, E-commerce, Web Development, and AI solutions tailored to your vision.
+                  </p>
+                  <div class="footer-socials">
+                      <a href="https://www.linkedin.com/company/opptytech/" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                      <a href="#" aria-label="Twitter"><i class="fa-brands fa-x-twitter"></i></a>
+                      <a href="https://www.instagram.com/opptytech?igsh=YTExdTBsc3Y4ejU2" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                      <a href="https://youtube.com/@mroppty?si=NbpyNIM-vkHyeLYM" target="_blank" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+                      <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                  </div>
+              </div>
+
+              <!-- Center Column: Address Cards -->
+              <div class="footer-col footer-col-center">
+                  <!-- Hyderabad Address Card -->
+                  <div class="footer-card" id="hydCard">
+                      <div class="card-light-glow"></div>
+                      <h4 class="card-office-title"><i class="fas fa-map-marker-alt"></i> Hyderabad Office</h4>
+                      <p class="card-address">
+                          108/43, Vijaya Lakshmi Enclave, 1st Floor, PJR Enclave Rd, Gangaram, ICRISAT Colony, Hyderabad, Telangana 500050
+                      </p>
+                  </div>
+
+                  <!-- Udaipur Address Card -->
+                  <div class="footer-card" id="udrCard">
+                      <div class="card-light-glow"></div>
+                      <h4 class="card-office-title"><i class="fas fa-map-marker-alt"></i> Udaipur Office</h4>
+                      <p class="card-address">
+                          Plot No 26, 100 Feet Road, Shobhagpura, Udaipur, Rajasthan 313011
+                      </p>
+                  </div>
+              </div>
+
+              <!-- Right Column: Quick Links & Contact -->
+              <div class="footer-col footer-col-right">
+                  <div class="footer-contact">
+                      <h4>Contact Us</h4>
+                      <a href="mailto:info@oppty.in" class="footer-contact-link"><i class="far fa-envelope"></i> info@oppty.in</a>
+                      <a href="tel:+919491209900" class="footer-contact-link"><i class="fas fa-phone-alt"></i> +91 9491209900</a>
+                  </div>
+                  
+                  <div class="footer-links-wrap">
+                      <h4>Quick Links</h4>
+                      <ul class="footer-links-list">
+                          <li><a href="index.html" class="footer-hover-link">Home</a></li>
+                          <li><a href="about.html" class="footer-hover-link">Who We Are</a></li>
+                          <li><a href="services.html" class="footer-hover-link">Solutions</a></li>
+                          <li><a href="platforms.html" class="footer-hover-link">Platforms</a></li>
+                          <li><a href="team.html" class="footer-hover-link">Leadership</a></li>
+                          <li><a href="careers.html" class="footer-hover-link">Careers</a></li>
+                          <li><a href="contact.html" class="footer-hover-link">Connect</a></li>
+                      </ul>
+                  </div>
+              </div>
+
+          </div>
+
+          <div class="footer-bottom-bar">
+              <p class="footer-copyright">&copy; 2026 Oppty TechHub Pvt Ltd. All rights reserved.</p>
+              <p class="footer-tagline">Transforming Business Through Technology.</p>
+          </div>
+      </div>
+  </footer>
+
+  <!-- GSAP & Page-Specific Script -->
+  <script>
+    /* =====================================================
+       HERO CANVAS PARTICLES
+       ===================================================== */
+    (function(){
+      const canvas = document.getElementById('heroCanvas');
+      const ctx = canvas.getContext('2d');
+      let W, H, particles = [];
+
+      function resize() {
+        W = canvas.width = canvas.offsetWidth;
+        H = canvas.height = canvas.offsetHeight;
+      }
+      resize();
+      window.addEventListener('resize', resize);
+
+      class Particle {
+        constructor() {
+          this.reset(true);
+        }
+        reset(init) {
+          this.x = Math.random() * W;
+          this.y = init ? Math.random() * H : H + 10;
+          this.r = Math.random() * 1.5 + 0.3;
+          this.vx = (Math.random() - 0.5) * 0.2;
+          this.vy = -(Math.random() * 0.4 + 0.1);
+          this.alpha = Math.random() * 0.4 + 0.1;
+          this.isOrange = Math.random() > 0.6;
+        }
+        update() {
+          this.x += this.vx;
+          this.y += this.vy;
+          if (this.y < -10 || this.x < -10 || this.x > W + 10) {
+            this.reset(false);
+          }
+        }
+        draw() {
+          ctx.beginPath();
+          ctx.arc(this.x, this.y, this.r, 0, Math.PI * 2);
+          ctx.fillStyle = this.isOrange ? `rgba(250, 140, 50, ${this.alpha})` : `rgba(255, 255, 255, ${this.alpha * 0.35})`;
+          ctx.fill();
+        }
+      }
+
+      for (let i = 0; i < 60; i++) {
+        particles.push(new Particle());
+      }
+
+      function loop() {
+        ctx.clearRect(0, 0, W, H);
+        particles.forEach(p => {
+          p.update();
+          p.draw();
+        });
+        requestAnimationFrame(loop);
+      }
+      loop();
+    })();
+
+    /* =====================================================
+       INTERACTIVE MOUSE GLOW FOR OFFICE CARDS
+       ===================================================== */
+    document.querySelectorAll('.contact-office-card').forEach(card => {
+      card.addEventListener('mousemove', e => {
+        const rect = card.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+        card.style.setProperty('--mx', `${x}px`);
+        card.style.setProperty('--my', `${y}px`);
+      });
+    });
+
+    /* =====================================================
+       URL ROLE PARAM PREFILL FOR JOB APPLICATION
+       ===================================================== */
+    window.addEventListener('DOMContentLoaded', () => {
+      const params = new URLSearchParams(window.location.search);
+      const role = params.get('role');
+      if (role) {
+        const select = document.getElementById('subjectSelect');
+        const textarea = document.getElementById('messageTextarea');
+        
+        select.value = 'Job Application';
+        textarea.value = `Hi Oppty Recruiting Team,\n\nI am writing to apply for the position of "${role}". Please find my brief introduction below and let me know the best email to submit my detailed CV / Resume.\n\n[Introduce yourself briefly here]`;
+      }
+    });
+
+    /* =====================================================
+       FORM SUBMISSION HANDLER
+       ===================================================== */
+    function handleFormSubmit(event) {
+      event.preventDefault();
+      
+      const submitBtn = document.getElementById('submitBtn');
+      const successOverlay = document.getElementById('successOverlay');
+      
+      // Show loading state
+      submitBtn.innerHTML = 'Sending... <i class="fas fa-spinner fa-spin"></i>';
+      submitBtn.disabled = true;
+
+      // Simulate network request
+      setTimeout(() => {
+        // Show success screen
+        successOverlay.classList.add('show');
+        
+        // Reset form
+        document.getElementById('contactForm').reset();
+      }, 1500);
+    }
+
+    /* =====================================================
+       GSAP ENTRANCE ANIMATIONS
+       ===================================================== */
+    gsap.registerPlugin(ScrollTrigger);
+
+    window.addEventListener('load', () => {
+      const tl = gsap.timeline({ delay: 1.5 });
+      tl.to('#heroEyebrow', { opacity: 1, y: 0, duration: 0.6, ease: 'power3.out' })
+        .to('.hero-heading .word-inner', { y: '0%', duration: 0.8, stagger: 0.1, ease: 'power3.out' }, '-=0.3')
+        .to('#heroSubheading', { opacity: 1, y: 0, duration: 0.6, ease: 'power3.out' }, '-=0.4');
+    });
+
+    // Animate details on scroll
+    gsap.from('.contact-info-col', {
+      scrollTrigger: {
+        trigger: '#contactSection',
+        start: 'top 80%',
+        once: true
+      },
+      opacity: 0,
+      x: -40,
+      duration: 0.8,
+      ease: 'power3.out'
+    });
+
+    // Animate form container on scroll
+    gsap.from('.contact-form-col', {
+      scrollTrigger: {
+        trigger: '#contactSection',
+        start: 'top 80%',
+        once: true
+      },
+      opacity: 0,
+      x: 40,
+      duration: 0.8,
+      ease: 'power3.out'
+    });
+  </script>
+
+  <!-- Unified Navigation Script -->
+  <script src="js/navigation.js"></script>
+</body>
+</html>

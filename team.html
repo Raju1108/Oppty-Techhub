@@ -1,0 +1,890 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Leadership — Oppty TechHub</title>
+
+  <!-- Google Fonts & Icon Libraries -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;900&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link href="https://api.fontshare.com/v2/css?f[]=clash-display@200,300,400,500,600,700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+
+  <!-- GSAP & ScrollTrigger -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+
+  <!-- Unified Navigation CSS -->
+  <link rel="stylesheet" href="css/navigation.css" />
+
+  <style>
+    /* =====================================================
+       DESIGN SYSTEM & BASE STYLE
+       ===================================================== */
+    :root {
+      --primary-bg: #0A1628;
+      --secondary-bg: #07111D;
+      --accent: #FA8C32;
+      --accent-light: rgba(250, 140, 50, 0.15);
+      --glass: rgba(255, 255, 255, 0.05);
+      --border: rgba(255, 255, 255, 0.08);
+      --text-primary: #FFFFFF;
+      --text-secondary: rgba(255, 255, 255, 0.75);
+    }
+
+    *, *::before, *::after {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--primary-bg);
+      color: var(--text-primary);
+      overflow-x: hidden;
+    }
+
+    /* =====================================================
+       CURTAIN PAGE LOADER
+       ===================================================== */
+    .curtain {
+      position: fixed; inset: 0; z-index: 9999;
+      display: flex; pointer-events: none;
+    }
+    .curtain-left, .curtain-right {
+      width: 50%; height: 100%;
+      background: #ffffff;
+      transition: transform 0.9s cubic-bezier(0.77, 0, 0.18, 1);
+    }
+    .curtain-left  { border-right: 2px solid #fa8c32; }
+    .curtain-right { border-left:  2px solid #fa8c32; }
+    .curtain-logo {
+      position: fixed; inset: 0; z-index: 10000;
+      display: flex; align-items: center; justify-content: center;
+      pointer-events: none; opacity: 1;
+      transition: opacity 0.4s ease;
+    }
+    .curtain-logo img {
+      height: 70px; width: auto;
+      filter: drop-shadow(0 0 16px rgba(250,140,50,0.8));
+      animation: pulse-logo 1s ease-in-out infinite alternate;
+    }
+    @keyframes pulse-logo {
+      from { filter: drop-shadow(0 0 8px rgba(250,140,50,0.5)); }
+      to   { filter: drop-shadow(0 0 28px rgba(250,140,50,1)); }
+    }
+    .curtain.open .curtain-left  { transform: translateX(-100%); }
+    .curtain.open .curtain-right { transform: translateX(100%); }
+    .curtain-logo.hide           { opacity: 0; }
+
+    /* =====================================================
+       HERO SECTION
+       ===================================================== */
+    .team-hero {
+      position: relative;
+      width: 100%;
+      height: 70vh;
+      min-height: 500px;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: radial-gradient(circle at center, #0e1e35 0%, var(--primary-bg) 100%);
+    }
+
+    #heroCanvas {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    .hero-glow-blob {
+      position: absolute;
+      width: 500px;
+      height: 500px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(250, 140, 50, 0.08) 0%, transparent 70%);
+      filter: blur(80px);
+      z-index: 0;
+      pointer-events: none;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      text-align: center;
+      padding: 0 24px;
+      max-width: 850px;
+    }
+
+    .hero-eyebrow {
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 20px;
+      opacity: 0;
+      transform: translateY(20px);
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .hero-eyebrow::before, .hero-eyebrow::after {
+      content: '';
+      width: 24px;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--accent), transparent);
+    }
+
+    .hero-heading {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: clamp(2.5rem, 6vw, 4.5rem);
+      font-weight: 700;
+      line-height: 1.1;
+      letter-spacing: -0.03em;
+      margin-bottom: 20px;
+    }
+
+    .hero-heading .word-wrap {
+      display: inline-block;
+      overflow: hidden;
+      vertical-align: bottom;
+    }
+
+    .hero-heading .word-inner {
+      display: inline-block;
+      transform: translateY(110%);
+    }
+
+    .hero-heading .orange {
+      color: var(--accent);
+    }
+
+    .hero-subheading {
+      font-size: clamp(1rem, 2vw, 1.25rem);
+      color: var(--text-secondary);
+      max-width: 600px;
+      margin: 0 auto 36px;
+      opacity: 0;
+      transform: translateY(16px);
+      line-height: 1.6;
+    }
+
+    .hero-btns {
+      display: flex;
+      gap: 16px;
+      justify-content: center;
+      opacity: 0;
+      transform: translateY(16px);
+    }
+
+    .btn-primary {
+      padding: 14px 32px;
+      border-radius: 50px;
+      background: linear-gradient(135deg, #fa8c32, #e06010);
+      color: #fff;
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 0.9rem;
+      box-shadow: 0 8px 24px rgba(250, 140, 50, 0.35);
+      transition: transform 0.25s, box-shadow 0.25s;
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 12px 32px rgba(250, 140, 50, 0.5);
+    }
+
+    .btn-ghost {
+      padding: 14px 32px;
+      border-radius: 50px;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      background: rgba(255, 255, 255, 0.05);
+      color: #fff;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.9rem;
+      backdrop-filter: blur(10px);
+      transition: border-color 0.25s, background 0.25s;
+    }
+
+    .btn-ghost:hover {
+      border-color: var(--accent);
+      background: rgba(250, 140, 50, 0.08);
+    }
+
+    /* =====================================================
+       LEADERSHIP GRID SECTION
+       ===================================================== */
+    .team-section {
+      padding: 100px 0;
+      background: var(--primary-bg);
+      position: relative;
+    }
+
+    .section-container {
+      width: 90%;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .section-header {
+      text-align: center;
+      margin-bottom: 70px;
+    }
+
+    .section-label {
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 12px;
+    }
+
+    .section-title {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: clamp(2rem, 4vw, 3rem);
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      line-height: 1.2;
+    }
+
+    .team-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 40px;
+    }
+
+    .team-card {
+      background: var(--glass);
+      border: 1px solid var(--border);
+      border-radius: 28px;
+      padding: 32px;
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+      cursor: default;
+      transition: border-color 0.4s ease, box-shadow 0.4s ease, transform 0.4s ease;
+    }
+
+    .team-card:hover {
+      border-color: rgba(250, 140, 50, 0.35);
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.45);
+      transform: translateY(-8px);
+    }
+
+    .card-glow {
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle 120px at var(--mx, 50%) var(--my, 50%), rgba(250, 140, 50, 0.08), transparent 70%);
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.4s ease;
+    }
+
+    .team-card:hover .card-glow {
+      opacity: 1;
+    }
+
+    .avatar-wrap {
+      width: 140px;
+      height: 140px;
+      border-radius: 24px;
+      margin: 0 auto 24px;
+      background: var(--secondary-bg);
+      border: 2px solid rgba(250, 140, 50, 0.25);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2.5rem;
+      color: rgba(250, 140, 50, 0.6);
+      transition: transform 0.4s ease, border-color 0.3s ease;
+      overflow: hidden;
+      position: relative;
+      z-index: 2;
+    }
+
+    .avatar-wrap img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .team-card:hover .avatar-wrap {
+      transform: scale(1.08) rotate(3deg);
+      border-color: var(--accent);
+    }
+
+    .member-name {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 1.3rem;
+      font-weight: 700;
+      margin-bottom: 6px;
+      color: #fff;
+      position: relative;
+      z-index: 2;
+    }
+
+    .member-role {
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--accent);
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      margin-bottom: 16px;
+      position: relative;
+      z-index: 2;
+    }
+
+    .member-bio {
+      font-size: 0.9rem;
+      color: var(--text-secondary);
+      line-height: 1.6;
+      margin-bottom: 24px;
+      position: relative;
+      z-index: 2;
+    }
+
+    .member-socials {
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+      position: relative;
+      z-index: 2;
+    }
+
+    .member-social-link {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      background: rgba(255, 255, 255, 0.03);
+      color: var(--text-secondary);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.88rem;
+      text-decoration: none;
+      transition: all 0.3s ease;
+    }
+
+    .member-social-link:hover {
+      color: #fff;
+      border-color: var(--accent);
+      background: rgba(250, 140, 50, 0.15);
+      transform: scale(1.1);
+    }
+
+    /* =====================================================
+       VALUES SECTION
+       ===================================================== */
+    .values-section {
+      padding: 100px 0 80px;
+      background: var(--secondary-bg);
+      position: relative;
+    }
+
+    .values-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 24px;
+    }
+
+    .value-card {
+      background: var(--glass);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 32px 24px;
+      backdrop-filter: blur(15px);
+      -webkit-backdrop-filter: blur(15px);
+      transition: border-color 0.3s, box-shadow 0.3s, transform 0.3s;
+    }
+
+    .value-card:hover {
+      border-color: rgba(250, 140, 50, 0.25);
+      box-shadow: 0 12px 28px rgba(0, 0, 0, 0.2);
+      transform: translateY(-3px);
+    }
+
+    .value-num {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: var(--accent);
+      margin-bottom: 12px;
+      opacity: 0.8;
+    }
+
+    .value-title {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 1.1rem;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+
+    .value-desc {
+      font-size: 0.85rem;
+      color: var(--text-secondary);
+      line-height: 1.6;
+    }
+
+    /* =====================================================
+       RESPONSIVE DESIGN BREAKPOINTS
+       ===================================================== */
+    @media (max-width: 1024px) {
+      .team-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 30px;
+      }
+      .values-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 20px;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .team-hero {
+        height: 80vh;
+      }
+      .team-grid {
+        grid-template-columns: 1fr;
+        max-width: 450px;
+        margin: 0 auto;
+      }
+      .values-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- CURTAIN PAGE LOADER -->
+  <div class="curtain" id="curtain">
+    <div class="curtain-left"></div>
+    <div class="curtain-right"></div>
+  </div>
+  <div class="curtain-logo" id="curtainLogo">
+    <img src="images/oppty.png" alt="Oppty Logo" />
+  </div>
+
+  <!-- PREMIUM GLASSMORPHISM NAVBAR (Dark Theme Default) -->
+  <nav class="nav-premium" id="navPremium">
+    <a href="index.html" class="nav-logo">
+      <img src="images/oppty.png" alt="Oppty Logo" class="nav-logo-img" />
+    </a>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="services.html">Solutions</a></li>
+      <li><a href="platforms.html">Platforms</a></li>
+      <li><a href="about.html">Who We Are</a></li>
+      <li><a href="team.html">Leadership</a></li>
+      <li><a href="careers.html">Careers</a></li>
+      <li><a href="contact.html">Connect</a></li>
+    </ul>
+    <a href="contact.html" class="nav-cta" id="navCta">
+      Book Consultation
+    </a>
+    <button class="nav-hamburger" id="navHamburger" aria-label="Open menu">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+  </nav>
+
+  <!-- SLIDE-IN MOBILE MENU -->
+  <div class="menu-overlay" id="menuOverlay"></div>
+  <nav class="slide-menu" id="slideMenu">
+    <button class="menu-close" id="menuClose" aria-label="Close menu">
+      <span></span>
+      <span></span>
+    </button>
+    <div class="menu-body">
+      <div class="menu-left">
+        <p class="menu-label">NAVIGATION</p>
+        <ul class="menu-links">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="services.html">Solutions</a></li>
+          <li><a href="platforms.html">Platforms</a></li>
+          <li><a href="about.html">Who We Are</a></li>
+          <li><a href="team.html">Leadership</a></li>
+          <li><a href="careers.html">Careers</a></li>
+          <li><a href="contact.html">Connect</a></li>
+        </ul>
+        <div class="menu-socials">
+          <a href="https://www.linkedin.com/company/opptytech/" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+          <a href="#"><i class="fa-brands fa-x-twitter"></i></a>
+          <a href="https://www.instagram.com/opptytech?igsh=YTExdTBsc3Y4ejU2" target="_blank"><i class="fab fa-instagram"></i></a>
+          <a href="https://youtube.com/@mroppty?si=NbpyNIM-vkHyeLYM" target="_blank"><i class="fab fa-youtube"></i></a>
+          <a href="#"><i class="fab fa-facebook-f"></i></a>
+        </div>
+      </div>
+      <div class="menu-right">
+        <div class="menu-section">
+          <p class="menu-label">GET STARTED</p>
+          <a href="contact.html" class="menu-demo-btn">Book Consultation <i class="fas fa-arrow-up-right-from-square"></i></a>
+        </div>
+        <div class="menu-section mt-auto">
+          <p class="menu-label">PLATFORMS</p>
+          <div class="menu-post">
+            <img src="images/hero1.jpg" alt="Oppty Platforms" class="post-img" />
+            <p class="post-caption">Enterprise solutions through HRMS, CRM, Communication, and Learning ecosystems built for modern organizations.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="menu-footer-btns">
+      <a href="about.html" class="btn-buy">Who We Are</a>
+      <a href="platforms.html" class="btn-framer-sm"><i class="fas fa-cube"></i> Platforms</a>
+    </div>
+  </nav>
+
+  <!-- HERO SECTION -->
+  <section class="team-hero" id="hero">
+    <div class="hero-glow-blob" style="top: 15%; left: 20%;"></div>
+    <div class="hero-glow-blob" style="bottom: 10%; right: 15%;"></div>
+    <canvas id="heroCanvas"></canvas>
+
+    <div class="hero-content">
+      <div class="hero-eyebrow" id="heroEyebrow">OUR TEAM</div>
+      <h1 class="hero-heading" id="heroHeading">
+        <div class="word-wrap"><span class="word-inner">The</span></div>
+        <div class="word-wrap"><span class="word-inner orange">Visionaries</span></div>
+        <div class="word-wrap"><span class="word-inner">Behind</span></div>
+        <div class="word-wrap"><span class="word-inner orange">Oppty</span></div>
+      </h1>
+      <p class="hero-subheading" id="heroSubheading">
+        Meet our leaders, specialists, and advisors dedicated to driving business growth and technology optimization on a global scale.
+      </p>
+      <div class="hero-btns" id="heroBtns">
+        <a href="#team" class="btn-primary">Meet The Leaders</a>
+        <a href="#values" class="btn-ghost">Our Values</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- TEAM GRID SECTION -->
+  <section class="team-section" id="team">
+    <div class="section-container">
+      <div class="section-header">
+        <div class="section-label">Leadership</div>
+        <h2 class="section-title">Pioneers of Innovation</h2>
+      </div>
+
+      <div class="team-grid">
+        <!-- Team Card 1 -->
+        <div class="team-card">
+          <div class="card-glow"></div>
+          <div class="avatar-wrap">
+            <i class="fas fa-user-tie"></i>
+          </div>
+          <h3 class="member-name">Mr. Oppty</h3>
+          <p class="member-role">Founder & CEO</p>
+          <p class="member-bio">Leading the strategic direction, international expansion and operations of Oppty with over 15 years of technology experience.</p>
+          <div class="member-socials">
+            <a href="#" class="member-social-link" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+            <a href="#" class="member-social-link" aria-label="Twitter"><i class="fa-brands fa-x-twitter"></i></a>
+          </div>
+        </div>
+
+        <!-- Team Card 2 -->
+        <div class="team-card">
+          <div class="card-glow"></div>
+          <div class="avatar-wrap">
+            <i class="fas fa-laptop-code"></i>
+          </div>
+          <h3 class="member-name">Ananya Sen</h3>
+          <p class="member-role">Head of Technology</p>
+          <p class="member-bio">Guiding technical architecture, engineering standards, and SaaS product engineering pipelines across development centers.</p>
+          <div class="member-socials">
+            <a href="#" class="member-social-link" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+            <a href="#" class="member-social-link" aria-label="Github"><i class="fab fa-github"></i></a>
+          </div>
+        </div>
+
+        <!-- Team Card 3 -->
+        <div class="team-card">
+          <div class="card-glow"></div>
+          <div class="avatar-wrap">
+            <i class="fas fa-users-cog"></i>
+          </div>
+          <h3 class="member-name">Rahul Sharma</h3>
+          <p class="member-role">Director of Operations</p>
+          <p class="member-bio">Managing BPO programs, service delivery levels, SLAs, and customer success management for international business accounts.</p>
+          <div class="member-socials">
+            <a href="#" class="member-social-link" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- VALUES SECTION -->
+  <section class="values-section" id="values">
+    <div class="section-container">
+      <div class="section-header">
+        <div class="section-label">Foundations</div>
+        <h2 class="section-title">Our Operational Core Values</h2>
+      </div>
+
+      <div class="values-grid">
+        <!-- Value 1 -->
+        <div class="value-card">
+          <div class="value-num">01</div>
+          <h3 class="value-title">Client Success</h3>
+          <p class="value-desc">We measure our achievements through the direct growth and digital efficiency of our clients.</p>
+        </div>
+
+        <!-- Value 2 -->
+        <div class="value-card">
+          <div class="value-num">02</div>
+          <h3 class="value-title">Agility</h3>
+          <p class="value-desc">We adapt swiftly to digital shifts, matching infrastructure demands with agile solutions.</p>
+        </div>
+
+        <!-- Value 3 -->
+        <div class="value-card">
+          <div class="value-num">03</div>
+          <h3 class="value-title">Excellence</h3>
+          <p class="value-desc">We commit to the highest quality metrics in our software code, operations, and support.</p>
+        </div>
+
+        <!-- Value 4 -->
+        <div class="value-card">
+          <div class="value-num">04</div>
+          <h3 class="value-title">Collaboration</h3>
+          <p class="value-desc">Shared success is built on clear communication, transparency, and collaborative ecosystems.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PREMIUM FOOTER -->
+  <footer class="premium-footer" id="footer">
+      <div class="footer-bg-glow"></div>
+      <div class="footer-top-border"></div>
+
+      <div class="footer-container">
+          <div class="footer-grid">
+              
+              <!-- Left Column: Logo & Description -->
+              <div class="footer-col footer-col-left">
+                  <a href="index.html" class="footer-logo">
+                      <img src="images/oppty.png" alt="Oppty Logo" />
+                  </a>
+                  <p class="footer-about">
+                      Power up your success with innovative IT, BPO, E-commerce, Web Development, and AI solutions tailored to your vision.
+                  </p>
+                  <div class="footer-socials">
+                      <a href="https://www.linkedin.com/company/opptytech/" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                      <a href="#" aria-label="Twitter"><i class="fa-brands fa-x-twitter"></i></a>
+                      <a href="https://www.instagram.com/opptytech?igsh=YTExdTBsc3Y4ejU2" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                      <a href="https://youtube.com/@mroppty?si=NbpyNIM-vkHyeLYM" target="_blank" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+                      <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                  </div>
+              </div>
+
+              <!-- Center Column: Address Cards -->
+              <div class="footer-col footer-col-center">
+                  <!-- Hyderabad Address Card -->
+                  <div class="footer-card" id="hydCard">
+                      <div class="card-light-glow"></div>
+                      <h4 class="card-office-title"><i class="fas fa-map-marker-alt"></i> Hyderabad Office</h4>
+                      <p class="card-address">
+                          108/43, Vijaya Lakshmi Enclave, 1st Floor, PJR Enclave Rd, Gangaram, ICRISAT Colony, Hyderabad, Telangana 500050
+                      </p>
+                  </div>
+
+                  <!-- Udaipur Address Card -->
+                  <div class="footer-card" id="udrCard">
+                      <div class="card-light-glow"></div>
+                      <h4 class="card-office-title"><i class="fas fa-map-marker-alt"></i> Udaipur Office</h4>
+                      <p class="card-address">
+                          Plot No 26, 100 Feet Road, Shobhagpura, Udaipur, Rajasthan 313011
+                      </p>
+                  </div>
+              </div>
+
+              <!-- Right Column: Quick Links & Contact -->
+              <div class="footer-col footer-col-right">
+                  <div class="footer-contact">
+                      <h4>Contact Us</h4>
+                      <a href="mailto:info@oppty.in" class="footer-contact-link"><i class="far fa-envelope"></i> info@oppty.in</a>
+                      <a href="tel:+919491209900" class="footer-contact-link"><i class="fas fa-phone-alt"></i> +91 9491209900</a>
+                  </div>
+                  
+                  <div class="footer-links-wrap">
+                      <h4>Quick Links</h4>
+                      <ul class="footer-links-list">
+                          <li><a href="index.html" class="footer-hover-link">Home</a></li>
+                          <li><a href="about.html" class="footer-hover-link">Who We Are</a></li>
+                          <li><a href="services.html" class="footer-hover-link">Solutions</a></li>
+                          <li><a href="platforms.html" class="footer-hover-link">Platforms</a></li>
+                          <li><a href="team.html" class="footer-hover-link">Leadership</a></li>
+                          <li><a href="careers.html" class="footer-hover-link">Careers</a></li>
+                          <li><a href="contact.html" class="footer-hover-link">Connect</a></li>
+                      </ul>
+                  </div>
+              </div>
+
+          </div>
+
+          <div class="footer-bottom-bar">
+              <p class="footer-copyright">&copy; 2026 Oppty TechHub Pvt Ltd. All rights reserved.</p>
+              <p class="footer-tagline">Transforming Business Through Technology.</p>
+          </div>
+      </div>
+  </footer>
+
+  <!-- GSAP & Page-Specific Script -->
+  <script>
+    /* =====================================================
+       HERO CANVAS PARTICLES
+       ===================================================== */
+    (function(){
+      const canvas = document.getElementById('heroCanvas');
+      const ctx = canvas.getContext('2d');
+      let W, H, particles = [];
+
+      function resize() {
+        W = canvas.width = canvas.offsetWidth;
+        H = canvas.height = canvas.offsetHeight;
+      }
+      resize();
+      window.addEventListener('resize', resize);
+
+      class Particle {
+        constructor() {
+          this.reset(true);
+        }
+        reset(init) {
+          this.x = Math.random() * W;
+          this.y = init ? Math.random() * H : H + 10;
+          this.r = Math.random() * 1.5 + 0.3;
+          this.vx = (Math.random() - 0.5) * 0.2;
+          this.vy = -(Math.random() * 0.4 + 0.1);
+          this.alpha = Math.random() * 0.4 + 0.1;
+          this.isOrange = Math.random() > 0.6;
+        }
+        update() {
+          this.x += this.vx;
+          this.y += this.vy;
+          if (this.y < -10 || this.x < -10 || this.x > W + 10) {
+            this.reset(false);
+          }
+        }
+        draw() {
+          ctx.beginPath();
+          ctx.arc(this.x, this.y, this.r, 0, Math.PI * 2);
+          ctx.fillStyle = this.isOrange ? `rgba(250, 140, 50, ${this.alpha})` : `rgba(255, 255, 255, ${this.alpha * 0.35})`;
+          ctx.fill();
+        }
+      }
+
+      for (let i = 0; i < 60; i++) {
+        particles.push(new Particle());
+      }
+
+      function loop() {
+        ctx.clearRect(0, 0, W, H);
+        particles.forEach(p => {
+          p.update();
+          p.draw();
+        });
+        requestAnimationFrame(loop);
+      }
+      loop();
+    })();
+
+    /* =====================================================
+       INTERACTIVE MOUSE GLOW & 3D TILT FOR TEAM CARDS
+       ==================================================== */
+    document.querySelectorAll('.team-card').forEach(card => {
+      card.addEventListener('mousemove', e => {
+        const rect = card.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+        card.style.setProperty('--mx', `${x}px`);
+        card.style.setProperty('--my', `${y}px`);
+
+        // Subtle 3D tilt
+        const tiltX = (x / rect.width - 0.5) * 10;
+        const tiltY = (y / rect.height - 0.5) * 10;
+        gsap.to(card, {
+          rotateY: tiltX,
+          rotateX: -tiltY,
+          transformPerspective: 800,
+          duration: 0.3,
+          ease: 'power2.out'
+        });
+      });
+
+      card.addEventListener('mouseleave', () => {
+        gsap.to(card, {
+          rotateY: 0,
+          rotateX: 0,
+          duration: 0.5,
+          ease: 'power2.out'
+        });
+      });
+    });
+
+    /* =====================================================
+       GSAP ENTRANCE ANIMATIONS
+       ===================================================== */
+    gsap.registerPlugin(ScrollTrigger);
+
+    window.addEventListener('load', () => {
+      const tl = gsap.timeline({ delay: 1.5 });
+      tl.to('#heroEyebrow', { opacity: 1, y: 0, duration: 0.6, ease: 'power3.out' })
+        .to('.hero-heading .word-inner', { y: '0%', duration: 0.8, stagger: 0.1, ease: 'power3.out' }, '-=0.3')
+        .to('#heroSubheading', { opacity: 1, y: 0, duration: 0.6, ease: 'power3.out' }, '-=0.4')
+        .to('#heroBtns', { opacity: 1, y: 0, duration: 0.5, ease: 'power3.out' }, '-=0.3');
+    });
+
+    // Animate team cards on scroll
+    gsap.from('.team-card', {
+      scrollTrigger: {
+        trigger: '#team',
+        start: 'top 75%',
+        once: true
+      },
+      opacity: 0,
+      y: 40,
+      duration: 0.8,
+      stagger: 0.15,
+      ease: 'power3.out'
+    });
+
+    // Animate value cards
+    gsap.from('.value-card', {
+      scrollTrigger: {
+        trigger: '#values',
+        start: 'top 80%',
+        once: true
+      },
+      opacity: 0,
+      y: 30,
+      duration: 0.7,
+      stagger: 0.12,
+      ease: 'power3.out'
+    });
+  </script>
+
+  <!-- Unified Navigation Script -->
+  <script src="js/navigation.js"></script>
+</body>
+</html>
