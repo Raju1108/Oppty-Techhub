@@ -3,7 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Oppty Tech Hub</title>
+  <title>Oppty SaaS Suite | One Suite. Infinite Possibilities.</title>
+  <meta name="description" content="A unified ecosystem of intelligent SaaS products designed to help organizations manage work, connect teams, automate operations, and accelerate business growth." />
   <link rel="stylesheet" href="style.css" />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;900&display=swap" rel="stylesheet" />
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
@@ -120,6 +121,31 @@
     opacity: 0.4;
   }
 
+  /* Floating panel content */
+  .hero-float-panel {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 12px;
+    box-sizing: border-box;
+    pointer-events: none;
+  }
+  .hero-float-panel.fp3 {
+    flex-direction: column;
+  }
+  .hero-float-panel i {
+    font-size: 1.1rem;
+    color: #FA8C32;
+  }
+  .hero-float-panel span {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: #0A1628;
+    letter-spacing: 0.02em;
+  }
+
   /* ── Layout ── */
   .hero-content-wrapper {
     position: relative;
@@ -170,9 +196,16 @@
     background: rgba(255, 255, 255, 0.92);
     border-color: rgba(250, 140, 50, 0.35);
     box-shadow:
-      0 8px 32px rgba(250, 140, 50, 0.14),
-      0 0 0 1px rgba(250, 140, 50, 0.18),
+      0 0 24px rgba(250, 140, 50, 0.22),
+      0 0 0 1px rgba(250, 140, 50, 0.25),
       0 1px 0 rgba(255,255,255,1) inset;
+  }
+  @keyframes active-icon-pulse {
+    0% { transform: scale(1); }
+    100% { transform: scale(1.08); }
+  }
+  .product-tab.active .tab-icon {
+    animation: active-icon-pulse 1.8s infinite alternate ease-in-out;
   }
 
   .tab-icon {
@@ -198,7 +231,7 @@
   }
 
   .tab-label {
-    font-family: 'Inter', sans-serif;
+    font-family: 'Space Grotesk', sans-serif;
     font-size: 0.82rem;
     font-weight: 600;
     color: rgba(10, 22, 40, 0.55);
@@ -279,7 +312,7 @@
   }
 
   .hero-heading .accent-line {
-    display: block;
+    display: inline-block;
     color: #FA8C32;
   }
 
@@ -721,7 +754,7 @@
   }
 
   .feature-title {
-    font-family: 'Inter', sans-serif;
+    font-family: 'Space Grotesk', sans-serif;
     font-size: 0.78rem;
     font-weight: 700;
     color: #0a1628;
@@ -739,23 +772,50 @@
     transition: color 0.3s ease;
   }
 
-  /* Feature reveal animation */
-  .feature-card.reveal-enter {
-    animation: feature-reveal 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  /* Heading word reveal animations */
+  .hero-heading .word {
+    display: inline-block;
+    margin-right: 0.22em;
+    opacity: 0;
+    transform: translateY(10px);
   }
 
-  .feature-card.reveal-exit {
-    animation: feature-exit 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  /* ── Right Side Stats Card ── */
+  .stats-card {
+    background: rgba(255, 255, 255, 0.45);
+    border: 1px solid rgba(10, 22, 40, 0.06);
+    border-radius: 16px;
+    padding: 14px;
+    backdrop-filter: blur(12px);
+    box-shadow: 0 4px 20px rgba(10, 22, 40, 0.02), 0 1px 0 rgba(255,255,255,0.9) inset;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin-top: 6px;
+    width: 100%;
+    box-sizing: border-box;
   }
-
-  @keyframes feature-reveal {
-    from { opacity: 0; transform: translateY(12px); }
-    to   { opacity: 1; transform: translateY(0); }
+  .stat-item {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
   }
-
-  @keyframes feature-exit {
-    from { opacity: 1; transform: translateY(0); }
-    to   { opacity: 0; transform: translateY(-8px); }
+  .stat-val {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: #FA8C32;
+    line-height: 1.1;
+  }
+  .stat-lbl {
+    font-family: 'Inter', sans-serif;
+    font-size: 0.58rem;
+    font-weight: 500;
+    color: rgba(10, 22, 40, 0.5);
+    line-height: 1.25;
+    margin-top: 3px;
   }
 
   /* ── Bottom Product Info Row (features) ── */
@@ -997,10 +1057,10 @@
       <div class="hero-grid"></div>
 
       <!-- Floating glass panels -->
-      <div class="hero-float-panel fp1"></div>
-      <div class="hero-float-panel fp2"></div>
-      <div class="hero-float-panel fp3"></div>
-      <div class="hero-float-panel fp4"></div>
+      <div class="hero-float-panel fp1"><i class="fas fa-lightbulb"></i><span>Innovation</span></div>
+      <div class="hero-float-panel fp2"><i class="fas fa-users"></i><span>Collaboration</span></div>
+      <div class="hero-float-panel fp3"><i class="fas fa-shield-alt"></i><span>Integrity</span></div>
+      <div class="hero-float-panel fp4"><i class="fas fa-rocket"></i><span>Empowerment</span></div>
 
       <!-- Particle canvas -->
       <canvas class="hero-particle-canvas" id="heroParticleCanvas"></canvas>
@@ -1048,13 +1108,13 @@
 
         <!-- Headline Column -->
         <div class="hero-headline-col" id="heroHeadlineCol">
-          <div class="hero-eyebrow" id="heroEyebrow">Enterprise Platforms</div>
+          <div class="hero-eyebrow" id="heroEyebrow">Oppty SaaS Suite</div>
           <h1 class="hero-heading" id="heroHeading">
-            Powering Businesses Through
-            <span class="accent-line">Intelligent Platforms</span>
+            One Suite.
+            <span class="accent-line">Infinite Possibilities.</span>
           </h1>
           <p class="hero-subheading" id="heroSubheading">
-            Oppty delivers enterprise solutions through HRMS, CRM, Communication, and Learning ecosystems built for modern organizations.
+            A unified ecosystem of intelligent SaaS products designed to help organizations manage work, connect teams, automate operations, and accelerate business growth.
           </p>
           <div class="hero-cta-group">
             <a href="platforms.html" class="btn-primary-hero">
@@ -1102,15 +1162,38 @@
 
         <!-- Feature Cards Column -->
         <div class="hero-features-col" id="heroFeaturesCol">
-          <div class="feature-card" id="featureCard1">
-            <div class="feature-card-icon"><i class="fas fa-users"></i></div>
-            <div class="feature-title">Employee Management</div>
-            <div class="feature-desc">Centralize your workforce with smart org charts, profiles, and role management.</div>
+          <!-- Dynamic product features -->
+          <div id="productFeaturesContainer" style="display: flex; flex-direction: column; gap: 14px; width: 100%;">
+            <div class="feature-card animate-feature" id="featureCard1">
+              <div class="feature-card-icon"><i class="fas fa-users"></i></div>
+              <div class="feature-title">Employee Management</div>
+              <div class="feature-desc">Centralize your workforce with smart org charts, profiles, and role management.</div>
+            </div>
+            <div class="feature-card animate-feature" id="featureCard2">
+              <div class="feature-card-icon"><i class="fas fa-dollar-sign"></i></div>
+              <div class="feature-title">Payroll Automation</div>
+              <div class="feature-desc">Automated, compliant payroll that runs on schedule without manual intervention.</div>
+            </div>
           </div>
-          <div class="feature-card" id="featureCard2">
-            <div class="feature-card-icon"><i class="fas fa-dollar-sign"></i></div>
-            <div class="feature-title">Payroll Automation</div>
-            <div class="feature-desc">Automated, compliant payroll that runs on schedule without manual intervention.</div>
+
+          <!-- Static right side stats -->
+          <div class="stats-card">
+            <div class="stat-item">
+              <div class="stat-val">8+</div>
+              <div class="stat-lbl">Integrated Products</div>
+            </div>
+            <div class="stat-item">
+              <div class="stat-val">100%</div>
+              <div class="stat-lbl">Connected Ecosystem</div>
+            </div>
+            <div class="stat-item">
+              <div class="stat-val">24/7</div>
+              <div class="stat-lbl">Business Operations</div>
+            </div>
+            <div class="stat-item">
+              <div class="stat-val">∞</div>
+              <div class="stat-lbl">Growth Potential</div>
+            </div>
           </div>
         </div>
 
@@ -1118,21 +1201,25 @@
 
       <!-- Bottom Strip -->
       <div class="hero-bottom-strip" id="heroBottomStrip">
-        <div class="bottom-feature-pill" id="pill1">
-          <i class="fas fa-users"></i>
-          <span id="pill1Text">Employee Management</span>
+        <div class="bottom-feature-pill">
+          <i class="fas fa-cubes"></i>
+          <span>Unified Platform</span>
         </div>
-        <div class="bottom-feature-pill" id="pill2">
-          <i class="fas fa-dollar-sign"></i>
-          <span id="pill2Text">Payroll Automation</span>
+        <div class="bottom-feature-pill">
+          <i class="fas fa-chart-line"></i>
+          <span>Smart & Scalable</span>
         </div>
         <div class="bottom-feature-pill">
           <i class="fas fa-shield-alt"></i>
-          <span>Enterprise Security</span>
+          <span>Secure & Reliable</span>
         </div>
         <div class="bottom-feature-pill">
-          <i class="fas fa-plug"></i>
-          <span>API Integrations</span>
+          <i class="fas fa-user-friends"></i>
+          <span>People-Centric</span>
+        </div>
+        <div class="bottom-feature-pill">
+          <i class="fas fa-network-wired"></i>
+          <span>Connected Ecosystem</span>
         </div>
       </div>
 
@@ -2054,8 +2141,8 @@
         this.x = Math.random() * canvas.width;
         this.y = Math.random() * canvas.height;
         this.size = Math.random() * 1.5 + 0.4;
-        this.vx = (Math.random() - 0.5) * 0.25;
-        this.vy = (Math.random() - 0.5) * 0.25;
+        this.vx = (Math.random() - 0.5) * 0.12;
+        this.vy = (Math.random() - 0.5) * 0.12;
         this.alpha = Math.random() * 0.25 + 0.05;
         this.orange = Math.random() > 0.68;
       }
@@ -2181,54 +2268,64 @@
     const PRODUCTS = {
       hrms: {
         url: 'app.oppty.in/hrms',
-        eyebrow: 'Human Resources',
-        heading: 'Powering Businesses Through<br><span class="accent-line">Intelligent Platforms</span>',
-        subheading: 'Oppty HRMS unifies your entire employee lifecycle — from hiring and onboarding to payroll and performance — in one seamless enterprise platform.',
+        eyebrow: 'Oppty HRMS',
+        heading: [
+          { text: "People" },
+          { text: "Management" },
+          { text: "Reimagined", accent: true, breakBefore: true }
+        ],
+        subheading: 'Streamline workforce operations, automate payroll, track performance, and empower employees through an intelligent HR ecosystem.',
         features: [
           { icon: 'fas fa-users', title: 'Employee Management', desc: 'Centralize workforce with smart org charts, profiles, and role management.' },
           { icon: 'fas fa-dollar-sign', title: 'Payroll Automation', desc: 'Automated, compliant payroll that runs on schedule without manual intervention.' }
         ],
-        pills: ['Employee Management', 'Payroll Automation'],
-        pillIcons: ['fas fa-users', 'fas fa-dollar-sign'],
         slides: ['hrms-1', 'hrms-2', 'hrms-3', 'hrms-4']
       },
       chat: {
         url: 'app.oppty.in/chat',
-        eyebrow: 'Team Communication',
-        heading: 'Real-Time Collaboration<br><span class="accent-line">For Modern Teams</span>',
-        subheading: 'Oppty Chat brings your entire organization together with real-time messaging, file sharing, and smart team spaces built for enterprise scale.',
+        eyebrow: 'Oppty Chat',
+        heading: [
+          { text: "Communication" },
+          { text: "Without", accent: true, breakBefore: true },
+          { text: "Boundaries", accent: true }
+        ],
+        subheading: 'Enable real-time collaboration, instant messaging, team discussions, and connected communication across your organization.',
         features: [
-          { icon: 'fas fa-comments', title: 'Real-Time Messaging', desc: 'Instant, encrypted messaging across teams, departments, and external clients.' },
+          { icon: 'fas fa-comments', title: 'Instant Messaging', desc: 'Instant, encrypted messaging across teams, departments, and external clients.' },
           { icon: 'fas fa-users-cog', title: 'Team Collaboration', desc: 'Shared workspaces, channels, and smart notification management for every team.' }
         ],
-        pills: ['Real-Time Messaging', 'Team Collaboration'],
-        pillIcons: ['fas fa-comments', 'fas fa-users-cog'],
         slides: ['chat-1', 'chat-2', 'chat-3', 'chat-4']
       },
       crm: {
         url: 'app.oppty.in/crm',
-        eyebrow: 'Customer Relationship',
-        heading: 'Turn Every Lead Into<br><span class="accent-line">Loyal Revenue</span>',
-        subheading: 'Oppty CRM gives your sales team complete visibility into every deal, customer, and opportunity — with AI-powered insights that close more business.',
+        eyebrow: 'Oppty CRM',
+        heading: [
+          { text: "Build" },
+          { text: "Stronger" },
+          { text: "Customer", accent: true, breakBefore: true },
+          { text: "Relationships", accent: true }
+        ],
+        subheading: 'Manage leads, nurture customer relationships, track sales pipelines, and unlock business growth through actionable insights.',
         features: [
-          { icon: 'fas fa-funnel-dollar', title: 'Lead Tracking', desc: 'Visual pipeline management that shows every deal status at a glance.' },
+          { icon: 'fas fa-funnel-dollar', title: 'Lead Management', desc: 'Visual pipeline management that shows every deal status at a glance.' },
           { icon: 'fas fa-chart-line', title: 'Customer Insights', desc: 'Deep behavioral analytics to understand and anticipate customer needs.' }
         ],
-        pills: ['Lead Tracking', 'Customer Insights'],
-        pillIcons: ['fas fa-funnel-dollar', 'fas fa-chart-line'],
         slides: ['crm-1', 'crm-2', 'crm-3', 'crm-4']
       },
       learn: {
         url: 'app.oppty.in/learn',
-        eyebrow: 'Learning & Development',
-        heading: 'Build Skills That<br><span class="accent-line">Drive Careers Forward</span>',
-        subheading: 'Oppty Learn is a next-generation learning platform that equips teams and individuals with industry-relevant skills and career-ready expertise.',
-        features: [
-          { icon: 'fas fa-laptop-code', title: 'Interactive Learning', desc: 'Hands-on courses, live projects, and mentored paths for real-world readiness.' },
-          { icon: 'fas fa-graduation-cap', title: 'Career Development', desc: 'Personalized learning journeys aligned to industry certifications and job roles.' }
+        eyebrow: 'Oppty Learn',
+        heading: [
+          { text: "Learn" },
+          { text: "Today." },
+          { text: "Lead", accent: true, breakBefore: true },
+          { text: "Tomorrow.", accent: true }
         ],
-        pills: ['Interactive Learning', 'Career Development'],
-        pillIcons: ['fas fa-laptop-code', 'fas fa-graduation-cap'],
+        subheading: 'Empower students, professionals, and organizations with modern learning experiences, industry-ready skills, and career growth opportunities.',
+        features: [
+          { icon: 'fas fa-laptop-code', title: 'Skill Development', desc: 'Hands-on courses, live projects, and mentored paths for real-world readiness.' },
+          { icon: 'fas fa-graduation-cap', title: 'Learning Management', desc: 'Personalized learning journeys aligned to industry certifications and job roles.' }
+        ],
         slides: ['learn-1', 'learn-2', 'learn-3', 'learn-4']
       }
     };
@@ -2628,7 +2725,7 @@
     const eyebrowText = document.getElementById('heroEyebrow');
     const headingText = document.getElementById('heroHeading');
     const subheadingText = document.getElementById('heroSubheading');
-    const featuresCol = document.getElementById('heroFeaturesCol');
+    const featuresContainer = document.getElementById('productFeaturesContainer');
 
     let activeProduct = 'hrms';
     let currentSlideIndex = 0;
@@ -2636,9 +2733,12 @@
     let isPaused = false;
 
     function loadProduct(key) {
-      activeProduct = key;
+      if (activeProduct === key && document.querySelectorAll('.hero-heading .word').length > 0) return;
+      
       const data = PRODUCTS[key];
       if (!data) return;
+
+      activeProduct = key;
 
       tabs.forEach(tab => {
         if (tab.dataset.product === key) {
@@ -2648,47 +2748,82 @@
         }
       });
 
-      urlText.textContent = data.url;
-      eyebrowText.textContent = data.eyebrow;
-      headingText.innerHTML = data.heading;
-      subheadingText.textContent = data.subheading;
+      const oldWords = headingText.querySelectorAll('.word');
+      const oldFeatures = featuresContainer.querySelectorAll('.feature-card');
+      
+      const transitionTl = gsap.timeline({
+        onComplete: () => {
+          urlText.textContent = data.url;
+          eyebrowText.textContent = data.eyebrow;
+          
+          let headingHTML = '';
+          data.heading.forEach(w => {
+            if (w.breakBefore) headingHTML += '<br>';
+            headingHTML += `<span class="word ${w.accent ? 'accent-line' : ''}">${w.text}</span> `;
+          });
+          headingText.innerHTML = headingHTML;
+          subheadingText.textContent = data.subheading;
 
-      featuresCol.innerHTML = '';
-      data.features.forEach((feat, idx) => {
-        const card = document.createElement('div');
-        card.className = 'feature-card reveal-enter';
-        card.style.animationDelay = `${idx * 0.1}s`;
-        card.id = `featureCard${idx + 1}`;
-        card.innerHTML = `
-          <div class="feature-card-icon"><i class="${feat.icon}"></i></div>
-          <div class="feature-title">${feat.title}</div>
-          <div class="feature-desc">${feat.desc}</div>
-        `;
-        featuresCol.appendChild(card);
+          featuresContainer.innerHTML = '';
+          data.features.forEach((feat, idx) => {
+            const card = document.createElement('div');
+            card.className = 'feature-card';
+            card.id = `featureCard${idx + 1}`;
+            card.innerHTML = `
+              <div class="feature-card-icon"><i class="${feat.icon}"></i></div>
+              <div class="feature-title">${feat.title}</div>
+              <div class="feature-desc">${feat.desc}</div>
+            `;
+            featuresContainer.appendChild(card);
+          });
+
+          track.innerHTML = '';
+          data.slides.forEach(slideKey => {
+            const slide = document.createElement('div');
+            slide.className = 'carousel-slide';
+            slide.innerHTML = SLIDE_TEMPLATES[slideKey] || '';
+            track.appendChild(slide);
+          });
+
+          currentSlideIndex = 0;
+          updateCarouselPosition(true);
+
+          const newWords = headingText.querySelectorAll('.word');
+          const newFeatures = featuresContainer.querySelectorAll('.feature-card');
+
+          const revealTl = gsap.timeline();
+          revealTl.fromTo(eyebrowText, 
+            { opacity: 0, y: -10 }, 
+            { opacity: 1, y: 0, duration: 0.4, ease: 'power2.out' }
+          );
+          revealTl.fromTo(newWords, 
+            { opacity: 0, y: 12 }, 
+            { opacity: 1, y: 0, duration: 0.4, stagger: 0.05, ease: 'power2.out' },
+            '-=0.35'
+          );
+          revealTl.fromTo(subheadingText, 
+            { opacity: 0, y: 10 }, 
+            { opacity: 1, y: 0, duration: 0.5, ease: 'power2.out' },
+            '-=0.3'
+          );
+          revealTl.fromTo(newFeatures, 
+            { opacity: 0, y: 15 }, 
+            { opacity: 1, y: 0, duration: 0.5, stagger: 0.1, ease: 'power3.out' },
+            '-=0.45'
+          );
+        }
       });
 
-      const pill1Text = document.getElementById('pill1Text');
-      const pill2Text = document.getElementById('pill2Text');
-      const pill1Icon = document.getElementById('pill1')?.querySelector('i');
-      const pill2Icon = document.getElementById('pill2')?.querySelector('i');
-
-      if (pill1Text && pill2Text) {
-        pill1Text.textContent = data.pills[0];
-        pill2Text.textContent = data.pills[1];
-        if (pill1Icon) pill1Icon.className = data.pillIcons[0];
-        if (pill2Icon) pill2Icon.className = data.pillIcons[1];
+      if (oldWords.length > 0) {
+        transitionTl.to(oldWords, { opacity: 0, y: -12, duration: 0.22, stagger: 0.02, ease: 'power2.in' });
+        transitionTl.to([eyebrowText, subheadingText], { opacity: 0, y: -10, duration: 0.22, ease: 'power2.in' }, '-=0.18');
+        transitionTl.to(oldFeatures, { opacity: 0, y: -15, duration: 0.22, stagger: 0.05, ease: 'power2.in' }, '-=0.22');
+      } else {
+        gsap.set([eyebrowText, headingText, subheadingText], { opacity: 0 });
+        // Initial build trigger immediately
+        transitionTl.play();
       }
 
-      track.innerHTML = '';
-      data.slides.forEach(slideKey => {
-        const slide = document.createElement('div');
-        slide.className = 'carousel-slide';
-        slide.innerHTML = SLIDE_TEMPLATES[slideKey] || '';
-        track.appendChild(slide);
-      });
-
-      currentSlideIndex = 0;
-      updateCarouselPosition(true);
       startSlideTimer();
     }
 
